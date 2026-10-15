@@ -1,0 +1,19 @@
+Senior Backend Engineer
+
+Responsibilities:
+- Design and build scalable REST APIs and backend services in Python.
+- Deploy containerized services with Docker to AWS.
+- Maintain CI/CD pipelines and automated testing.
+- Mentor junior engineers and review code.
+
+Requirements:
+- 3+ years of professional software engineering experience.
+- Strong Python and SQL skills.
+- Experience with Docker and REST API design.
+- Experience with Java.
+- Bachelor's degree in Computer Science or related field.
+
+Nice to have:
+- Kubernetes experience is a plus.
+- React for internal tools is a plus.
+- AWS Certified Developer is a plus.

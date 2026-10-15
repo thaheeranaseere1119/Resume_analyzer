@@ -1,0 +1,29 @@
+{
+  "_doc": "Representative role profiles (not live job postings). Each is matched with the same scoring engine as a pasted job description.",
+  "roles": [
+    {"id": "software_developer", "title": "Software Developer", "level": "Entry level",
+     "text": "Software Developer\nRequirements:\n- Programming in Java, Python or C++.\n- Knowledge of data structures and algorithms and object-oriented programming.\n- Experience with SQL and Git.\n- Good communication skills.\n- Bachelor's degree in Computer Science, Information Technology or related field.\nNice to have:\n- REST API development is a plus.\n- Unit testing is a plus."},
+    {"id": "python_developer", "title": "Python Developer", "level": "Entry level",
+     "text": "Python Developer\nRequirements:\n- Strong Python skills.\n- Experience with Django or Flask and REST API development.\n- Experience with SQL databases such as PostgreSQL or MySQL.\n- Git and version control.\n- Bachelor's degree in Computer Science or related field.\nNice to have:\n- Docker is a plus.\n- AWS is a plus."},
+    {"id": "frontend_developer", "title": "Frontend Developer", "level": "Entry level",
+     "text": "Frontend Developer\nRequirements:\n- HTML, CSS and JavaScript.\n- Experience with React.\n- Git.\n- UI/UX design sense and Figma.\n- Bachelor's degree in Computer Science or related field.\nNice to have:\n- TypeScript is a plus.\n- REST API integration is a plus."},
+    {"id": "fullstack_developer", "title": "Full-Stack Developer", "level": "Entry level",
+     "text": "Full-Stack Developer\nRequirements:\n- JavaScript, HTML and CSS with React.\n- Backend development with Node.js, Python or Java.\n- SQL and MongoDB databases.\n- REST API development.\n- Git.\n- Bachelor's degree in Computer Science or related field.\nNice to have:\n- Docker is a plus.\n- Firebase is a plus."},
+    {"id": "backend_developer", "title": "Backend Developer", "level": "Entry level",
+     "text": "Backend Developer\nRequirements:\n- Java or Python backend development.\n- Spring Boot, Django or Flask.\n- REST API design and SQL.\n- Git.\n- Bachelor's degree in Computer Science or related field.\nNice to have:\n- Docker and Kubernetes are a plus.\n- Microservices is a plus."},
+    {"id": "java_developer", "title": "Java Developer", "level": "Entry level",
+     "text": "Java Developer\nRequirements:\n- Strong Java and object-oriented programming.\n- SQL and JDBC or Hibernate.\n- Git.\n- Bachelor's degree in Computer Science or related field.\nNice to have:\n- Spring Boot is a plus.\n- JUnit is a plus."},
+    {"id": "data_analyst", "title": "Data Analyst", "level": "Entry level",
+     "text": "Data Analyst\nRequirements:\n- SQL and Excel.\n- Python with pandas.\n- Data visualization with Tableau, Power BI or Matplotlib.\n- Good communication skills.\n- Bachelor's degree in Statistics, Mathematics, Computer Science or related field.\nNice to have:\n- Machine learning is a plus."},
+    {"id": "ml_engineer", "title": "Machine Learning Engineer", "level": "Entry level",
+     "text": "Machine Learning Engineer\nRequirements:\n- Python and machine learning.\n- Deep learning with TensorFlow or PyTorch.\n- Experience with pandas and NumPy.\n- Computer vision or NLP projects.\n- Bachelor's degree in Computer Science or related field.\nNice to have:\n- Docker is a plus.\n- SQL is a plus."},
+    {"id": "qa_engineer", "title": "QA / Software Test Engineer", "level": "Entry level",
+     "text": "QA Engineer\nRequirements:\n- Software testing and test cases.\n- Test automation with Selenium or pytest.\n- SQL.\n- Good communication skills.\n- Bachelor's degree in Computer Science, Information Technology or related field.\nNice to have:\n- Java or Python is a plus.\n- Agile is a plus."},
+    {"id": "cloud_devops", "title": "Cloud / DevOps Engineer", "level": "Entry level",
+     "text": "Cloud DevOps Engineer\nRequirements:\n- Linux and Bash scripting.\n- Docker and Kubernetes.\n- CI/CD pipelines with Jenkins or GitHub Actions.\n- AWS, Azure or GCP.\n- Git.\n- Bachelor's degree in Computer Science or related field.\nNice to have:\n- Terraform is a plus.\n- Python is a plus."},
+    {"id": "mobile_developer", "title": "Mobile App Developer", "level": "Entry level",
+     "text": "Mobile App Developer\nRequirements:\n- Flutter or Kotlin or Swift.\n- Firebase.\n- REST API integration.\n- Git.\n- Bachelor's degree in Computer Science or related field.\nNice to have:\n- UI/UX design with Figma is a plus."},
+    {"id": "ui_ux_designer", "title": "UI/UX Designer", "level": "Entry level",
+     "text": "UI/UX Designer\nRequirements:\n- UI/UX design and prototyping in Figma.\n- HTML and CSS.\n- Good communication skills.\n- Bachelor's degree in Design, Computer Science or related field.\nNice to have:\n- JavaScript is a plus."}
+  ]
+}

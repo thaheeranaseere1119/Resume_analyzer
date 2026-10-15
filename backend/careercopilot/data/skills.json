@@ -1,0 +1,1413 @@
+{
+ "_doc": "Normalized skill taxonomy. 'implies' = strong evidence (using the source skill demonstrates the target). 'weak_evidence' = wording that suggests the skill but must be confirmed by the candidate before it is claimed. 'rewrite' patterns turn that wording into an explicit, natural mention once supported.",
+ "skills": [
+  {
+   "id": "python",
+   "name": "Python",
+   "category": "language",
+   "aliases": [
+    "Python",
+    "Python3"
+   ],
+   "learning_project": "Build a small Python CLI or API and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "java",
+   "name": "Java",
+   "category": "language",
+   "aliases": [
+    "Java"
+   ],
+   "learning_project": "Build a Java REST service with Spring Boot and unit tests.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "javascript",
+   "name": "JavaScript",
+   "category": "language",
+   "aliases": [
+    "JavaScript",
+    "ES6"
+   ],
+   "case_sensitive": false,
+   "learning_project": "Build an interactive single-page web app in vanilla JavaScript.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "typescript",
+   "name": "TypeScript",
+   "category": "language",
+   "aliases": [
+    "TypeScript"
+   ],
+   "implies": [
+    "javascript",
+    "programming"
+   ],
+   "learning_project": "Port a small JavaScript project to TypeScript with strict mode."
+  },
+  {
+   "id": "cpp",
+   "name": "C++",
+   "category": "language",
+   "aliases": [
+    "C++",
+    "CPP"
+   ],
+   "learning_project": "Implement a data-structures library in modern C++ with tests.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "csharp",
+   "name": "C#",
+   "category": "language",
+   "aliases": [
+    "C#",
+    "CSharp"
+   ],
+   "learning_project": "Build an ASP.NET Core web API in C#.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "go",
+   "name": "Go",
+   "category": "language",
+   "aliases": [
+    "Golang",
+    "Go"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Write a concurrent HTTP service in Go.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "ruby",
+   "name": "Ruby",
+   "category": "language",
+   "aliases": [
+    "Ruby"
+   ],
+   "learning_project": "Build a Ruby on Rails CRUD app.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "php",
+   "name": "PHP",
+   "category": "language",
+   "aliases": [
+    "PHP"
+   ],
+   "learning_project": "Build a PHP web app with a MySQL backend.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "kotlin",
+   "name": "Kotlin",
+   "category": "language",
+   "aliases": [
+    "Kotlin"
+   ],
+   "learning_project": "Build an Android app in Kotlin.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "swift",
+   "name": "Swift",
+   "category": "language",
+   "aliases": [
+    "Swift"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build an iOS app in Swift and SwiftUI.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "scala",
+   "name": "Scala",
+   "category": "language",
+   "aliases": [
+    "Scala"
+   ],
+   "learning_project": "Write a Spark job in Scala.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "rust",
+   "name": "Rust",
+   "category": "language",
+   "aliases": [
+    "Rust"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a CLI tool in Rust.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "sql",
+   "name": "SQL",
+   "category": "database",
+   "aliases": [
+    "SQL",
+    "T-SQL",
+    "PL/SQL"
+   ],
+   "case_sensitive": true,
+   "weak_evidence": [
+    {
+     "pattern": "\\b(relational )?databases?\\b",
+     "rewrite": {
+      "pattern": "\\b((?:relational )?databases?)\\b",
+      "replace": "SQL \\1"
+     }
+    },
+    {
+     "pattern": "\\bqueries\\b",
+     "rewrite": {
+      "pattern": "\\bqueries\\b",
+      "replace": "SQL queries"
+     }
+    }
+   ],
+   "learning_project": "Design a normalized schema and write analytical SQL queries against a public dataset."
+  },
+  {
+   "id": "nosql",
+   "name": "NoSQL",
+   "category": "database",
+   "aliases": [
+    "NoSQL"
+   ],
+   "learning_project": "Model a document store for a small app in MongoDB.",
+   "generic": true
+  },
+  {
+   "id": "html",
+   "name": "HTML",
+   "category": "frontend",
+   "aliases": [
+    "HTML",
+    "HTML5"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build an accessible static site with semantic HTML."
+  },
+  {
+   "id": "css",
+   "name": "CSS",
+   "category": "frontend",
+   "aliases": [
+    "CSS",
+    "CSS3",
+    "SCSS",
+    "Sass"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a responsive layout with CSS Grid and Flexbox."
+  },
+  {
+   "id": "react",
+   "name": "React",
+   "category": "framework",
+   "aliases": [
+    "React",
+    "React.js",
+    "ReactJS"
+   ],
+   "implies": [
+    "javascript"
+   ],
+   "learning_project": "Build a React app with hooks and component tests."
+  },
+  {
+   "id": "angular",
+   "name": "Angular",
+   "category": "framework",
+   "aliases": [
+    "Angular",
+    "AngularJS"
+   ],
+   "implies": [
+    "typescript"
+   ],
+   "learning_project": "Build an Angular dashboard app."
+  },
+  {
+   "id": "vue",
+   "name": "Vue.js",
+   "category": "framework",
+   "aliases": [
+    "Vue",
+    "Vue.js",
+    "VueJS"
+   ],
+   "implies": [
+    "javascript"
+   ],
+   "learning_project": "Build a Vue.js single-page app."
+  },
+  {
+   "id": "nodejs",
+   "name": "Node.js",
+   "category": "framework",
+   "aliases": [
+    "Node.js",
+    "NodeJS",
+    "Node"
+   ],
+   "case_sensitive": true,
+   "implies": [
+    "javascript"
+   ],
+   "learning_project": "Build a Node.js REST API with Express."
+  },
+  {
+   "id": "express",
+   "name": "Express",
+   "category": "framework",
+   "aliases": [
+    "Express.js",
+    "ExpressJS",
+    "Express"
+   ],
+   "case_sensitive": true,
+   "implies": [
+    "nodejs",
+    "javascript"
+   ],
+   "learning_project": "Build an Express API with authentication."
+  },
+  {
+   "id": "django",
+   "name": "Django",
+   "category": "framework",
+   "aliases": [
+    "Django"
+   ],
+   "implies": [
+    "python"
+   ],
+   "learning_project": "Build a Django app with the ORM and admin."
+  },
+  {
+   "id": "flask",
+   "name": "Flask",
+   "category": "framework",
+   "aliases": [
+    "Flask"
+   ],
+   "implies": [
+    "python"
+   ],
+   "learning_project": "Build a Flask REST API."
+  },
+  {
+   "id": "fastapi",
+   "name": "FastAPI",
+   "category": "framework",
+   "aliases": [
+    "FastAPI"
+   ],
+   "implies": [
+    "python",
+    "rest_api"
+   ],
+   "learning_project": "Build a typed FastAPI service with OpenAPI docs."
+  },
+  {
+   "id": "spring_boot",
+   "name": "Spring Boot",
+   "category": "framework",
+   "aliases": [
+    "Spring Boot",
+    "SpringBoot"
+   ],
+   "implies": [
+    "java"
+   ],
+   "implied_phrase": {
+    "java": "Java {T}"
+   },
+   "learning_project": "Build a Spring Boot microservice."
+  },
+  {
+   "id": "dotnet",
+   "name": ".NET",
+   "category": "framework",
+   "aliases": [
+    ".NET",
+    "ASP.NET",
+    "dotnet"
+   ],
+   "implies": [
+    "csharp"
+   ],
+   "learning_project": "Build an ASP.NET Core API."
+  },
+  {
+   "id": "rest_api",
+   "name": "REST API",
+   "category": "architecture",
+   "aliases": [
+    "REST API",
+    "REST APIs",
+    "RESTful",
+    "RESTful API",
+    "RESTful APIs",
+    "REST"
+   ],
+   "case_sensitive": true,
+   "weak_evidence": [
+    {
+     "pattern": "\\bAPI endpoints?\\b",
+     "rewrite": {
+      "pattern": "\\bAPI (endpoints?)\\b",
+      "replace": "REST API \\1"
+     }
+    },
+    {
+     "pattern": "\\bAPIs?\\b",
+     "rewrite": {
+      "pattern": "\\b(APIs?)\\b",
+      "replace": "REST \\1"
+     }
+    },
+    {
+     "pattern": "\\bendpoints?\\b",
+     "rewrite": {
+      "pattern": "\\b(endpoints?)\\b",
+      "replace": "REST API \\1"
+     }
+    }
+   ],
+   "learning_project": "Design and document a REST API with OpenAPI, versioning and pagination."
+  },
+  {
+   "id": "graphql",
+   "name": "GraphQL",
+   "category": "architecture",
+   "aliases": [
+    "GraphQL"
+   ],
+   "learning_project": "Add a GraphQL layer to an existing API."
+  },
+  {
+   "id": "microservices",
+   "name": "Microservices",
+   "category": "architecture",
+   "aliases": [
+    "microservices",
+    "microservice"
+   ],
+   "learning_project": "Split a monolith demo into two services communicating over HTTP or a queue."
+  },
+  {
+   "id": "postgresql",
+   "name": "PostgreSQL",
+   "category": "database",
+   "aliases": [
+    "PostgreSQL",
+    "Postgres"
+   ],
+   "implies": [
+    "sql"
+   ],
+   "learning_project": "Build an app backed by PostgreSQL with migrations."
+  },
+  {
+   "id": "mysql",
+   "name": "MySQL",
+   "category": "database",
+   "aliases": [
+    "MySQL"
+   ],
+   "implies": [
+    "sql"
+   ],
+   "learning_project": "Build an app backed by MySQL."
+  },
+  {
+   "id": "mongodb",
+   "name": "MongoDB",
+   "category": "database",
+   "aliases": [
+    "MongoDB",
+    "Mongo"
+   ],
+   "implies": [
+    "nosql"
+   ],
+   "learning_project": "Build an app backed by MongoDB."
+  },
+  {
+   "id": "redis",
+   "name": "Redis",
+   "category": "database",
+   "aliases": [
+    "Redis"
+   ],
+   "implies": [
+    "nosql"
+   ],
+   "learning_project": "Add a Redis cache to an API."
+  },
+  {
+   "id": "elasticsearch",
+   "name": "Elasticsearch",
+   "category": "database",
+   "aliases": [
+    "Elasticsearch",
+    "ElasticSearch"
+   ],
+   "learning_project": "Index a dataset in Elasticsearch and build search."
+  },
+  {
+   "id": "kafka",
+   "name": "Kafka",
+   "category": "devops",
+   "aliases": [
+    "Kafka",
+    "Apache Kafka"
+   ],
+   "learning_project": "Build a producer/consumer pipeline with Kafka."
+  },
+  {
+   "id": "aws",
+   "name": "AWS",
+   "category": "cloud",
+   "aliases": [
+    "AWS",
+    "Amazon Web Services",
+    "EC2",
+    "S3",
+    "Lambda"
+   ],
+   "case_sensitive": true,
+   "implies": [
+    "cloud"
+   ],
+   "weak_evidence": [
+    {
+     "pattern": "\\bcloud\\b",
+     "rewrite": {
+      "pattern": "\\b(cloud)\\b",
+      "replace": "AWS \\1"
+     }
+    }
+   ],
+   "learning_project": "Deploy a small app to AWS using S3, Lambda and API Gateway."
+  },
+  {
+   "id": "azure",
+   "name": "Azure",
+   "category": "cloud",
+   "aliases": [
+    "Azure",
+    "Microsoft Azure"
+   ],
+   "implies": [
+    "cloud"
+   ],
+   "learning_project": "Deploy a web app to Azure App Service."
+  },
+  {
+   "id": "gcp",
+   "name": "GCP",
+   "category": "cloud",
+   "aliases": [
+    "GCP",
+    "Google Cloud",
+    "Google Cloud Platform"
+   ],
+   "implies": [
+    "cloud"
+   ],
+   "learning_project": "Deploy a container to Google Cloud Run."
+  },
+  {
+   "id": "cloud",
+   "name": "Cloud computing",
+   "category": "cloud",
+   "aliases": [
+    "cloud computing",
+    "cloud platforms",
+    "cloud infrastructure",
+    "cloud-native",
+    "cloud native"
+   ],
+   "learning_project": "Deploy a small app to a major cloud provider.",
+   "generic": true
+  },
+  {
+   "id": "docker",
+   "name": "Docker",
+   "category": "devops",
+   "aliases": [
+    "Docker",
+    "Dockerfile",
+    "Docker Compose"
+   ],
+   "weak_evidence": [
+    {
+     "pattern": "\\bcontaineri[sz](ed|ing|e)\\b",
+     "rewrite": {
+      "pattern": "\\b(containeri[sz](?:ed|ing|e))\\b",
+      "replace": "\\1 with Docker",
+      "suffix_clause": true
+     }
+    },
+    {
+     "pattern": "\\bcontainers?\\b",
+     "rewrite": {
+      "pattern": "\\b(containers?)\\b",
+      "replace": "Docker \\1"
+     }
+    }
+   ],
+   "learning_project": "Containerize an existing project with a Dockerfile and Docker Compose, and document it in the README."
+  },
+  {
+   "id": "kubernetes",
+   "name": "Kubernetes",
+   "category": "devops",
+   "aliases": [
+    "Kubernetes",
+    "K8s",
+    "EKS",
+    "GKE",
+    "AKS"
+   ],
+   "case_sensitive": true,
+   "weak_evidence": [
+    {
+     "pattern": "\\b(container )?orchestration\\b",
+     "rewrite": {
+      "pattern": "\\b((?:container )?orchestration)\\b",
+      "replace": "Kubernetes \\1"
+     }
+    }
+   ],
+   "learning_project": "Deploy a multi-service app to a local Kubernetes cluster (kind or minikube) with manifests or Helm."
+  },
+  {
+   "id": "terraform",
+   "name": "Terraform",
+   "category": "devops",
+   "aliases": [
+    "Terraform"
+   ],
+   "learning_project": "Provision cloud infrastructure for a demo app with Terraform."
+  },
+  {
+   "id": "ci_cd",
+   "name": "CI/CD",
+   "category": "devops",
+   "aliases": [
+    "CI/CD",
+    "CI / CD",
+    "continuous integration",
+    "continuous delivery",
+    "continuous deployment"
+   ],
+   "weak_evidence": [
+    {
+     "pattern": "\\b(build|deployment|release) pipelines?\\b",
+     "rewrite": {
+      "pattern": "\\b(build|deployment|release) (pipelines?)\\b",
+      "replace": "CI/CD \\2"
+     }
+    },
+    {
+     "pattern": "\\bautomated (builds?|deployments?|releases?)\\b",
+     "rewrite": {
+      "pattern": "\\b(automated (?:builds?|deployments?|releases?))\\b",
+      "replace": "\\1 through CI/CD",
+      "suffix_clause": true
+     }
+    }
+   ],
+   "learning_project": "Add a CI/CD pipeline (for example GitHub Actions) that runs tests and deploys a project."
+  },
+  {
+   "id": "jenkins",
+   "name": "Jenkins",
+   "category": "devops",
+   "aliases": [
+    "Jenkins"
+   ],
+   "implies": [
+    "ci_cd"
+   ],
+   "learning_project": "Set up a Jenkins pipeline for a sample repo."
+  },
+  {
+   "id": "github_actions",
+   "name": "GitHub Actions",
+   "category": "devops",
+   "aliases": [
+    "GitHub Actions"
+   ],
+   "implies": [
+    "ci_cd",
+    "git"
+   ],
+   "learning_project": "Automate tests and releases with GitHub Actions."
+  },
+  {
+   "id": "git",
+   "name": "Git",
+   "category": "tool",
+   "aliases": [
+    "Git",
+    "GitHub",
+    "GitLab",
+    "Bitbucket"
+   ],
+   "case_sensitive": true,
+   "weak_evidence": [
+    {
+     "pattern": "\\bversion control\\b",
+     "rewrite": {
+      "pattern": "\\b(version control)\\b",
+      "replace": "Git \\1"
+     }
+    }
+   ],
+   "learning_project": "Contribute to an open-source project using Git branching and pull requests."
+  },
+  {
+   "id": "linux",
+   "name": "Linux",
+   "category": "tool",
+   "aliases": [
+    "Linux",
+    "Unix",
+    "Ubuntu"
+   ],
+   "learning_project": "Administer a Linux VM and automate setup with shell scripts."
+  },
+  {
+   "id": "bash",
+   "name": "Bash",
+   "category": "tool",
+   "aliases": [
+    "Bash",
+    "shell scripting",
+    "shell scripts"
+   ],
+   "implies": [
+    "linux"
+   ],
+   "learning_project": "Automate a routine task with a Bash script."
+  },
+  {
+   "id": "agile",
+   "name": "Agile",
+   "category": "process",
+   "aliases": [
+    "Agile",
+    "Kanban"
+   ],
+   "weak_evidence": [
+    {
+     "pattern": "\\b(two-week |2-week )?sprints?\\b",
+     "rewrite": {
+      "pattern": "\\b((?:two-week |2-week )?sprints?)\\b",
+      "replace": "Agile \\1"
+     }
+    }
+   ],
+   "learning_project": "Run a personal project in short Agile sprints with a public board.",
+   "generic": true
+  },
+  {
+   "id": "scrum",
+   "name": "Scrum",
+   "category": "process",
+   "aliases": [
+    "Scrum"
+   ],
+   "implies": [
+    "agile"
+   ],
+   "learning_project": "Earn a Scrum fundamentals certificate and apply it to a team project."
+  },
+  {
+   "id": "jira",
+   "name": "Jira",
+   "category": "tool",
+   "aliases": [
+    "Jira",
+    "JIRA"
+   ],
+   "learning_project": "Track a project in Jira with epics and sprints."
+  },
+  {
+   "id": "unit_testing",
+   "name": "Unit testing",
+   "category": "practice",
+   "aliases": [
+    "unit testing",
+    "unit tests",
+    "unit test"
+   ],
+   "weak_evidence": [
+    {
+     "pattern": "\\b(automated )?tests\\b",
+     "rewrite": {
+      "pattern": "\\b((?:automated )?tests)\\b",
+      "replace": "unit \\1"
+     }
+    }
+   ],
+   "learning_project": "Add unit tests with coverage reporting to an existing project."
+  },
+  {
+   "id": "pytest",
+   "name": "pytest",
+   "category": "tool",
+   "aliases": [
+    "pytest",
+    "PyTest"
+   ],
+   "implies": [
+    "python",
+    "unit_testing"
+   ],
+   "learning_project": "Write a pytest suite with fixtures."
+  },
+  {
+   "id": "junit",
+   "name": "JUnit",
+   "category": "tool",
+   "aliases": [
+    "JUnit"
+   ],
+   "implies": [
+    "java",
+    "unit_testing"
+   ],
+   "learning_project": "Write JUnit tests for a Java service."
+  },
+  {
+   "id": "tdd",
+   "name": "Test-driven development",
+   "category": "practice",
+   "aliases": [
+    "TDD",
+    "test-driven development",
+    "test driven development"
+   ],
+   "implies": [
+    "unit_testing"
+   ],
+   "learning_project": "Build a feature test-first and document the red/green cycle."
+  },
+  {
+   "id": "machine_learning",
+   "name": "Machine learning",
+   "category": "data",
+   "aliases": [
+    "machine learning",
+    "ML"
+   ],
+   "case_sensitive": false,
+   "weak_evidence": [
+    {
+     "pattern": "\\b(predictive|classification|regression) models?\\b",
+     "rewrite": {
+      "pattern": "\\b((?:predictive|classification|regression) models?)\\b",
+      "replace": "machine learning \\1"
+     }
+    }
+   ],
+   "learning_project": "Train and evaluate a model on a public dataset and write up the results."
+  },
+  {
+   "id": "deep_learning",
+   "name": "Deep learning",
+   "category": "data",
+   "aliases": [
+    "deep learning",
+    "neural networks",
+    "neural network"
+   ],
+   "implies": [
+    "machine_learning"
+   ],
+   "learning_project": "Train a small neural network with PyTorch."
+  },
+  {
+   "id": "tensorflow",
+   "name": "TensorFlow",
+   "category": "data",
+   "aliases": [
+    "TensorFlow",
+    "Keras"
+   ],
+   "implies": [
+    "deep_learning",
+    "machine_learning",
+    "python"
+   ],
+   "learning_project": "Train an image classifier with TensorFlow."
+  },
+  {
+   "id": "pytorch",
+   "name": "PyTorch",
+   "category": "data",
+   "aliases": [
+    "PyTorch"
+   ],
+   "implies": [
+    "deep_learning",
+    "machine_learning",
+    "python"
+   ],
+   "learning_project": "Fine-tune a model with PyTorch."
+  },
+  {
+   "id": "scikit_learn",
+   "name": "scikit-learn",
+   "category": "data",
+   "aliases": [
+    "scikit-learn",
+    "sklearn"
+   ],
+   "implies": [
+    "machine_learning",
+    "python"
+   ],
+   "learning_project": "Build a scikit-learn pipeline with cross-validation."
+  },
+  {
+   "id": "pandas",
+   "name": "pandas",
+   "category": "data",
+   "aliases": [
+    "pandas",
+    "Pandas"
+   ],
+   "implies": [
+    "python",
+    "data_analysis"
+   ],
+   "learning_project": "Clean and analyse a messy dataset with pandas."
+  },
+  {
+   "id": "numpy",
+   "name": "NumPy",
+   "category": "data",
+   "aliases": [
+    "NumPy",
+    "numpy"
+   ],
+   "implies": [
+    "python"
+   ],
+   "learning_project": "Implement a numerical algorithm with NumPy."
+  },
+  {
+   "id": "nlp",
+   "name": "NLP",
+   "category": "data",
+   "aliases": [
+    "NLP",
+    "natural language processing"
+   ],
+   "implies": [
+    "machine_learning"
+   ],
+   "learning_project": "Build a text classifier and evaluate it."
+  },
+  {
+   "id": "data_analysis",
+   "name": "Data analysis",
+   "category": "data",
+   "aliases": [
+    "data analysis",
+    "data analytics"
+   ],
+   "learning_project": "Publish an exploratory analysis notebook on a public dataset.",
+   "generic": true
+  },
+  {
+   "id": "data_visualization",
+   "name": "Data visualization",
+   "category": "data",
+   "aliases": [
+    "data visualization",
+    "dashboards",
+    "dashboard"
+   ],
+   "learning_project": "Build an interactive dashboard from a public dataset.",
+   "generic": true
+  },
+  {
+   "id": "tableau",
+   "name": "Tableau",
+   "category": "data",
+   "aliases": [
+    "Tableau"
+   ],
+   "implies": [
+    "data_visualization"
+   ],
+   "learning_project": "Publish a Tableau Public dashboard."
+  },
+  {
+   "id": "power_bi",
+   "name": "Power BI",
+   "category": "data",
+   "aliases": [
+    "Power BI",
+    "PowerBI"
+   ],
+   "implies": [
+    "data_visualization"
+   ],
+   "learning_project": "Build a Power BI report."
+  },
+  {
+   "id": "excel",
+   "name": "Excel",
+   "category": "tool",
+   "aliases": [
+    "Excel",
+    "Microsoft Excel"
+   ],
+   "learning_project": "Build an Excel model with pivot tables and lookups."
+  },
+  {
+   "id": "spark",
+   "name": "Apache Spark",
+   "category": "data",
+   "aliases": [
+    "Spark",
+    "Apache Spark",
+    "PySpark"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Process a large dataset with PySpark."
+  },
+  {
+   "id": "airflow",
+   "name": "Airflow",
+   "category": "data",
+   "aliases": [
+    "Airflow",
+    "Apache Airflow"
+   ],
+   "learning_project": "Orchestrate a daily ETL with Airflow."
+  },
+  {
+   "id": "etl",
+   "name": "ETL",
+   "category": "data",
+   "aliases": [
+    "ETL",
+    "ELT",
+    "data pipelines",
+    "data pipeline"
+   ],
+   "weak_evidence": [
+    {
+     "pattern": "\\bdata ingestion\\b",
+     "rewrite": {
+      "pattern": "\\b(data ingestion)\\b",
+      "replace": "ETL \\1"
+     }
+    }
+   ],
+   "learning_project": "Build an ETL pipeline that loads a public API into a warehouse."
+  },
+  {
+   "id": "snowflake",
+   "name": "Snowflake",
+   "category": "database",
+   "aliases": [
+    "Snowflake"
+   ],
+   "implies": [
+    "sql"
+   ],
+   "learning_project": "Load and model data in a Snowflake trial account."
+  },
+  {
+   "id": "oauth",
+   "name": "OAuth",
+   "category": "security",
+   "aliases": [
+    "OAuth",
+    "OAuth2",
+    "OAuth 2.0",
+    "OpenID Connect",
+    "JWT"
+   ],
+   "learning_project": "Add OAuth 2.0 login to a web app."
+  },
+  {
+   "id": "system_design",
+   "name": "System design",
+   "category": "architecture",
+   "aliases": [
+    "system design",
+    "distributed systems",
+    "scalable systems"
+   ],
+   "learning_project": "Write a design doc for a scalable service and build a prototype.",
+   "generic": true
+  },
+  {
+   "id": "oop",
+   "name": "Object-oriented programming",
+   "category": "practice",
+   "aliases": [
+    "OOP",
+    "object-oriented programming",
+    "object-oriented design",
+    "object oriented"
+   ],
+   "learning_project": "Refactor a script into a well-structured object-oriented module.",
+   "generic": true
+  },
+  {
+   "id": "data_structures",
+   "name": "Data structures and algorithms",
+   "category": "practice",
+   "aliases": [
+    "data structures",
+    "algorithms"
+   ],
+   "learning_project": "Solve and document a set of algorithm problems.",
+   "generic": true
+  },
+  {
+   "id": "aws_certified",
+   "name": "AWS Certification",
+   "category": "certification",
+   "aliases": [
+    "AWS Certified",
+    "AWS Certified Solutions Architect",
+    "AWS Certified Developer",
+    "AWS Cloud Practitioner"
+   ],
+   "implies": [
+    "aws"
+   ],
+   "learning_project": "Prepare for the AWS Certified Cloud Practitioner exam."
+  },
+  {
+   "id": "cka",
+   "name": "Certified Kubernetes Administrator",
+   "category": "certification",
+   "aliases": [
+    "CKA",
+    "Certified Kubernetes Administrator"
+   ],
+   "case_sensitive": true,
+   "implies": [
+    "kubernetes"
+   ],
+   "learning_project": "Prepare for the CKA exam with hands-on labs."
+  },
+  {
+   "id": "pmp",
+   "name": "PMP",
+   "category": "certification",
+   "aliases": [
+    "PMP",
+    "Project Management Professional"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for the PMP or CAPM certification."
+  },
+  {
+   "id": "csm",
+   "name": "Certified ScrumMaster",
+   "category": "certification",
+   "aliases": [
+    "CSM",
+    "Certified ScrumMaster",
+    "Certified Scrum Master"
+   ],
+   "case_sensitive": true,
+   "implies": [
+    "scrum"
+   ],
+   "learning_project": "Take a Certified ScrumMaster course."
+  },
+  {
+   "id": "programming",
+   "name": "Programming",
+   "category": "practice",
+   "aliases": [
+    "programming",
+    "coding",
+    "coding ability"
+   ],
+   "learning_project": "Solve a weekly set of coding problems and publish your solutions with explanations.",
+   "generic": true
+  },
+  {
+   "id": "communication",
+   "name": "Communication skills",
+   "category": "soft",
+   "aliases": [
+    "communication skills",
+    "communication",
+    "verbal and written communication",
+    "written communication",
+    "presentation skills"
+   ],
+   "exclude": [
+    "electronics\\s+and\\s+communication",
+    "tele-?communication"
+   ],
+   "learning_project": "Present a project to a peer group or write a technical blog post about it.",
+   "generic": true
+  },
+  {
+   "id": "teamwork",
+   "name": "Teamwork",
+   "category": "soft",
+   "aliases": [
+    "teamwork",
+    "team player",
+    "collaboration",
+    "collaborated",
+    "cross-functional team",
+    "cross-functional teams"
+   ],
+   "learning_project": "Contribute to a team project or open-source repository with code reviews.",
+   "generic": true
+  },
+  {
+   "id": "problem_solving",
+   "name": "Problem solving",
+   "category": "soft",
+   "aliases": [
+    "problem-solving",
+    "problem solving",
+    "analytical thinking",
+    "analytical skills",
+    "troubleshooting"
+   ],
+   "learning_project": "Write up how you diagnosed and solved a hard bug or design problem.",
+   "generic": true
+  },
+  {
+   "id": "leadership",
+   "name": "Leadership",
+   "category": "soft",
+   "aliases": [
+    "leadership",
+    "team leadership",
+    "led a team",
+    "mentored"
+   ],
+   "learning_project": "Lead a small project team or club initiative and document the outcome.",
+   "generic": true
+  },
+  {
+   "id": "software_testing",
+   "name": "Software testing",
+   "category": "practice",
+   "aliases": [
+    "software testing",
+    "applications testing",
+    "application testing",
+    "test automation",
+    "QA testing",
+    "manual testing",
+    "test cases",
+    "test case",
+    "test plans",
+    "testing",
+    "tested",
+    "QA",
+    "quality assurance",
+    "bug fixing",
+    "debugging and testing"
+   ],
+   "implies": [
+    "unit_testing"
+   ],
+   "learning_project": "Write a test plan and automated tests for one of your projects."
+  },
+  {
+   "id": "artificial_intelligence",
+   "name": "Artificial intelligence",
+   "category": "data",
+   "aliases": [
+    "artificial intelligence",
+    "AI",
+    "AI-based",
+    "AI-powered",
+    "AI-driven",
+    "generative AI",
+    "GenAI"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small AI-powered feature and evaluate it.",
+   "generic": true
+  },
+  {
+   "id": "ui_ux",
+   "name": "UI/UX design",
+   "category": "frontend",
+   "aliases": [
+    "UI/UX",
+    "UX design",
+    "UI design",
+    "user interface design",
+    "user experience design",
+    "wireframing",
+    "prototyping"
+   ],
+   "learning_project": "Redesign a screen in Figma and test it with three users."
+  },
+  {
+   "id": "figma",
+   "name": "Figma",
+   "category": "tool",
+   "aliases": [
+    "Figma"
+   ],
+   "implies": [
+    "ui_ux"
+   ],
+   "learning_project": "Design a responsive prototype in Figma."
+  },
+  {
+   "id": "firebase",
+   "name": "Firebase",
+   "category": "cloud",
+   "aliases": [
+    "Firebase",
+    "Firestore"
+   ],
+   "implies": [
+    "nosql",
+    "cloud"
+   ],
+   "learning_project": "Add Firebase authentication and a Firestore database to a web app."
+  },
+  {
+   "id": "flutter",
+   "name": "Flutter",
+   "category": "framework",
+   "aliases": [
+    "Flutter"
+   ],
+   "learning_project": "Build a cross-platform Flutter app."
+  },
+  {
+   "id": "jquery",
+   "name": "jQuery",
+   "category": "framework",
+   "aliases": [
+    "jQuery"
+   ],
+   "implies": [
+    "javascript"
+   ],
+   "learning_project": "Build an interactive page with jQuery."
+  },
+  {
+   "id": "rails",
+   "name": "Ruby on Rails",
+   "category": "framework",
+   "aliases": [
+    "Ruby on Rails",
+    "Rails"
+   ],
+   "case_sensitive": true,
+   "implies": [
+    "ruby"
+   ],
+   "learning_project": "Build a Ruby on Rails CRUD app."
+  },
+  {
+   "id": "matplotlib",
+   "name": "Matplotlib",
+   "category": "data",
+   "aliases": [
+    "Matplotlib"
+   ],
+   "implies": [
+    "python",
+    "data_visualization"
+   ],
+   "learning_project": "Visualize a dataset with Matplotlib."
+  },
+  {
+   "id": "computer_vision",
+   "name": "Computer vision",
+   "category": "data",
+   "aliases": [
+    "computer vision",
+    "image classification",
+    "object detection",
+    "CNN",
+    "YOLO",
+    "ResNet",
+    "image processing"
+   ],
+   "implies": [
+    "deep_learning",
+    "machine_learning"
+   ],
+   "learning_project": "Train an image classifier on a public dataset."
+  },
+  {
+   "id": "data_science",
+   "name": "Data science",
+   "category": "data",
+   "aliases": [
+    "data science"
+   ],
+   "implies": [
+    "data_analysis"
+   ],
+   "learning_project": "Publish an end-to-end data science notebook."
+  },
+  {
+   "id": "selenium",
+   "name": "Selenium",
+   "category": "tool",
+   "aliases": [
+    "Selenium",
+    "Selenium WebDriver"
+   ],
+   "implies": [
+    "software_testing"
+   ],
+   "learning_project": "Automate UI tests for a web app with Selenium."
+  }
+ ]
+}

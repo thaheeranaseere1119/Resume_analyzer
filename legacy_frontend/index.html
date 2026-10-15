@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CareerCopilot AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css?v=3.5.1">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#/"><span class="logo" aria-hidden="true">✦</span> CareerCopilot <em>AI</em></a>
+    <nav class="mainnav" aria-label="Main">
+      <a href="#/start" data-nav="tailor">Tailor resume</a>
+      <a href="#/editor" data-nav="editor">Editor</a>
+      <a href="#/ats" data-nav="ats">ATS score explained</a>
+      <a href="#/jobs" data-nav="jobs">Eligible jobs</a>
+      <a href="#/letters" data-nav="letters">Cover letters</a>
+      <a href="#/tracker" data-nav="tracker">Tracker</a>
+    </nav>
+    <div class="topbar-right" id="topbar-right" hidden>
+      <span class="file-chip" id="file-chip"></span>
+      <span class="score-pill" id="score-pill" title="Current calculated compatibility score"></span>
+      <button class="btn ghost" id="new-session">New analysis</button>
+    </div>
+  </header>
+
+  <!-- Home / landing -->
+  <main id="home" class="home" hidden>
+    <section class="home-hero">
+      <div class="home-copy">
+        <p class="eyebrow">AI resume copilot · ATS-ready</p>
+        <h1>Get past the ATS.<br><span>Keep your own resume.</span></h1>
+        <p class="lead">CareerCopilot compares your resume with any job, explains your ATS score, fixes wording and grammar,
+          and adds only the keywords that matter – straight into your own PDF or Word file, in your own fonts.</p>
+        <div class="home-cta">
+          <a class="btn primary big" href="#/start" id="get-started">Get started – it's free</a>
+          <button class="btn big ghost" type="button" id="see-features">See what it does</button>
+        </div>
+        <ul class="trust">
+          <li>Nothing changes until you approve it</li>
+          <li>Never invents experience</li>
+          <li>Your original file is always kept</li>
+        </ul>
+      </div>
+      <div class="robot-stage" id="robot-stage" aria-label="Copilot robot waving hello">
+        <div class="speech" id="speech" aria-live="polite"><span id="speech-text"></span><span class="caret">|</span></div>
+        <div class="robot" id="robot">
+          <div class="antenna"><span class="bulb"></span></div>
+          <div class="head cube">
+            <div class="face front"><div class="visor"><span class="eye l"></span><span class="eye r"></span></div><div class="mouth"></div></div>
+            <div class="face back"></div><div class="face left"><span class="ear"></span></div>
+            <div class="face right"><span class="ear"></span></div><div class="face top"></div><div class="face bottom"></div>
+          </div>
+          <div class="neck"></div>
+          <div class="torso cube">
+            <div class="face front"><div class="chest"><span class="heart">✦</span><span class="led"></span><span class="led"></span><span class="led"></span></div></div>
+            <div class="face back"></div><div class="face left"></div><div class="face right"></div><div class="face top"></div><div class="face bottom"></div>
+          </div>
+          <div class="arm arm-left"><span class="hand"></span></div>
+          <div class="arm arm-right wave"><span class="hand"></span></div>
+          <div class="hover-shadow"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section" id="features">
+      <h2>Everything you need to get shortlisted</h2>
+      <div class="feature-grid">
+        <article><span class="fi">🎯</span><h3>Only the keywords that matter</h3><p>Finds the job's real requirements you're missing and places each one in the right section – skills, a project or a role.</p></article>
+        <article><span class="fi">✍️</span><h3>Professional wording & grammar</h3><p>Fixes spelling, tense, punctuation and weak phrasing like “Responsible for…” across every line.</p></article>
+        <article><span class="fi">🔤</span><h3>Your fonts, your layout</h3><p>Edits are written into your own PDF or DOCX in exactly the same font, size and position.</p></article>
+        <article><span class="fi">📊</span><h3>ATS score, explained</h3><p>See how the score is calculated, what earned and lost points, and how company ATS really work.</p></article>
+        <article><span class="fi">🧩</span><h3>Drag-and-drop editor</h3><p>Edit any line, rearrange sections and download a clean, ATS-friendly one-page version.</p></article>
+        <article><span class="fi">💼</span><h3>Eligible jobs</h3><p>Discover roles your resume already qualifies for and the skills to learn for the next ones.</p></article>
+        <article><span class="fi">✉️</span><h3>Cover letters</h3><p>Fact-checked letters drafted from your resume and the job description.</p></article>
+        <article><span class="fi">📌</span><h3>Application tracker</h3><p>Track every application from saved to offer, linked to the resume version you sent.</p></article>
+      </div>
+    </section>
+
+    <section class="home-section steps">
+      <h2>Three steps</h2>
+      <ol class="step-list">
+        <li><b>1</b><div><h3>Upload</h3><p>Your resume (PDF or DOCX) and the job description.</p></div></li>
+        <li><b>2</b><div><h3>Review</h3><p>See your score and approve the suggested changes – with a preview of each one.</p></div></li>
+        <li><b>3</b><div><h3>Download</h3><p>Get your improved resume in your original design or an ATS-friendly format.</p></div></li>
+      </ol>
+      <div class="home-cta center"><a class="btn primary big" href="#/start">Get started</a></div>
+    </section>
+    <footer class="home-footer">CareerCopilot AI · Scores are estimates of keyword and evidence alignment, not any employer's ATS score.</footer>
+  </main>
+
+  <!-- Upload -->
+  <main id="landing" class="landing" hidden>
+    <section class="hero">
+      <h1>Add what's missing<br><span>without touching your design.</span></h1>
+      <p>Upload your resume and paste a job description. CareerCopilot finds missing or weak requirements,
+        proposes verified, grammatical wording, shows the score impact before you approve, and edits your
+        <strong>existing</strong> DOCX or PDF while preserving its formatting.</p>
+      <ul class="hero-points">
+        <li>Nothing is applied until you approve it</li>
+        <li>Only facts you have shown or confirmed</li>
+        <li>Your original file is never overwritten</li>
+      </ul>
+    </section>
+    <form id="upload-form" class="upload-card">
+      <label class="drop" id="drop">
+        <input type="file" id="file" accept=".docx,.pdf" required>
+        <span class="drop-icon" aria-hidden="true">⇪</span>
+        <span id="drop-label"><strong>Choose your resume</strong><br><small>DOCX or PDF, up to 15&nbsp;MB</small></span>
+      </label>
+      <div class="two">
+        <label class="field"><span>Company</span><input type="text" id="company" placeholder="e.g. Northwind"></label>
+        <label class="field"><span>Job title</span><input type="text" id="role" placeholder="e.g. Backend Engineer"></label>
+      </div>
+      <label class="field"><span>Job posting link <small class="muted">(optional)</small></span><input type="text" id="job-url" placeholder="https://…"></label>
+      <label class="field">
+        <span>Job description</span>
+        <textarea id="jd" rows="9" required placeholder="Paste the full job description, including responsibilities and requirements…"></textarea>
+      </label>
+      <label class="check-row"><input type="checkbox" id="track" checked> Add this job to my application tracker</label>
+      <button class="btn primary big" type="submit" id="analyze-btn">Analyze resume</button>
+      <button class="btn link" type="button" id="sample-btn">Use the sample resume and job description</button>
+      <p class="form-error" id="upload-error" role="alert"></p>
+    </form>
+    <section class="recent" id="recent" hidden>
+      <h2>Recent tailoring sessions</h2>
+      <div class="recent-list" id="recent-list"></div>
+    </section>
+  </main>
+
+  <!-- Workspace -->
+  <main id="workspace" class="workspace" hidden>
+    <section class="chat-col" aria-label="CareerCopilot conversation">
+      <div class="chat-stream" id="chat"></div>
+      <form class="chat-input" id="chat-form">
+        <input id="chat-text" autocomplete="off" placeholder="Ask about your score, what's missing, how scoring works…">
+        <button class="btn primary" type="submit">Send</button>
+      </form>
+    </section>
+    <section class="doc-col" aria-label="Document">
+      <div class="doc-tabs" role="tablist">
+        <button role="tab" class="tab active" data-tab="current">Current document</button>
+        <button role="tab" class="tab" data-tab="preview">Preview change</button>
+        <button role="tab" class="tab" data-tab="history">Versions &amp; changes</button>
+        <span class="spacer"></span>
+        <a class="btn small" id="editor-btn" href="#/editor">Edit &amp; rearrange</a>
+        <a class="btn small" id="letter-btn" href="#/letters">Write cover letter</a>
+        <a class="btn small" id="download-btn" href="#">Download</a>
+      </div>
+      <div class="doc-panel" id="panel-current"></div>
+      <div class="doc-panel" id="panel-preview" hidden><p class="muted pad">Choose <em>Preview Change</em> on a recommendation to see the formatted result here before applying it.</p></div>
+      <div class="doc-panel" id="panel-history" hidden></div>
+    </section>
+  </main>
+
+  <!-- Editor -->
+  <main id="editor" class="page" hidden>
+    <header class="page-head">
+      <div><h1>Resume editor</h1>
+        <p class="muted">Edit any line, drag lines and sections to rearrange them, and use <strong>✦ Improve</strong> for professional, error-free wording. Changes save automatically.</p></div>
+      <div class="editor-score" id="editor-score"></div>
+    </header>
+    <div class="editor-toolbar">
+      <a class="btn primary" id="ed-export-pdf" href="#">Download ATS-friendly PDF</a>
+      <a class="btn" id="ed-export-docx" href="#">Download ATS-friendly DOCX</a>
+      <button class="btn" id="ed-apply">Save text edits into my original file</button>
+      <button class="btn ghost" id="ed-reset">Reset to current document</button>
+      <span class="muted" id="ed-status" aria-live="polite"></span>
+    </div>
+    <div id="editor-alert"></div>
+    <div id="editor-body" class="editor-body"></div>
+  </main>
+
+  <!-- ATS explained -->
+  <main id="ats" class="page" hidden>
+    <header class="page-head"><div><h1>Your ATS score, explained</h1>
+      <p class="muted">How this app calculates your compatibility score, exactly what earned and lost points, and how employers' applicant tracking systems actually handle resumes.</p></div></header>
+    <div id="ats-body"></div>
+  </main>
+
+  <!-- Eligible jobs -->
+  <main id="jobs" class="page" hidden>
+    <header class="page-head"><div><h1>Eligible jobs</h1>
+      <p class="muted">Your resume matched against common role profiles with the same scoring engine. These are role profiles, not live job postings. Use the search links to find current openings.</p></div></header>
+    <div id="jobs-body"></div>
+  </main>
+
+  <!-- Cover letters -->
+  <main id="letters" class="page" hidden>
+    <header class="page-head">
+      <div><h1>Cover letters</h1><p class="muted">Drafted from your tailored resume and the job description. Every sentence is fact-checked against your resume before you can download it.</p></div>
+      <span class="writer-chip" id="writer-chip"></span>
+    </header>
+    <div class="letters-grid">
+      <aside class="panel">
+        <label class="field"><span>Job</span><select id="letter-session"></select></label>
+        <div class="two">
+          <label class="field"><span>Tone</span><select id="letter-tone"><option value="professional">Professional</option><option value="warm">Warm</option><option value="confident">Confident</option><option value="concise">Concise</option></select></label>
+          <label class="field"><span>Length</span><select id="letter-length"><option value="standard">Standard (~300 words)</option><option value="short">Short (~200 words)</option></select></label>
+        </div>
+        <label class="field"><span>Hiring manager <small class="muted">(optional)</small></span><input type="text" id="letter-manager" placeholder="e.g. Priya Shah"></label>
+        <label class="field"><span>Anything to emphasise? <small class="muted">(your own facts only)</small></span><textarea id="letter-notes" rows="4" placeholder="e.g. I use the product daily; I mentored two interns last summer."></textarea></label>
+        <button class="btn primary" id="letter-generate">Draft cover letter</button>
+        <p class="form-error" id="letter-error" role="alert"></p>
+        <h3 class="sub">Saved letters</h3>
+        <div id="letter-list" class="letter-list"></div>
+      </aside>
+      <section class="panel letter-editor" id="letter-editor">
+        <div class="empty"><p class="muted">Choose a job and draft a letter. You'll be able to edit every paragraph before downloading.</p></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Tracker -->
+  <main id="tracker" class="page" hidden>
+    <header class="page-head">
+      <div><h1>Application tracker</h1><p class="muted">Drag cards between columns, or change the status on the card. Each job links to its tailored resume and cover letters.</p></div>
+      <button class="btn primary" id="add-job">Add job</button>
+    </header>
+    <div class="board" id="board"></div>
+  </main>
+
+  <dialog id="job-dialog" class="dialog small-dialog">
+    <form method="dialog" class="dialog-body" id="job-form">
+      <h2 id="job-dialog-title">Add job</h2>
+      <div class="two">
+        <label class="field"><span>Company</span><input type="text" name="company"></label>
+        <label class="field"><span>Job title</span><input type="text" name="title"></label>
+      </div>
+      <div class="two">
+        <label class="field"><span>Status</span><select name="status"></select></label>
+        <label class="field"><span>Location</span><input type="text" name="location"></label>
+      </div>
+      <label class="field"><span>Posting link</span><input type="text" name="url" placeholder="https://…"></label>
+      <div class="two">
+        <label class="field"><span>Applied on</span><input type="date" name="applied_on"></label>
+        <label class="field"><span>Deadline / next step</span><input type="date" name="deadline"></label>
+      </div>
+      <div class="two">
+        <label class="field"><span>Salary</span><input type="text" name="salary"></label>
+        <label class="field"><span>Contact</span><input type="text" name="contact"></label>
+      </div>
+      <label class="field"><span>Notes</span><textarea name="notes" rows="3"></textarea></label>
+      <div id="job-history" class="muted" style="font-size:12px"></div>
+      <div class="dialog-actions">
+        <button class="btn danger" value="delete" id="job-delete" type="submit">Delete</button>
+        <span class="spacer"></span>
+        <button class="btn ghost" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn primary" value="save">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Approval modal -->
+  <dialog id="approve-dialog" class="dialog">
+    <form method="dialog" class="dialog-body" id="approve-form">
+      <h2 id="approve-title">Apply this change?</h2>
+      <div id="approve-content"></div>
+      <div class="dialog-actions">
+        <button class="btn ghost" value="cancel">Cancel</button>
+        <button class="btn primary" value="approve" id="approve-btn">Approve &amp; apply</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/static/app.js?v=3.5.1"></script>
+  <script src="/static/features.js?v=3.5.1"></script>
+  <script src="/static/home.js?v=3.5.1"></script>
+  <script src="/static/pages.js?v=3.5.1"></script>
+</body>
+</html>
