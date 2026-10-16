@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Design tokens: warm neutrals (derived from the cream/peach brand swatch) + one restrained rose accent. */
+:root {
+  --background: #fdfcf7;
+  --foreground: #2b2321;
+  --card: #ffffff;
+  --card-foreground: #2b2321;
+  --muted: #f5f0e6;
+  --muted-foreground: #6b5f5a;
+  --border: #e8dfd2;
+  --input: #ddd2c3;
+  --ring: #a9434e;
+  --primary: #a9434e;
+  --primary-foreground: #ffffff;
+  --secondary: #f9dcb5;
+  --secondary-foreground: #3d2a2a;
+  --accent: #fbeee2;
+  --accent-foreground: #3d2a2a;
+  --success: #2f6b4a;
+  --success-soft: #e4f1e3;
+  --warning: #8a5a00;
+  --warning-soft: #fcefc9;
+  --danger: #a12f3b;
+  --danger-soft: #fbe1e0;
+  --info: #31588a;
+  --info-soft: #e3ecf8;
+  --chart-1: #a9434e;
+  --chart-2: #d98a5f;
+  --chart-3: #6b8f71;
+  --chart-4: #5b7db1;
+  --chart-5: #9a7cb8;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: #171312;
+  --foreground: #f1ebe6;
+  --card: #201b19;
+  --card-foreground: #f1ebe6;
+  --muted: #2a2421;
+  --muted-foreground: #b3a69f;
+  --border: #3a322e;
+  --input: #463c37;
+  --ring: #e08891;
+  --primary: #e08891;
+  --primary-foreground: #241315;
+  --secondary: #4a3a2b;
+  --secondary-foreground: #f6e3cc;
+  --accent: #2f2622;
+  --accent-foreground: #f1ebe6;
+  --success: #8fd1a6;
+  --success-soft: #1d3326;
+  --warning: #f0c56a;
+  --warning-soft: #3a2f14;
+  --danger: #f19aa2;
+  --danger-soft: #3d1c20;
+  --info: #9cbdf0;
+  --info-soft: #1c2a3d;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: ui-sans-serif, -apple-system, "Segoe UI", "Helvetica Neue", Inter, Roboto, Arial, sans-serif;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  html { -webkit-text-size-adjust: 100%; }
+  body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+  ins.diff-ins { background: var(--success-soft); color: var(--success); text-decoration: none; border-radius: 3px; padding: 0 2px; }
+  del.diff-del { background: var(--danger-soft); color: var(--danger); border-radius: 3px; padding: 0 2px; }
+}
+
+/* Server-rendered DOCX preview */
+.docx-preview .cc-docx-page { background: #fff; color: #000; margin: 0 auto; box-shadow: 0 2px 12px rgba(0,0,0,.15); }
+.docx-preview .cc-docx-page p { margin: 0; }
+.docx-preview .cc-bullet { display: inline-block; width: 18pt; margin-left: -18pt; }
+.docx-preview .cc-tab { display: inline-block; width: 36pt; }
+.docx-preview .cc-tabrow { display: flex; justify-content: space-between; gap: 12pt; }
+.docx-preview .cc-table { width: 100%; border-collapse: collapse; }
+.docx-preview .cc-pagebreak { border-top: 2px dashed #d8c7b3; margin: 14pt -20pt; }
+.docx-preview .cc-footer { margin-top: 24pt; }
+.docx-preview .cc-hl { outline: 2px dashed #a9434e; outline-offset: 2px; background: rgba(244,180,179,.25); }
