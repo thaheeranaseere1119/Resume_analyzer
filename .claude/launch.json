@@ -2,18 +2,6 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "api",
-      "runtimeExecutable": ".venv/bin/uvicorn",
-      "runtimeArgs": ["app.main:app", "--app-dir", "backend", "--port", "8001"],
-      "port": 8001
-    },
-    {
-      "name": "web",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "frontend", "run", "dev", "--", "--port", "3000"],
-      "port": 3000
-    },
-    {
       "name": "careercopilot-legacy",
       "runtimeExecutable": ".venv/bin/uvicorn",
       "runtimeArgs": ["careercopilot.api:app", "--app-dir", "backend", "--port", "8765"],

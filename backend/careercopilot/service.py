@@ -10,14 +10,16 @@
 from __future__ import annotations
 
 import json
+import logging
 import re
 import secrets
+import sqlite3
 import threading
 import time
 from datetime import date
 from pathlib import Path
 
-from . import ats_format, coverletter, editor, llm
+from . import ats_format, coverletter, db, editor, llm
 from . import textutil as tu
 from .config import DATA_DIR, METHODOLOGY_VERSION, load_weights
 from .docx_io import read_docx
@@ -28,10 +30,14 @@ from .pdf_io import read_pdf
 from .preview import docx_preview, pdf_preview
 from .recommend import Recommender
 from .scoring import score_delta, score_resume
+
+log = logging.getLogger("careercopilot")
 from .versions import VersionStore
 
 
 # A version is never saved if any of these verification checks fail.
+MIN_POSTING_SKILLS = 3  # a live posting needs this many core skills for its score to be reliable
+
 CRITICAL_PROPERTIES = {
     "Valid, editable DOCX package", "Valid PDF", "Edited text written exactly", "Edited text written",
     "Unrelated paragraphs (headings, dates, contact info, section order)",
@@ -46,11 +52,38 @@ class WorkflowError(Exception):
 
 
 def parse_document(data: bytes, ext: str, as_of: date):
-    if ext == ".docx":
-        return read_docx(data, as_of), None
+    if ext not in (".docx", ".pdf"):
+        raise WorkflowError("Only .docx and .pdf resumes are supported")
+    if not data:
+        raise WorkflowError("The uploaded file is empty")
+    if ext == ".docx" and not data.startswith(b"PK"):
+        raise WorkflowError("This file is not a valid Word document. If it is an old .doc file, save it as .docx and try again.", 400)
+    if ext == ".pdf" and b"%PDF" not in data[:1024]:
+        raise WorkflowError("This file is not a valid PDF. Export the resume as PDF again and re-upload it.", 400)
     if ext == ".pdf":
-        return read_pdf(data, as_of)
-    raise WorkflowError("Only .docx and .pdf resumes are supported")
+        import pymupdf as fitz
+        try:
+            with fitz.open(stream=data, filetype="pdf") as d:
+                if d.needs_pass:
+                    raise WorkflowError("This PDF is password-protected. Remove the password and upload it again.", 400)
+                if len(d) == 0:
+                    raise WorkflowError("This PDF has no pages", 400)
+        except WorkflowError:
+            raise
+        except Exception:
+            raise WorkflowError("This PDF is damaged and could not be opened. Export it again and re-upload.", 400)
+    try:
+        model, layout = (read_docx(data, as_of), None) if ext == ".docx" else read_pdf(data, as_of)
+    except WorkflowError:
+        raise
+    except Exception as exc:
+        log.exception("Could not parse %s resume", ext)
+        raise WorkflowError(f"We couldn't read this {ext[1:].upper()} file ({type(exc).__name__}). "
+                            "Try re-saving it from Word or Google Docs and upload again.", 400) from exc
+    if not any(b.text.strip() for b in model.blocks):
+        raise WorkflowError("No readable text was found in this resume. If it is a scanned image, upload the "
+                            "original Word/PDF file instead.", 400)
+    return model, layout
 
 
 class Session:
@@ -58,10 +91,17 @@ class Session:
 
     def __init__(self, sid: str):
         self.sid = sid
-        self.root = DATA_DIR / "sessions" / sid
-        if not (self.root / "session.json").exists():
+        if not re.fullmatch(r"[A-Za-z0-9_-]{6,32}", sid or ""):
             raise WorkflowError("Session not found", 404)
-        self.state = json.loads((self.root / "session.json").read_text())
+        self.root = DATA_DIR / "sessions" / sid
+        try:
+            state = db.get_session_state(sid)
+        except (db.DatabaseError, sqlite3.Error, json.JSONDecodeError) as exc:
+            log.exception("Could not load session %s", sid)
+            raise WorkflowError("This session's saved data is damaged. Upload your resume again to start fresh.", 500) from exc
+        if state is None:
+            raise WorkflowError("Session not found. It may have been deleted – upload your resume again.", 404)
+        self.state = state
         self.store = VersionStore(self.root)
         self.jd = parse_jd(self.state["jd_text"])
         self.weights = self.state["weights"]
@@ -86,11 +126,15 @@ class Session:
                  "as_of": as_of.isoformat(), "created": time.time(), "confirmations": {}, "denials": [],
                  "answers": {}, "rejected": {}, "edited": {}, "letters": [],
                  "company": company.strip()[:200], "role": role.strip()[:200] or parse_jd(jd_text).title}
-        (root / "session.json").write_text(json.dumps(state, indent=2))
+        db.save_session_state(sid, state)
         return cls(sid)
 
     def _save(self):
-        (self.root / "session.json").write_text(json.dumps(self.state, indent=2))
+        try:
+            db.save_session_state(self.sid, self.state)
+        except (db.DatabaseError, sqlite3.Error) as exc:
+            log.exception("Could not save session %s", self.sid)
+            raise WorkflowError("Could not save your changes (database error). Please try again.", 500) from exc
 
     @property
     def ext(self) -> str:
@@ -136,19 +180,7 @@ class Session:
 
     @staticmethod
     def list_all() -> list[dict]:
-        root = DATA_DIR / "sessions"
-        out = []
-        for d in root.glob("*/session.json") if root.exists() else []:
-            try:
-                st = json.loads(d.read_text())
-                man = json.loads((d.parent / "manifest.json").read_text())
-            except (OSError, json.JSONDecodeError):
-                continue
-            out.append({"session_id": d.parent.name, "filename": man["filename"], "company": st.get("company", ""),
-                        "role": st.get("role", ""), "created": st.get("created"), "head": man["head"],
-                        "versions": len(man["versions"]), "letters": len(st.get("letters", [])),
-                        "score": st.get("last_score")})
-        return sorted(out, key=lambda x: -(x["created"] or 0))
+        return db.list_sessions()
 
     def summary(self) -> dict:
         _, model, _, score = self.current()
@@ -163,7 +195,7 @@ class Session:
             "session_id": self.sid,
             "company": self.state.get("company", ""),
             "role": self.state.get("role", ""),
-            "llm": {"configured": llm.configured(), "model": llm.MODEL},
+            "llm": {"configured": llm.configured(), "model": llm.model_name(), "provider": llm.label()},
             "filename": self.store.manifest["filename"],
             "format": self.ext.lstrip("."),
             "head": self.store.head,
@@ -340,14 +372,14 @@ class Session:
                 self.state["denials"].append(key)
             self.state["confirmations"].pop(key, None)
             self.state["answers"].pop(rec["key"], None)
-        elif sid and text and self._answer_denies(sid, text):
-            # The words say "not used / not yet": treat as No, never as a confirmation.
-            if key not in self.state["denials"]:
-                self.state["denials"].append(key)
-            self.state["confirmations"].pop(key, None)
-            self.state["answers"].pop(rec["key"], None)
-            self.state.setdefault("denial_notes", {})[key] = (
-                "Your answer says you haven't used this yet, so it was not added to your resume.")
+        elif sid and text and (denial := self._answer_denies(sid, text)):
+            # The words say "not used / not yet". Never add a claim, but don't silently turn a "Yes" into a "No":
+            # ask the candidate to clarify and keep their text.
+            from .taxonomy import taxonomy
+            name = taxonomy().get(sid).name
+            raise WorkflowError(f"Your answer reads like you haven't used {name} (“{denial.strip()[:160]}”). "
+                                f"If you have used it, describe what you did with {name}; if not, choose "
+                                f"“No, I haven't”.", 422)
         else:
             # A bare "yes" is enough to confirm a rewrite of existing wording; new content needs a description.
             has_rewrite = any(o.get("strategy") in ("weak", "skills_line") for o in rec["options"])
@@ -364,18 +396,20 @@ class Session:
         return self.find_rec(rec_id)
 
     @staticmethod
-    def _answer_denies(skill_id: str, text: str) -> bool:
-        from .phrasing import is_negated, skill_mentions
+    def _answer_denies(skill_id: str, text: str) -> str | None:
+        """The sentence that clearly says the candidate has NOT used the skill, if the answer is really a "no"."""
+        from .phrasing import _sentences, is_denial, skill_mentions
         from .taxonomy import taxonomy
-        pos, only_neg = skill_mentions(text, skill_id)
+        pos, only_neg = skill_mentions(text, skill_id, strict=True)
+        sents = _sentences(text) or [text]
         if only_neg:
-            return True
-        # "I have not used it yet" without naming the skill
-        name = taxonomy().get(skill_id).name.lower()
-        return not pos and is_negated(text) and not any(
-            not is_negated(sent) and len(sent.split()) > 4 for sent in re.split(r"(?<=[.!?])\s+", text)) \
-            or (not pos and re.search(r"\b(haven't|have not|never)\s+(used|worked|tried)\b", text, re.I) is not None
-                and name not in text.lower())
+            return next((x for x in sents if skill_id in taxonomy().ids_in(x) and is_denial(x)), sents[0])
+        if pos:
+            return None
+        # The skill is not named: "No, I haven't used it yet" with no positive statement at all.
+        denials = [x for x in sents if is_denial(x)]
+        positives = [x for x in sents if not is_denial(x) and len(x.split()) > 4]
+        return denials[0] if denials and not positives else None
 
     def confirm_claim(self, skill_id: str, text: str) -> dict:
         self.state["confirmations"][skill_id] = {"text": tu.normalize_ws(text or ""), "at": time.time()}
@@ -407,48 +441,90 @@ class Session:
                 "evidence_levels": EVIDENCE_LEVELS, "importance_weights": IMPORTANCE_WEIGHTS}
 
     # ------------------------------------------------------------- eligible jobs
+    @staticmethod
+    def _eligibility(model, jd, weights) -> dict:
+        """Score a resume against one job and decide eligibility (>= 60% of core skills, degree not missing)."""
+        from .scoring import score_resume
+        from .taxonomy import taxonomy as _tax
+        sc = score_resume(model, jd, weights)
+        req = [r for r in sc.requirements if r["type"] == "skill" and r["importance"] == "required"
+               and not _tax().get(r["skill_id"]).generic]
+        # "Java, Python or C++": one requirement satisfied by any of the alternatives
+        groups: dict[str, list[dict]] = {}
+        for r in req:
+            key = r["jd_text"] if re.search(r"\bor\b", r["jd_text"]) or r.get("example_only") else r["skill_id"]
+            groups.setdefault(key, []).append(r)
+        have, miss = [], []
+        for g in groups.values():
+            ok = [r["name"] for r in g if r["status"] != "missing"]
+            if ok:
+                have += ok
+            else:
+                miss.append(" or ".join(r["name"] for r in g))
+        pref_have = [r["name"] for r in sc.requirements if r["type"] == "skill" and r["importance"] == "preferred"
+                     and r["status"] != "missing"]
+        degree = next((r for r in sc.requirements if r["type"] == "education"), None)
+        coverage = (len(groups) - len(miss)) / len(groups) if groups else 0
+        return {"score": sc.overall, "required_coverage": round(100 * coverage),
+                "eligible": bool(groups) and coverage >= 0.6 and (degree is None or degree["status"] != "missing"),
+                "matched": have, "missing": miss, "preferred_matched": pref_have,
+                "degree_ok": degree is None or degree["status"] == "met", "skills_found": len(groups)}
+
     def eligible_jobs(self) -> list[dict]:
         import json as _json
         from urllib.parse import quote_plus
         from .jd import parse_jd
-        from .scoring import score_resume
         _, model, _, _ = self.current()
         roles = _json.loads((Path(__file__).with_name("data") / "roles.json").read_text())["roles"]
         out = []
         for role in roles:
-            jd = parse_jd(role["text"])
-            sc = score_resume(model, jd, self.weights)
-            from .taxonomy import taxonomy as _tax
-            req = [r for r in sc.requirements if r["type"] == "skill" and r["importance"] == "required"
-                   and not _tax().get(r["skill_id"]).generic]
-            # "Java, Python or C++": one requirement satisfied by any of the alternatives
-            groups: dict[str, list[dict]] = {}
-            for r in req:
-                key = r["jd_text"] if re.search(r"\bor\b", r["jd_text"]) else r["skill_id"]
-                groups.setdefault(key, []).append(r)
-            have, miss = [], []
-            for g in groups.values():
-                ok = [r["name"] for r in g if r["status"] != "missing"]
-                if ok:
-                    have += ok
-                else:
-                    miss.append(" or ".join(r["name"] for r in g))
-            req = list(groups.values())
-            pref_have = [r["name"] for r in sc.requirements if r["type"] == "skill" and r["importance"] == "preferred"
-                         and r["status"] != "missing"]
-            degree = next((r for r in sc.requirements if r["type"] == "education"), None)
-            coverage = (len(req) - len(miss)) / len(req) if req else 0
-            eligible = coverage >= 0.6 and (degree is None or degree["status"] != "missing")
             q = quote_plus(role["title"])
-            out.append({"id": role["id"], "title": role["title"], "level": role["level"], "score": sc.overall,
-                        "required_coverage": round(100 * coverage), "eligible": eligible,
-                        "matched": have, "missing": miss, "preferred_matched": pref_have,
-                        "degree_ok": degree is None or degree["status"] == "met",
+            out.append({"id": role["id"], "title": role["title"], "level": role["level"],
+                        **self._eligibility(model, parse_jd(role["text"]), self.weights),
                         "search": {"LinkedIn": f"https://www.linkedin.com/jobs/search/?keywords={q}",
                                    "Indeed": f"https://www.indeed.com/jobs?q={q}",
                                    "Naukri": f"https://www.naukri.com/{role['title'].lower().replace(' / ', '-').replace('/', '-').replace(' ', '-')}-jobs"}})
         out.sort(key=lambda r: (not r["eligible"], -r["score"]))
         return out
+
+    def live_jobs(self, role: str, location: str, source: str = "all", country: str = "in") -> dict:
+        """Live postings for a role, each scored against this resume, sorted eligible first then by ATS score."""
+        from . import jobsearch
+        from .jd import parse_jd
+        if source not in ("all", "other", *jobsearch.SOURCES):
+            raise WorkflowError("Unknown job site")
+        try:
+            postings = jobsearch.search(role, location, country)
+        except jobsearch.JobSearchError as exc:
+            raise WorkflowError(str(exc), exc.status) from exc
+        _, model, _, _ = self.current()
+        jobs = []
+        for p in postings:
+            if source != "all" and source not in p["links"]:
+                continue
+            ev = self._eligibility(model, parse_jd(p["description"]), self.weights)
+            jobs.append({**{k: v for k, v in p.items() if k != "description"}, **ev,
+                         "summary": re.sub(r"\s+", " ", p["description"])[:280]})
+        # Eligible first; postings that list too few skills to judge (score less reliable) go after the
+        # well-specified ones in each group; then highest ATS score.
+        for j in jobs:
+            j["low_detail"] = j["skills_found"] < MIN_POSTING_SKILLS
+        jobs.sort(key=lambda j: (not j["eligible"], j["low_detail"], -j["score"], -j["required_coverage"]))
+        counts = {k: sum(1 for p in postings if k in p["links"]) for k in (*jobsearch.SOURCES, "other")}
+        return {"role": role, "location": location, "source": source, "jobs": jobs, "counts": counts,
+                "total": len(postings), "site_search": jobsearch.site_searches(role, location, country)}
+
+    def tailor_for_posting(self, role: str, location: str, job_id: str, country: str = "in") -> "Session":
+        """Start a new tailoring session for one live posting, using this resume's current version."""
+        from . import jobsearch
+        try:
+            posting = next((p for p in jobsearch.search(role, location, country) if p["id"] == job_id), None)
+        except jobsearch.JobSearchError as exc:
+            raise WorkflowError(str(exc), exc.status) from exc
+        if posting is None:
+            raise WorkflowError("That posting is no longer in the results; search again.", 404)
+        return Session.create(self.store.read(), self.store.manifest["filename"], posting["description"],
+                              posting["company"], posting["title"])
 
     # ------------------------------------------------------------- editor
     def editor_get(self) -> dict:
@@ -492,7 +568,19 @@ class Session:
             alt = phrase_bullets(text, tense="past")
             if alt:
                 better = alt[0]
-        return {"text": better, "changed": better != text}
+        writer = "rules"
+        if llm.configured() and len(text.split()) >= 3:
+            try:
+                ai = llm.polish_lines([{"id": "x", "kind": kind if kind in ("bullet", "paragraph") else "paragraph",
+                                        "tense": "past", "text": text}]).get("x")
+            except llm.LLMUnavailable as exc:
+                log.info("AI improve unavailable: %s", exc)
+                ai = None
+            if ai:
+                ai = llm.finish(ai, kind=kind if kind in ("bullet", "paragraph", "skills_line") else "paragraph")
+            if ai and not llm.grounding_problems(ai, [text], max_new=1):
+                better, writer = tu.normalize_ws(ai), llm.label()
+        return {"text": better, "changed": better != text, "writer": writer}
 
     def editor_export(self, fmt: str) -> tuple[bytes, str, str]:
         draft = self.state.get("draft") or editor.draft_from_model(self.current()[1], self.store.head)
@@ -548,7 +636,7 @@ class Session:
         """Ask Claude for alternative wording of the selected option. Saved as the user's edit only
         when it passes validation; never applied without approval."""
         if not llm.configured():
-            raise WorkflowError("Claude is not configured. Set ANTHROPIC_API_KEY and restart the server.", 409)
+            raise WorkflowError("No AI writer is configured. Add GROQ_API_KEY to the .env file and restart the server.", 409)
         rec = self.find_rec(rec_id)
         opt = self._resolve_option(rec, override)
         source = opt.get("original_text") or opt["proposed_text"]
@@ -556,7 +644,7 @@ class Session:
         new = self.recommender().claude_variant(dict(opt), mode="rewrite" if opt["mode"] == "replace" else "from_notes",
                                                  source=source if opt["mode"] == "replace" else opt["proposed_text"],
                                                  skill=skill)
-        if new.get("writer") == "claude":
+        if new.get("writer") == "ai":
             self.state["edited"][rec_id] = {"text": new["proposed_text"], "block_id": new["block_id"],
                                             "mode": new["mode"], "selected": int((override or {}).get("selected", 0))}
             self._save()

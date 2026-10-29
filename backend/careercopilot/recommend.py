@@ -11,6 +11,8 @@ from __future__ import annotations
 import hashlib
 import re
 
+import logging
+
 from . import llm
 from . import textutil as tu
 from .config import COMPONENT_LABELS
@@ -35,6 +37,8 @@ CATEGORY_LABELS = {
     "process": ["method", "process", "practice", "tool"],
     "security": ["security", "tool"],
 }
+
+log = logging.getLogger("careercopilot")
 
 
 def _rid(*parts) -> str:
@@ -248,6 +252,12 @@ class Recommender:
                 rel += sum(1 for s in self.tax.ids_in(text) if self.tax.get(s).category == cat)
             if terms:
                 rel += len(tu.content_terms(text) & terms) + 3 * len(tu.content_terms(e.title) & terms)
+                if e.section == "projects" and terms & {tu.stem(w) for w in ("project", "game", "app", "application",
+                                                                              "website", "built", "developed")}:
+                    rel += 1
+            # Tie-break toward technical entries, so a tech bullet never lands under e.g. an outreach role.
+            tech = sum(1 for s in self.tax.ids_in(text) if self.tax.get(s).category not in ("soft", "process"))
+            rel += min(tech, 5) * 0.2
             anchors.append((-rel, -int(e.current), anchor))
         anchors.sort(key=lambda a: (a[0], a[1]))
         return [a[2] for a in anchors]
@@ -298,12 +308,19 @@ class Recommender:
                                jd_skill_ids=self.jd_skill_ids, jd_terms=self.jd_terms)
         opts = [{"mode": "insert_after", "action": "add", "block_id": anchor.id, "proposed_text": line,
                  "strategy": "confirmed_bullet", "writer": "phraser", "rationale": rationale} for line in lines]
-        return [self.evaluate(o) for o in opts]
+        evaluated = [self.evaluate(o) for o in opts]
+        if not evaluated and llm.configured():
+            # The rules could not find an action in the answer: let the AI writer phrase it from the answer.
+            base = {"mode": "insert_after", "action": "add", "block_id": anchor.id, "proposed_text": text,
+                    "kind": "bullet", "strategy": "confirmed_bullet", "writer": "phraser", "rationale": rationale}
+            ai = self.claude_variant(self.evaluate(base), mode="from_notes", source=text, skill=skill_name)
+            if ai.get("writer") == "ai" and ai["can_apply"]:
+                evaluated = [ai]
+        return evaluated
 
     def claude_variant(self, opt: dict, *, mode: str, source: str, skill: str | None) -> dict:
-        """Ask Claude for better wording; keep it only if it passes the same validation.
-
-        Returns the option (Claude's version when accepted). Never raises."""
+        """Ask the AI writer (Groq or Claude) for better wording; keep it only if it passes the same validation
+        and adds no new claims. Returns the option (the AI version when accepted). Never raises."""
         opt.setdefault("writer", "template")
         if not llm.configured():
             return opt
@@ -321,11 +338,22 @@ class Recommender:
         except llm.LLMUnavailable as exc:
             opt["writer_note"] = f"{exc}. Showing the built-in draft."
             return opt
-        cand = self.evaluate(dict(opt, proposed_text=text, writer="claude"))
-        if cand["can_apply"] or not opt.get("can_apply"):
+        text = llm.finish(text, kind="bullet", tense=tense)
+        problems = llm.grounding_problems(text, [source, resume, skill or "", opt.get("original_text") or ""])
+        if problems:
+            opt["writer_note"] = (f"{llm.label()}'s draft added things you didn't state ({'; '.join(problems)}), "
+                                  "so the built-in draft is shown.")
+            return opt
+        cand = self.evaluate(dict(opt, proposed_text=text, writer="ai", writer_label=llm.label()))
+        lower = opt.get("can_apply") and cand["score"]["points"] < opt["score"]["points"]
+        if (cand["can_apply"] or not opt.get("can_apply")) and not lower:
             cand["template_text"] = opt["proposed_text"]
             return cand
-        opt["writer_note"] = "Claude's draft did not pass the factual or grammar checks, so the built-in draft is shown."
+        if lower:
+            opt["writer_note"] = (f"{llm.label()}'s wording would score lower ({cand['score']['points']:+.1f} vs "
+                                  f"{opt['score']['points']:+.1f} pts), so the higher-scoring draft is shown.")
+            return opt
+        opt["writer_note"] = f"{llm.label()}'s draft did not pass the factual or grammar checks, so the built-in draft is shown."
         return opt
 
     # ------------------------------------------------------------------
@@ -379,9 +407,18 @@ class Recommender:
 
     def _wording_recs(self) -> list[dict]:
         """One card per resume line whose wording or grammar can be made professional."""
-        from .polish import scan
+        from .polish import scan, _tense_for
         out = []
-        for f in scan(self.model, _known_words(self.model, self.jd_text)):
+        findings = scan(self.model, _known_words(self.model, self.jd_text))
+        ai_text = self._ai_polish(findings, _tense_for)
+        by_block = {f["block_id"]: f for f in findings}
+        for bid, text in ai_text.items():
+            if bid not in by_block:   # the AI found a line the rules missed
+                b = self.model.block(bid)
+                by_block[bid] = {"block_id": bid, "section": b.section, "kind": b.kind, "original": b.body,
+                                 "improved": b.body, "issues": ["Unclear or unprofessional phrasing"]}
+        findings = [by_block[b.id] for b in self.model.blocks if b.id in by_block]
+        for f in findings:
             req = {"id": f"wording:{f['block_id']}", "type": "wording", "name": "Wording & grammar",
                    "importance": "polish", "jd_text": "", "status": "partial"}
             rec = self._base_rec(req, "wording")
@@ -393,11 +430,58 @@ class Recommender:
                    "rationale": "Corrects spelling, punctuation, technical terms and weak or informal wording. "
                                 "Your facts are unchanged."}
             opt = self.evaluate(opt)
+            ai = ai_text.get(f["block_id"])
+            if ai and ai != opt["proposed_text"]:
+                cand = self.evaluate(dict(opt, proposed_text=ai, writer="ai", writer_label=llm.label(),
+                                          rationale=f"Rewritten by {llm.label()} in clear, professional English, then "
+                                                    "checked: grammar, no new skills or numbers, no invented details."))
+                better = cand["score"]["points"] >= opt["score"]["points"]   # ties go to the AI wording
+                if cand["can_apply"] and cand["factual"]["status"] == "stylistic" and better:
+                    cand["template_text"] = opt["proposed_text"]
+                    opt = cand
+            if opt["proposed_text"].strip() == f["original"].strip():
+                continue
+            if opt["score"]["points"] <= 0:
+                continue   # only changes that raise the score are offered
+            if opt.get("writer") == "ai":
+                rec["why"] = (f"{llm.label()} rewrote this line in clearer, more professional English. "
+                              + ("Issues found: " + "; ".join(dict.fromkeys(f["issues"])) if f["issues"] else ""))
             if opt["can_apply"]:
                 rec["options"] = [opt]
                 rec["selected"] = 0
                 out.append(rec)
         return out
+
+    def _ai_polish(self, findings: list[dict], tense_for) -> dict[str, str]:
+        """One batched AI request correcting the English of the flagged lines plus every bullet and paragraph.
+        Returns {block_id: text} for lines the AI changed and that add no new claims."""
+        if not llm.configured():
+            return {}
+        flagged = {f["block_id"] for f in findings}
+        lines = []
+        for b in self.model.blocks:
+            body = b.body
+            if b.kind not in ("bullet", "paragraph") and b.id not in flagged:
+                continue
+            if b.section == "contact" or b.kind in ("heading", "contact") or body[:1].islower() or len(body.split()) < 4:
+                continue
+            lines.append({"id": b.id, "kind": b.kind, "tense": tense_for(self.model, b) or "", "text": body})
+        try:
+            out = llm.polish_lines(lines[:45])
+        except llm.LLMUnavailable as exc:
+            log.info("AI polish unavailable: %s", exc)
+            return {}
+        kept = {}
+        for bid, text in out.items():
+            blk = self.model.block(bid)
+            orig = blk.body
+            text = llm.finish(text, kind=blk.kind, tense=tense_for(self.model, blk))
+            if tu.normalize_ws(text) == tu.normalize_ws(orig):
+                continue
+            if llm.grounding_problems(text, [orig], max_new=1):  # polishing may add at most one new word
+                continue
+            kept[bid] = tu.normalize_ws(text)
+        return kept
 
     def _base_rec(self, req: dict, kind: str) -> dict:
         return {"id": _rid(req["id"]), "key": req["id"], "kind": kind, "requirement": req,
@@ -440,7 +524,10 @@ class Recommender:
             if sl and sl not in options:
                 options.append(self.evaluate(sl))
         # A keyword option that cannot raise the score (e.g. the keyword is already counted) is not offered.
-        useful = [o for o in options if o.get("score", {}).get("points", 0) > 0 or o.get("strategy") == "confirmed_bullet"]
+        # Only score gains are offered; a bullet written from the candidate's own answer is also kept when it
+        # is neutral (never when it would lower the score), so a confirmed answer always produces a card.
+        useful = [o for o in options if o.get("score", {}).get("points", 0) > 0
+                  or (o.get("strategy") == "confirmed_bullet" and o.get("score", {}).get("points", 0) >= 0)]
         if options and not useful and ev is not None and ev.literal:
             rec.update(status="info", gap=f"{sk.name} already appears in your resume, so adding it again would not "
                                           f"change the score. Showing it inside an achievement would.")

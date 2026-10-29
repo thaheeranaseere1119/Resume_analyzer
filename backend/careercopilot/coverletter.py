@@ -121,18 +121,20 @@ def generate(session, *, tone: str = "professional", length: str = "standard", h
             letter = llm.write_cover_letter(resume_text=resume_text(model), jd_text=session.state["jd_text"],
                                             company=company, role=role, tone=tone, length=length,
                                             hiring_manager=hiring_manager, notes=notes, candidate_name=name)
-            writer = "claude"
+            writer = "ai"
         except llm.LLMUnavailable as exc:
             writer_note = str(exc)
     else:
-        writer_note = "Claude is not configured (set ANTHROPIC_API_KEY); used the built-in writer."
+        writer_note = "No AI writer is configured (add GROQ_API_KEY to .env); used the built-in writer."
     if letter is None:
         letter = _template(model, jd, score, company, role, tone, hiring_manager, name)
     letter = {"id": secrets.token_hex(4), "created": time.time(), "updated": time.time(), "tone": tone,
               "length": length, "hiring_manager": hiring_manager, "notes": notes, "writer": writer,
+              "writer_label": llm.label() if writer == "ai" else "",
               "writer_note": writer_note, "resume_version": session.store.head,
-              "greeting": letter["greeting"].strip(), "paragraphs": [p.strip() for p in letter["paragraphs"] if p.strip()],
-              "closing": letter["closing"].strip()}
+              "greeting": llm.clean_text(letter["greeting"]),
+              "paragraphs": [llm.clean_text(p) for p in letter["paragraphs"] if p.strip()],
+              "closing": "\n".join(llm.clean_text(x) for x in letter["closing"].splitlines())}
     letter["validation"] = validate_letter(letter, model, session.state["confirmations"], notes)
     return letter
 

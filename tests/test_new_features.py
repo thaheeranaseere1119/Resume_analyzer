@@ -125,10 +125,14 @@ def test_ats_explanation_is_consistent_with_score(data_dir):
 def test_negative_answers_never_become_claims(data_dir):
     from careercopilot.phrasing import phrase_bullets
     s = _session("classic.docx")
+    from careercopilot.service import WorkflowError
     r = next(x for x in s.recommendations() if x["keyword"] == "AWS")
-    r = s.answer(r["id"], True, "I set up Linux virtual machines in a lab. While I have not deployed anything on AWS, "
+    with pytest.raises(WorkflowError) as e:   # a "yes" whose words say "not used" is sent back for clarification
+        s.answer(r["id"], True, "I set up Linux virtual machines in a lab. While I have not deployed anything on AWS, "
                                 "I am eager to learn AWS services.")
-    assert r["status"] == "unsupported" and r["options"] == []
+    assert e.value.status == 422 and "haven't used AWS" in str(e.value)
+    r = next(x for x in s.recommendations() if x["keyword"] == "AWS")
+    assert "aws" not in s.state["confirmations"] and not any(o["can_apply"] and "AWS" in o["proposed_text"] for o in r["options"])
     lines = phrase_bullets("I configured Linux VMs for a lab. I have not used AWS yet.", skill="AWS", tense="past")
     assert lines and all("AWS" not in l for l in lines)
 
@@ -220,3 +224,16 @@ def test_any_one_of_skill_lists_are_alternatives(jd_text, weights):
     reqs = {r["skill_id"]: r for r in score_resume(m2, jd, weights).requirements if r["type"] == "skill"}
     assert reqs["flask"]["status"] == "met"
     assert reqs["django"]["status"] == "met" and reqs["django"]["via"] == "flask"
+
+
+@pytest.mark.parametrize("text,denied", [
+    ("I set up CI/CD pipelines with GitHub Actions so broken code was not deployed to production.", False),
+    ("Yes. I have a basic understanding of CI/CD and used GitHub Actions to run tests on every push.", False),
+    ("I used Jenkins for CI/CD, not GitLab.", False),
+    ("Not only did I build the CI/CD pipeline, I also documented it.", False),
+    ("I haven't used CI/CD yet.", True),
+    ("No, I have never worked with CI/CD.", True),
+    ("I have no hands-on experience with CI/CD but I am eager to learn it.", True),
+])
+def test_only_clear_denials_count_as_no(text, denied):
+    assert bool(Session._answer_denies("ci_cd", text)) is denied

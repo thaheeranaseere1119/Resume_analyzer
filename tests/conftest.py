@@ -20,6 +20,16 @@ def pytest_configure(config):
         build_fixtures.main()
 
 
+@pytest.fixture(autouse=True)
+def no_real_ai(monkeypatch):
+    """Tests never call a real AI API, even when keys are present in .env."""
+    for k in ("GROQ_API_KEY", "ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN", "ANTHROPIC_PROFILE"):
+        monkeypatch.delenv(k, raising=False)
+    import careercopilot.llm as llm
+    monkeypatch.setattr(llm.os.path, "exists", lambda p, _real=llm.os.path.exists: False if p.endswith(".config/anthropic") else _real(p))
+    llm._cache.clear()
+
+
 @pytest.fixture
 def data_dir(tmp_path, monkeypatch):
     """Isolated session storage for every test."""

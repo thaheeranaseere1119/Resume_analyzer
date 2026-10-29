@@ -64,8 +64,8 @@ async function renderRecent() {
 async function openLetters(sid) {
   const meta = await loadMeta();
   $("#writer-chip").innerHTML = meta.llm.configured
-    ? `✦ Writer: Claude (${esc(meta.llm.model)}), fact-checked`
-    : `Writer: built-in templates <span class="muted">· set ANTHROPIC_API_KEY to draft with Claude</span>`;
+    ? `✦ Writer: ${esc(meta.llm.provider)} (${esc(meta.llm.model)}), fact-checked`
+    : `Writer: built-in templates <span class="muted">· add GROQ_API_KEY to .env to write with Groq</span>`;
   page.sessions = await api("/api/sessions");
   const sel = $("#letter-session");
   if (!page.sessions.length) {
@@ -96,7 +96,7 @@ function renderLetterList() {
   $("#letter-list").innerHTML = page.letters.length ? page.letters.map((l) => `
     <button class="letter-item ${l.id === page.letterId ? "active" : ""}" data-lid="${esc(l.id)}">
       <span>${esc(l.tone)} · ${l.validation.word_count} words</span>
-      <small class="muted">${fmtDate(l.updated)} · ${l.writer === "claude" ? "Claude" : "template"} · ${l.validation.passed ? "✓ checked" : "needs edits"}</small>
+      <small class="muted">${fmtDate(l.updated)} · ${l.writer === "ai" || l.writer === "claude" ? esc(l.writer_label || "Claude") : "template"} · ${l.validation.passed ? "✓ checked" : "needs edits"}</small>
     </button>`).join("") : `<p class="muted" style="font-size:13px">No letters yet for this job.</p>`;
   document.querySelectorAll(".letter-item").forEach((b) => b.addEventListener("click", () => {
     page.letterId = b.dataset.lid; renderLetterList(); renderLetterEditor();
@@ -114,7 +114,7 @@ function renderLetterEditor() {
   ed.innerHTML = `
     <div class="letter-status ${v.passed ? "ok" : "bad"}">
       ${v.passed ? "✓ Every claim is supported by your resume or notes, and the writing checks passed." : `✕ ${v.issues.filter((i) => i.severity === "fail").length} issue(s) to fix before downloading.`}
-      <span class="muted">· ${v.word_count} words · ${l.writer === "claude" ? "drafted by Claude" : "built-in draft"}</span>
+      <span class="muted">· ${v.word_count} words · ${l.writer === "ai" || l.writer === "claude" ? `drafted by ${esc(l.writer_label || "Claude")}` : "built-in draft"}</span>
     </div>
     ${l.writer_note ? `<p class="comp-deltas">${esc(l.writer_note)}</p>` : ""}
     <label class="field"><span>Greeting</span><input type="text" id="lt-greeting" value="${esc(l.greeting)}"></label>

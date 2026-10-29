@@ -1,26 +1,27 @@
 """Immutable original + append-only version history.
 
-Layout:  <data>/sessions/<sid>/original.<ext>   (read-only, never rewritten)
-                              versions/v0001.<ext>
-                              manifest.json
+Files:     <data>/sessions/<sid>/original.<ext>   (read-only, never rewritten)
+                                 versions/v0001.<ext>
+Metadata:  SQLite tables `versions` and `events`, plus sessions.head_version (see db.py).
 Undo/restore only move the HEAD pointer; no version file is ever deleted,
 so every state stays recoverable.
 """
 from __future__ import annotations
 
 import hashlib
-import json
 import os
 import stat
 import time
 from pathlib import Path
 
+from . import db
+
 
 class VersionStore:
     def __init__(self, root: Path):
         self.root = root
-        self.manifest_path = root / "manifest.json"
-        self.manifest = json.loads(self.manifest_path.read_text()) if self.manifest_path.exists() else None
+        self.sid = root.name
+        self.manifest = db.load_manifest(self.sid)
 
     @classmethod
     def create(cls, root: Path, data: bytes, filename: str) -> "VersionStore":
@@ -41,9 +42,7 @@ class VersionStore:
         return store
 
     def _save(self):
-        tmp = self.manifest_path.with_suffix(".tmp")
-        tmp.write_text(json.dumps(self.manifest, indent=2, default=str))
-        tmp.replace(self.manifest_path)
+        db.save_manifest(self.sid, self.manifest)
 
     @property
     def head(self) -> int:

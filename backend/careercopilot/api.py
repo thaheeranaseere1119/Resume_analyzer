@@ -1,15 +1,19 @@
 """FastAPI application: REST endpoints + static frontend."""
 from __future__ import annotations
 
+import logging
 import re
+import uuid
 from pathlib import Path
 
 from fastapi import FastAPI, File, Form, Request, UploadFile
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from . import llm, tracker
+from . import jobsearch, llm, tracker
 from .config import COMPONENT_LABELS
 from .service import Session, WorkflowError
 from .tracker import TrackerError
@@ -17,12 +21,40 @@ from .tracker import TrackerError
 FRONTEND = Path(__file__).resolve().parents[2] / "legacy_frontend"
 MAX_UPLOAD = 15 * 1024 * 1024
 
+log = logging.getLogger("careercopilot")
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
+
 app = FastAPI(title="CareerCopilot AI", version="1.0")
 
 
 @app.exception_handler(WorkflowError)
 async def _wf_error(_: Request, exc: WorkflowError):
     return JSONResponse({"error": str(exc)}, status_code=exc.status)
+
+
+@app.exception_handler(RequestValidationError)
+async def _validation_error(_: Request, exc: RequestValidationError):
+    """Turn pydantic's nested error list into one readable sentence."""
+    parts = []
+    for e in exc.errors():
+        field = ".".join(str(x) for x in e.get("loc", []) if x not in ("body", "query", "path", "form"))
+        parts.append(f"{field}: {e.get('msg', 'invalid value')}" if field else e.get("msg", "invalid value"))
+    return JSONResponse({"error": "Invalid request – " + "; ".join(parts), "details": exc.errors()}, status_code=422)
+
+
+@app.exception_handler(StarletteHTTPException)
+async def _http_error(_: Request, exc: StarletteHTTPException):
+    msg = {404: "Not found", 405: "Method not allowed"}.get(exc.status_code, str(exc.detail))
+    return JSONResponse({"error": msg}, status_code=exc.status_code)
+
+
+@app.exception_handler(Exception)
+async def _unexpected_error(request: Request, exc: Exception):
+    """Last resort: log the full traceback with an id, show the user a short message they can report."""
+    error_id = uuid.uuid4().hex[:8]
+    log.exception("Unhandled error %s on %s %s", error_id, request.method, request.url.path)
+    return JSONResponse({"error": f"Something went wrong on our side. Your resume was not changed. "
+                                  f"Please try again (error id {error_id}).", "error_id": error_id}, status_code=500)
 
 
 class Override(BaseModel):
@@ -63,7 +95,8 @@ async def _tr_error(_: Request, exc: TrackerError):
 
 @app.get("/api/meta")
 def meta():
-    return {"llm": {"configured": llm.configured(), "model": llm.MODEL}, "statuses": tracker.STATUSES}
+    return {"llm": {"configured": llm.configured(), "model": llm.model_name(), "provider": llm.label()}, "statuses": tracker.STATUSES,
+            "live_jobs": {"configured": jobsearch.configured()}}
 
 
 @app.get("/api/sessions")
@@ -240,6 +273,24 @@ def ats_explained(sid: str):
 @app.get("/api/sessions/{sid}/eligible-jobs")
 def eligible_jobs(sid: str):
     return Session(sid).eligible_jobs()
+
+
+@app.get("/api/sessions/{sid}/live-jobs")
+def live_jobs(sid: str, role: str, location: str = "", source: str = "all", country: str = "in"):
+    return Session(sid).live_jobs(role, location, source, country)
+
+
+class TailorBody(BaseModel):
+    role: str
+    location: str = ""
+    job_id: str
+    country: str = "in"
+
+
+@app.post("/api/sessions/{sid}/live-jobs/tailor")
+def tailor_for_posting(sid: str, body: TailorBody):
+    s = Session(sid).tailor_for_posting(body.role, body.location, body.job_id, body.country)
+    return {"session_id": s.sid}
 
 
 class EditorBody(BaseModel):

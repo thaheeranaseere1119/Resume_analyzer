@@ -362,6 +362,17 @@ textarea.flagged { border-color: var(--bad); background: #FFF2F6; }
 .job-card.eligible { border-color: var(--ok); }
 .job-card .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .job-card h3 { margin: 0; font-size: 16px; }
+.live-controls { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 10px 12px; align-items: end; margin-bottom: 12px; }
+.live-controls p { grid-column: 1 / -1; margin: 0; font-size: 13px; }
+#live-jobs { background: var(--info-bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; display: grid; gap: 10px; margin-bottom: 18px; scroll-margin-top: 80px; }
+.live-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.live-job { display: flex; gap: 12px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
+.live-job.eligible { border-left: 4px solid var(--ok); }
+.live-job .rank { font-weight: 700; color: var(--accent); min-width: 28px; }
+.live-main { display: grid; gap: 4px; min-width: 0; flex: 1; }
+.live-main .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.live-main h3 { margin: 0; font-size: 16px; overflow-wrap: anywhere; }
+@media (max-width: 600px) { .live-controls { grid-template-columns: 1fr; } .live-job .rank { display: none; } }
 .skills-ok { color: var(--ok); margin: 0; font-size: 13px; }
 .skills-miss { color: var(--bad); margin: 0; font-size: 13px; }
 @media (max-width: 700px) {

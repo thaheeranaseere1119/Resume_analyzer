@@ -11,6 +11,8 @@ No LLM is involved, so a score increase can never be invented.
 """
 from __future__ import annotations
 
+import functools
+
 import re
 from dataclasses import asdict, dataclass, field
 
@@ -269,6 +271,23 @@ def _education_component(model: ResumeModel, jd: JobRequirements, ev: dict[str, 
                           bool(parts), sum(parts) / len(parts) if parts else 0.0, details), reqs
 
 
+GRAMMAR_ERRORS = ("subject_verb_agreement", "articles", "repeated_word", "professional_tone")
+
+
+@functools.lru_cache(maxsize=4096)
+def _language_clean(body: str, kind: str) -> bool:
+    """A line is clean when the wording rules have nothing to fix and it has no grammar errors
+    (subject-verb agreement, articles, repeated words, unprofessional tone)."""
+    from .grammar import validate_text
+    from .polish import improve_line
+    if improve_line(body, kind=kind, tense="past") != body:
+        return False
+    if kind == "skills_line":
+        return True
+    checks = validate_text(body, kind="bullet" if kind == "bullet" else "paragraph")["checks"]
+    return not any(c["status"] == "fail" and c["name"] in GRAMMAR_ERRORS for c in checks)
+
+
 def _formatting_component(model: ResumeModel):
     checks = {}
     if model.scanned:
@@ -291,11 +310,10 @@ def _formatting_component(model: ResumeModel):
         checks["page_count"] = (0.10, 1.0 if model.page_count <= 2 else 0.5)
     # Language quality: share of content lines with no spelling/punctuation/casing/wording problems
     # (the same rules the "Wording & grammar" fixes apply), so approved fixes are reflected in the score.
-    from .polish import improve_line
     content = [b for b in model.blocks if b.kind in ("bullet", "paragraph", "skills_line")
                and b.section != "contact" and not b.body[:1].islower() and len(b.body.split()) >= 3]
     if content:
-        clean = sum(1 for b in content if improve_line(b.body, kind=b.kind, tense="past") == b.body)
+        clean = sum(1 for b in content if _language_clean(b.body, b.kind))
         checks["language_quality"] = (0.15, clean / len(content))
     tw = sum(w for w, _ in checks.values())
     score = sum(w * v for w, v in checks.values()) / tw

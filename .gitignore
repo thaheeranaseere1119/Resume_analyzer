@@ -2,8 +2,8 @@
 __pycache__/
 *.pyc
 .pytest_cache/
-data/sessions/
 .env
-data/storage/
-frontend/node_modules/
-frontend/.next/
+# user data: uploaded resumes, versions and the SQLite database
+data/sessions/
+data/careercopilot.db
+data/careercopilot.db-*

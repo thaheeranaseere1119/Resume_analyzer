@@ -145,18 +145,34 @@ NEGATION = re.compile(
     re.I)
 
 
+DENIAL = re.compile(
+    r"\b(?:(?:have|has|had|did|do)\s*(?:not|n't)|haven't|hasn't|didn't|don't|never|not yet|yet to)\s+(?:\w+\s+){0,2}?"
+    r"(?:used|use|worked|work|tried|done|built|deployed|implemented|set up|configured|had|got|learn\w*|experience\w*)\b"
+    r"|\bno (?:prior |hands-on |direct |real |professional |practical )?(?:experience|exposure)\b"
+    r"|\b(?:eager|planning|plan|hoping|hope|want|wish|would like|intend|looking forward) to (?:learn|use|work|try|gain|explore)\b"
+    r"|^\s*no\b[.,!]?", re.I)
+
+
+def is_denial(sentence: str) -> bool:
+    """True only for clear statements of NOT having used something (or only planning to).
+    Plain words like "not" ("so broken code was not deployed") or "basic understanding" do not count."""
+    return bool(DENIAL.search(sentence))
+
+
 def is_negated(sentence: str) -> bool:
     """True for statements of not having done something, or wanting to do it later."""
     return bool(NEGATION.search(sentence))
 
 
-def skill_mentions(text: str, skill_id: str) -> tuple[bool, bool]:
-    """(mentioned positively, mentioned only negatively) for a skill in free text."""
+def skill_mentions(text: str, skill_id: str, strict: bool = False) -> tuple[bool, bool]:
+    """(mentioned positively, mentioned only negatively) for a skill in free text.
+    strict=True counts only clear denials as negative (used to read the candidate's yes/no answers)."""
     from .taxonomy import taxonomy
+    neg_test = is_denial if strict else is_negated
     pos = neg = False
     for sent in _sentences(text):
         if skill_id in taxonomy().ids_in(sent):
-            if is_negated(sent):
+            if neg_test(sent):
                 neg = True
             else:
                 pos = True

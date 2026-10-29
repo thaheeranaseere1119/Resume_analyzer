@@ -11,7 +11,7 @@ import json
 import os
 from pathlib import Path
 
-METHODOLOGY_VERSION = "ccai-score-1.2"  # 1.1: language-quality check; 1.2: "any one of" skill lists
+METHODOLOGY_VERSION = "ccai-score-1.3"  # 1.1 language quality; 1.2 "any one of" skill lists; 1.3 grammar errors
 
 DEFAULT_WEIGHTS = {
     "keyword_coverage": 0.30,
@@ -42,6 +42,21 @@ EVIDENCE_LEVELS = {
 IMPORTANCE_WEIGHTS = {"required": 1.0, "preferred": 0.5}
 
 ROOT = Path(__file__).resolve().parents[2]
+
+
+def _load_dotenv(path: Path = ROOT / ".env"):
+    """Read app keys from the git-ignored .env file; real environment variables take priority."""
+    try:
+        lines = path.read_text().splitlines()
+    except OSError:
+        return
+    for line in lines:
+        key, sep, value = line.strip().partition("=")
+        if sep and key.startswith(("JSEARCH_", "RAPIDAPI_", "ANTHROPIC_", "GROQ_", "CAREERCOPILOT_")):
+            os.environ.setdefault(key, value.strip().strip('"').strip("'"))
+
+
+_load_dotenv()
 DATA_DIR = Path(os.environ.get("CAREERCOPILOT_DATA", ROOT / "data"))
 
 

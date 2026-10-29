@@ -1,40 +1,19 @@
-"""Job application tracker (single local user, JSON file store)."""
+"""Job application tracker (single local user, SQLite tables `jobs` and `job_status_history`)."""
 from __future__ import annotations
 
-import json
 import secrets
-import threading
 import time
-from pathlib import Path
 
-from . import config
+from . import db
 
 STATUSES = ["saved", "applied", "interview", "offer", "rejected"]
-FIELDS = ("company", "title", "url", "location", "notes", "applied_on", "deadline", "salary", "contact", "session_id")
-_lock = threading.Lock()
+FIELDS = db.JOB_FIELDS
 
 
 class TrackerError(Exception):
     def __init__(self, message: str, status: int = 400):
         super().__init__(message)
         self.status = status
-
-
-def _path() -> Path:
-    return Path(config.DATA_DIR) / "tracker.json"
-
-
-def _load() -> list[dict]:
-    p = _path()
-    return json.loads(p.read_text()) if p.exists() else []
-
-
-def _save(jobs: list[dict]):
-    p = _path()
-    p.parent.mkdir(parents=True, exist_ok=True)
-    tmp = p.with_suffix(".tmp")
-    tmp.write_text(json.dumps(jobs, indent=2))
-    tmp.replace(p)
 
 
 def _clean(data: dict) -> dict:
@@ -47,8 +26,7 @@ def _clean(data: dict) -> dict:
 
 
 def list_jobs() -> list[dict]:
-    with _lock:
-        return sorted(_load(), key=lambda j: -j["updated"])
+    return db.list_jobs()
 
 
 def create_job(data: dict) -> dict:
@@ -61,40 +39,30 @@ def create_job(data: dict) -> dict:
     now = time.time()
     job = {"id": secrets.token_hex(5), **{k: "" for k in FIELDS}, **fields, "status": status,
            "created": now, "updated": now, "history": [{"status": status, "at": now}]}
-    with _lock:
-        jobs = _load()
-        jobs.append(job)
-        _save(jobs)
+    db.insert_job(job)
     return job
 
 
 def update_job(job_id: str, data: dict) -> dict:
-    with _lock:
-        jobs = _load()
-        job = next((j for j in jobs if j["id"] == job_id), None)
-        if job is None:
-            raise TrackerError("Job not found", 404)
-        job.update(_clean(data))
-        status = data.get("status")
-        if status and status != job["status"]:
-            if status not in STATUSES:
-                raise TrackerError("Unknown status")
-            job["status"] = status
-            job["history"].append({"status": status, "at": time.time()})
-            if status == "applied" and not job.get("applied_on"):
-                job["applied_on"] = time.strftime("%Y-%m-%d")
-        job["updated"] = time.time()
-        _save(jobs)
-        return job
+    job = db.get_job(job_id)
+    if job is None:
+        raise TrackerError("Job not found", 404)
+    fields = _clean(data)
+    status = data.get("status")
+    new_status = None
+    if status and status != job["status"]:
+        if status not in STATUSES:
+            raise TrackerError("Unknown status")
+        new_status = status
+        if status == "applied" and not (fields.get("applied_on") or job.get("applied_on")):
+            fields["applied_on"] = time.strftime("%Y-%m-%d")
+    db.update_job(job_id, fields, new_status, time.time())
+    return db.get_job(job_id)
 
 
 def delete_job(job_id: str) -> dict:
-    with _lock:
-        jobs = _load()
-        keep = [j for j in jobs if j["id"] != job_id]
-        if len(keep) == len(jobs):
-            raise TrackerError("Job not found", 404)
-        _save(keep)
+    if not db.delete_job(job_id):
+        raise TrackerError("Job not found", 404)
     return {"deleted": job_id}
 
 

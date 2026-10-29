@@ -18,11 +18,34 @@ async function api(path, opts = {}) {
   const init = { method: opts.method || (opts.body ? "POST" : "GET"), headers: {} };
   if (opts.body instanceof FormData) init.body = opts.body;
   else if (opts.body !== undefined) { init.body = JSON.stringify(opts.body); init.headers["Content-Type"] = "application/json"; }
-  const res = await fetch(path, init);
+  // Long operations (upload + OCR, PDF export) get more time than quick ones.
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), opts.timeout || (opts.body instanceof FormData ? 180000 : 60000));
+  init.signal = ctrl.signal;
+  let res;
+  try {
+    res = await fetch(path, init);
+  } catch (e) {
+    throw new Error(e.name === "AbortError"
+      ? "The server took too long to respond. Please try again."
+      : navigator.onLine === false ? "You're offline. Check your connection and try again."
+      : "Can't reach the CareerCopilot server. Make sure it is running, then try again.");
+  } finally {
+    clearTimeout(timer);
+  }
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || data.detail?.[0]?.msg || `Request failed (${res.status})`);
+  if (!res.ok) {
+    const err = new Error(data.error || data.detail?.[0]?.msg ||
+      (res.status >= 500 ? "Something went wrong on the server. Your resume was not changed." : `Request failed (${res.status})`));
+    err.status = res.status; err.errorId = data.error_id;
+    throw err;
+  }
   return data;
 }
+
+// Any error a button handler forgot to catch still reaches the user instead of failing silently.
+window.addEventListener("unhandledrejection", (e) => { toast(e.reason?.message || "Something went wrong"); });
+window.addEventListener("error", (e) => { if (e.message) console.error(e.error || e.message); });
 const S = (p) => `/api/sessions/${state.sid}${p}`;
 
 function toast(msg) {
@@ -287,7 +310,7 @@ function recCard(rec) {
           : `<span class="check pass">✓ Passed all ${opt.grammar.checks.length} grammar and writing checks</span>`}
         ${opt.grammar.fixed_text ? `<div><button class="btn small" data-act="apply-fixes">Use suggested fixes</button></div>` : ""}
       </div>
-      <div>${badge(opt.factual)} ${opt.writer === "claude" ? `<span class="badge stylistic">✦ Drafted by Claude · validated</span>` : ""}</div>
+      <div>${badge(opt.factual)} ${opt.writer === "ai" ? `<span class="badge stylistic">✦ Written by ${esc(opt.writer_label || "AI")} · checked</span>` : ""}</div>
       ${opt.writer_note ? `<div class="comp-deltas">${esc(opt.writer_note)}</div>` : ""}
       <details class="evidence" ${state.openEvidence === rec.id ? "open" : ""} data-evidence="${rec.id}"><summary>View evidence</summary>
         <p style="font-size:13px;margin:6px 0 0">${esc(opt.rationale || "")}</p>
@@ -309,7 +332,7 @@ function recCard(rec) {
           : `<button class="btn primary" data-act="do-replace">${rec.kind === "wording" ? "Apply fix" : "Replace Existing Text"}</button>`}
         <button class="btn" data-act="preview">Preview Change</button>
         <button class="btn" data-act="edit">Edit Suggestion</button>
-        <button class="btn" data-act="claude" ${state.summary.llm?.configured ? "" : `disabled title="Set ANTHROPIC_API_KEY on the server to enable Claude"`}>✦ Rewrite with Claude</button>
+        <button class="btn" data-act="claude" ${state.summary.llm?.configured ? "" : `disabled title="Add GROQ_API_KEY to .env and restart the server"`}>✦ Rewrite with ${esc(state.summary.llm?.provider || "AI")}</button>
         <button class="btn danger" data-act="reject">Reject</button>
       </div>`;
   }
@@ -390,9 +413,20 @@ async function onAction(rec, act, card, btn) {
         const anchor = card.querySelector('[data-field="anchor"]')?.value || null;
         btn.disabled = true;
         if (text) pushLog(esc(text), "user");
-        await api(S(`/recommendations/${id}/answer`), { body: { yes: true, text, anchor_id: anchor } });
-        pushLog(`<div class="who">CareerCopilot</div><p>Thanks. I drafted wording from your description and checked its grammar and factual support. Review the ${esc(rec.keyword)} card below before approving.</p>`);
-        delete state.answering[id]; await refresh(); break;
+        let after;
+        try { after = await api(S(`/recommendations/${id}/answer`), { body: { yes: true, text, anchor_id: anchor } }); }
+        catch (e) {   // keep the card open with the text so it can be clarified
+          state.answering[id] = { text }; btn.disabled = false;
+          pushLog(`<div class="who">CareerCopilot</div><p>${esc(e.message)}</p>`); renderChat(); break;
+        }
+        const ready = after.options?.length && after.status !== "unsupported";
+        pushLog(`<div class="who">CareerCopilot</div><p>${ready
+          ? `Thanks. I wrote a ${esc(rec.keyword)} line from your description and checked it. Review the card${after.options[0].score.points > 0 ? ` (${signed(after.options[0].score.points)} pts)` : ""} and approve it to add it to your resume.`
+          : after.answer_error ? esc(after.answer_error)
+          : `Thanks, ${esc(rec.keyword)} is confirmed. It is already counted in your score, so no new line is needed.`}</p>`);
+        delete state.answering[id]; await refresh();
+        if (ready) document.querySelector(`[data-rec="${id}"]`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+        break;
       }
       case "reject":
         await api(S(`/recommendations/${id}/reject`), { body: {} });
@@ -415,12 +449,12 @@ async function onAction(rec, act, card, btn) {
       }
       case "preview": await openPreviewTab(rec); break;
       case "claude": {
-        btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Asking Claude…';
+        btn.disabled = true; btn.innerHTML = `<span class="spinner"></span> Asking ${esc(state.summary.llm?.provider || "AI")}…`;
         const opt = await api(S(`/recommendations/${id}/claude`), { body: overrideFor(rec) });
         state.sim[id] = opt;
         if (opt.writer === "claude") state.overrides[id] = { ...(state.overrides[id] || {}), text: opt.proposed_text };
         renderChat();
-        toast(opt.writer === "claude" ? "Claude's wording passed validation. Review it before approving." : (opt.writer_note || "Kept the built-in draft."));
+        toast(opt.writer === "ai" ? `${opt.writer_label || "AI"}'s wording passed all checks. Review it before approving.` : (opt.writer_note || "Kept the built-in draft."));
         break;
       }
       case "do-add": await requestApproval(rec, "add"); break;

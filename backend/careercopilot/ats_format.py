@@ -166,10 +166,18 @@ def docx_to_pdf(docx: bytes) -> bytes:
     try:
         src = os.path.join(d, "resume.docx")
         open(src, "wb").write(docx)
-        subprocess.run([exe, f"-env:UserInstallation=file://{d}/profile", "--headless", "--norestore",
-                        "--convert-to", "pdf", "--outdir", d, src], check=True, capture_output=True, timeout=90,
-                       env={**os.environ, "HOME": d})
-        return open(os.path.join(d, "resume.pdf"), "rb").read()
+        try:
+            subprocess.run([exe, f"-env:UserInstallation=file://{d}/profile", "--headless", "--norestore",
+                            "--convert-to", "pdf", "--outdir", d, src], check=True, capture_output=True, timeout=90,
+                           env={**os.environ, "HOME": d})
+        except subprocess.TimeoutExpired:
+            raise RuntimeError("PDF conversion timed out; download the DOCX instead.")
+        except subprocess.CalledProcessError as exc:
+            raise RuntimeError(f"LibreOffice could not convert the file: {exc.stderr.decode(errors='ignore')[:200]}")
+        out = os.path.join(d, "resume.pdf")
+        if not os.path.exists(out):
+            raise RuntimeError("LibreOffice produced no PDF; download the DOCX instead.")
+        return open(out, "rb").read()
     finally:
         shutil.rmtree(d, ignore_errors=True)
 

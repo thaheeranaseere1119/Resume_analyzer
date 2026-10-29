@@ -271,30 +271,118 @@ async function openAts(sid) {
 window.openAts = openAts;
 
 /* ============================== Eligible jobs ============================== */
+const SITES = { linkedin: "LinkedIn", indeed: "Indeed", naukri: "Naukri" };
+const COUNTRIES = [["in", "India"], ["us", "United States"], ["gb", "United Kingdom"], ["ca", "Canada"], ["au", "Australia"],
+  ["sg", "Singapore"], ["ae", "United Arab Emirates"], ["de", "Germany"]];
+const jobPrefs = (() => { try { return JSON.parse(localStorage.getItem("cc_job_prefs") || "{}"); } catch { return {}; } })();
+const saveJobPrefs = () => { try { localStorage.setItem("cc_job_prefs", JSON.stringify(jobPrefs)); } catch { /* storage unavailable */ } };
+
 async function openJobs(sid) {
   const box = $("#jobs-body");
   box.innerHTML = `<p class="muted"><span class="spinner"></span> Matching roles…</p>`;
-  let jobs;
-  try { jobs = await api(`/api/sessions/${sid}/eligible-jobs`); } catch (e) { box.innerHTML = `<p class="blocked">${esc(e.message)}</p>`; return; }
+  let jobs, meta;
+  try { [jobs, meta] = await Promise.all([api(`/api/sessions/${sid}/eligible-jobs`), loadMeta()]); }
+  catch (e) { box.innerHTML = `<p class="blocked">${esc(e.message)}</p>`; return; }
+  const live = meta.live_jobs?.configured;
   const card = (j) => `
     <article class="job-card ${j.eligible ? "eligible" : ""}">
       <div class="row"><h3>${esc(j.title)}</h3><span class="score-pill small">${fmt(j.score)}</span></div>
       <p class="muted" style="margin:0">${esc(j.level)} · ${j.required_coverage}% of core requirements met${j.degree_ok ? "" : " · degree requirement not met"}</p>
       ${j.matched.length ? `<p class="skills-ok">✓ ${j.matched.map(esc).join(", ")}</p>` : ""}
       ${j.missing.length ? `<p class="skills-miss">Missing: ${j.missing.map(esc).join(", ")}</p>` : ""}
-      <div class="actions">${Object.entries(j.search).map(([k, u]) => `<a class="btn small" href="${esc(u)}" target="_blank" rel="noopener noreferrer">Search on ${esc(k)} ↗</a>`).join("")}
+      <div class="actions">${live
+        ? Object.entries(SITES).map(([k, n]) => `<button class="btn small" data-live="${k}" data-role="${esc(j.title)}">${n} jobs</button>`).join("")
+          + `<button class="btn small primary" data-live="all" data-role="${esc(j.title)}">All live jobs</button>`
+        : Object.entries(j.search).map(([k, u]) => `<a class="btn small" href="${esc(u)}" target="_blank" rel="noopener noreferrer">Search on ${esc(k)} ↗</a>`).join("")}
         <button class="btn small" data-track="${esc(j.title)}">Add to tracker</button></div>
     </article>`;
   const eligible = jobs.filter((j) => j.eligible), stretch = jobs.filter((j) => !j.eligible);
   box.innerHTML = `
+    ${live ? `<div class="live-controls">
+        <label class="field"><span>Location</span><input id="live-loc" value="${esc(jobPrefs.location ?? "India")}" placeholder="e.g. Bengaluru, Chennai, Remote"></label>
+        <label class="field"><span>Country</span><select id="live-country">${COUNTRIES.map(([c, n]) => `<option value="${c}" ${c === (jobPrefs.country || "in") ? "selected" : ""}>${n}</option>`).join("")}</select></label>
+        <p class="muted">Live postings (LinkedIn and other job boards), each scored against your resume and sorted from most to least eligible. Naukri and Indeed open their own live search.</p>
+      </div>`
+      : `<div class="learn">Live postings are off. To list real LinkedIn, Indeed and Naukri jobs ranked by your ATS score, get a free JSearch key on rapidapi.com and restart the server with <code>JSEARCH_API_KEY</code> set. Until then the buttons open each site's search.</div>`}
+    <section id="live-jobs" hidden></section>
     <h2 class="sub-h">You are eligible for (${eligible.length})</h2>
     <div class="job-grid">${eligible.map(card).join("") || `<p class="muted">No strong matches yet. See the stretch roles below.</p>`}</div>
     <h2 class="sub-h">Stretch roles: learn the missing skills first (${stretch.length})</h2>
     <div class="job-grid">${stretch.map(card).join("")}</div>
-    <p class="muted" style="font-size:12px">“Eligible” means at least 60% of a role's core skill requirements and its degree requirement are met by your resume. Always check each posting's own criteria (e.g. CGPA, graduation year, location).</p>`;
+    <p class="muted" style="font-size:12px">“Eligible” means at least 60% of a job's core skill requirements and its degree requirement are met by your resume. Always check each posting's own criteria (e.g. CGPA, graduation year, location).</p>`;
   box.querySelectorAll("[data-track]").forEach((b) => b.addEventListener("click", async () => {
     try { await api("/api/jobs", { body: { title: b.dataset.track, company: "", status: "saved" } }); toast("Added to your tracker"); b.disabled = true; }
     catch (e) { toast(e.message); }
+  }));
+  box.querySelectorAll("[data-live]").forEach((b) => b.addEventListener("click", () => loadLiveJobs(sid, b.dataset.role, b.dataset.live)));
+}
+
+let liveReq = 0;
+async function loadLiveJobs(sid, role, source) {
+  const sec = $("#live-jobs");
+  const myReq = ++liveReq;  // only the latest click is rendered
+  jobPrefs.location = $("#live-loc").value.trim(); jobPrefs.country = $("#live-country").value; saveJobPrefs();
+  const q = new URLSearchParams({ role, location: jobPrefs.location, country: jobPrefs.country, source });
+  sec.hidden = false;
+  sec.innerHTML = `<p class="muted"><span class="spinner"></span> Fetching live ${esc(source === "all" ? "" : SITES[source] + " ")}${esc(role)} jobs and scoring each against your resume…</p>`;
+  sec.scrollIntoView({ behavior: "smooth", block: "start" });
+  let r;
+  try { r = await api(`/api/sessions/${sid}/live-jobs?${q}`, { timeout: 90000 }); }
+  catch (e) { if (myReq === liveReq) sec.innerHTML = `<div class="blocked">${esc(e.message)}</div>`; return; }
+  if (myReq !== liveReq) return;
+  const siteName = (j, k) => (k === "other" ? j.other_site || "Company site" : SITES[k]);
+  const tabs = [["all", "All"], ...Object.entries(SITES), ["other", "Other sites"]].map(([k, n]) =>
+    `<button class="btn small ${k === source ? "primary" : ""}" data-src="${k}">${n} (${k === "all" ? r.total : r.counts[k] || 0})</button>`).join("");
+  const posted = (d) => { const t = Date.parse(d); if (!t) return ""; const days = Math.round((Date.now() - t) / 864e5); return days <= 0 ? "today" : `${days}d ago`; };
+  const item = (j, i) => {
+    const order = ["linkedin", "naukri", "indeed", "other"];
+    const primary = source !== "all" && j.links[source] ? source : order.find((k) => j.links[k]);
+    return `<article class="live-job ${j.eligible ? "eligible" : ""}">
+      <div class="rank">#${i + 1}</div>
+      <div class="live-main">
+        <div class="row"><h3>${esc(j.title)}</h3><span class="score-pill small" title="ATS score of your resume for this posting">${fmt(j.score)}</span></div>
+        <p class="muted" style="margin:0">${[j.company, j.location, j.employment_type && j.employment_type.toLowerCase(), posted(j.posted)].filter(Boolean).map(esc).join(" · ")}</p>
+        <p style="margin:2px 0">${j.eligible ? `<span class="badge evidence">✓ Eligible</span>` : `<span class="badge clarification">Stretch</span>`}
+          <span class="muted" style="font-size:13px">${j.skills_found ? `${j.required_coverage}% of ${j.skills_found} core skill${j.skills_found === 1 ? "" : "s"} met` : "No specific skills listed"}${j.degree_ok ? "" : " · degree not met"}</span>
+          ${j.low_detail ? `<span class="chip neutral" title="This posting lists very few skills, so the score says little about fit">few skills listed – score less reliable</span>` : ""}</p>
+        ${j.matched.length ? `<p class="skills-ok">✓ ${j.matched.slice(0, 8).map(esc).join(", ")}</p>` : ""}
+        ${j.missing.length ? `<p class="skills-miss">Missing: ${j.missing.slice(0, 6).map(esc).join(", ")}</p>` : ""}
+        <div class="actions">
+          <a class="btn small primary" href="${esc(j.links[primary])}" target="_blank" rel="noopener noreferrer">Apply on ${esc(siteName(j, primary))} ↗</a>
+          ${Object.keys(j.links).filter((k) => k !== primary).map((k) => `<a class="btn small" href="${esc(j.links[k])}" target="_blank" rel="noopener noreferrer">${esc(siteName(j, k))} ↗</a>`).join("")}
+          <button class="btn small" data-tailor="${esc(j.id)}">Tailor my resume for this job</button>
+          <button class="btn small" data-save="${i}">Add to tracker</button>
+        </div>
+      </div></article>`;
+  };
+  sec.innerHTML = `
+    <div class="live-head"><h2 class="sub-h" style="margin:0">Live ${esc(role)} jobs${r.location ? ` in ${esc(r.location)}` : ""}</h2>
+      <button class="btn small" data-close>Close</button></div>
+    <div class="actions">${tabs}</div>
+    <p class="muted" style="font-size:13px;margin:0">Ranked by how well your resume matches each posting: eligible first, then highest ATS score. Postings that list fewer than 3 skills come after the detailed ones.</p>
+    ${r.jobs.length ? r.jobs.map(item).join("")
+      : (source === "naukri" || source === "indeed")
+        ? `<div class="learn">${SITES[source]} doesn't share its listings through any public API, so its jobs can't be fetched and ranked here.
+            <div class="actions" style="margin-top:8px"><a class="btn small primary" href="${esc(r.site_search[source])}" target="_blank" rel="noopener noreferrer">Open live ${esc(role)} jobs on ${SITES[source]} ↗</a></div></div>`
+        : `<p class="muted">No ${source === "all" ? "" : (SITES[source] || "other-site") + " "}postings found for this search. Try another site, a nearby city, or "Remote".</p>`}
+    <p class="muted" style="font-size:12px;margin:0">Also search directly:
+      ${Object.entries(SITES).map(([k, n]) => `<a href="${esc(r.site_search[k])}" target="_blank" rel="noopener noreferrer">${n} ↗</a>`).join(" · ")}</p>`;
+  sec.querySelector("[data-close]").addEventListener("click", () => { sec.hidden = true; });
+  sec.querySelectorAll("[data-src]").forEach((b) => b.addEventListener("click", () => loadLiveJobs(sid, role, b.dataset.src)));
+  sec.querySelectorAll("[data-save]").forEach((b) => b.addEventListener("click", async () => {
+    const j = r.jobs[+b.dataset.save];
+    try {
+      await api("/api/jobs", { body: { title: j.title, company: j.company, location: j.location, url: Object.values(j.links)[0], status: "saved" } });
+      toast("Added to your tracker"); b.disabled = true;
+    } catch (e) { toast(e.message); }
+  }));
+  sec.querySelectorAll("[data-tailor]").forEach((b) => b.addEventListener("click", async () => {
+    b.disabled = true; b.innerHTML = `<span class="spinner"></span> Analyzing…`;
+    try {
+      const res = await api(`/api/sessions/${sid}/live-jobs/tailor`,
+        { body: { role, location: jobPrefs.location, country: jobPrefs.country, job_id: b.dataset.tailor }, timeout: 120000 });
+      location.hash = `#s=${res.session_id}`;
+    } catch (e) { toast(e.message); b.disabled = false; b.textContent = "Tailor my resume for this job"; }
   }));
 }
 window.openJobs = openJobs;
