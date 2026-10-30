@@ -27,6 +27,7 @@ class Skill:
     learning_project: str = ""
     generic: bool = False  # broad term (e.g. "programming") shown through other skills; never injected as a keyword
     patterns: list[re.Pattern] = field(default_factory=list, repr=False)
+    keys: list[str] = field(default_factory=list, repr=False)  # lower-cased alias per pattern, for a quick pre-check
     excludes: list[re.Pattern] = field(default_factory=list, repr=False)
 
 
@@ -34,6 +35,10 @@ def _alias_pattern(alias: str, case_sensitive: bool) -> re.Pattern:
     body = re.escape(alias).replace(r"\ ", r"\s+")
     flags = 0 if case_sensitive else re.IGNORECASE
     return re.compile(r"(?<![A-Za-z0-9+#.])" + body + r"(?![A-Za-z0-9+#]|\.[A-Za-z])", flags)
+
+
+def _flat(text: str) -> str:
+    return re.sub(r"\s+", " ", text).lower()
 
 
 class Taxonomy:
@@ -49,8 +54,9 @@ class Taxonomy:
             )
             # Longest aliases first so "REST API" wins over "REST".
             skill.excludes = [re.compile(x, re.I) for x in s.get("exclude", [])]
-            skill.patterns = [_alias_pattern(a, skill.case_sensitive)
-                              for a in sorted(set(skill.aliases) | {skill.name}, key=len, reverse=True)]
+            aliases = sorted(set(skill.aliases) | {skill.name}, key=len, reverse=True)
+            skill.patterns = [_alias_pattern(a, skill.case_sensitive) for a in aliases]
+            skill.keys = [_flat(a) for a in aliases]
             self.skills[skill.id] = skill
         # Reverse implication index: target -> [sources]
         self.implied_by: dict[str, list[str]] = {}
@@ -64,10 +70,15 @@ class Taxonomy:
     def find(self, text: str) -> dict[str, list[tuple[int, int, str]]]:
         """Return {skill_id: [(start, end, surface), ...]} for all mentions in text."""
         found: dict[str, list[tuple[int, int, str]]] = {}
+        flat = _flat(text)
         for skill in self.skills.values():
+            # Only run the regexes whose alias text appears somewhere (a cheap substring check).
+            todo = [pat for key, pat in zip(skill.keys, skill.patterns) if key in flat]
+            if not todo:
+                continue
             spans: list[tuple[int, int, str]] = []
             blocked = [(m.start(), m.end()) for x in skill.excludes for m in x.finditer(text)]
-            for pat in skill.patterns:
+            for pat in todo:
                 for m in pat.finditer(text):
                     if any(m.start() < e and s < m.end() for s, e, _ in spans) or \
                             any(m.start() < e and s < m.end() for s, e in blocked):

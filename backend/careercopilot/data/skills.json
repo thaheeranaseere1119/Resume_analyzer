@@ -7,7 +7,10 @@
    "category": "language",
    "aliases": [
     "Python",
-    "Python3"
+    "Python3",
+    "Python 3",
+    "Python 2",
+    "CPython"
    ],
    "learning_project": "Build a small Python CLI or API and publish it with tests on GitHub.",
    "implies": [
@@ -19,7 +22,14 @@
    "name": "Java",
    "category": "language",
    "aliases": [
-    "Java"
+    "Java",
+    "Java 8",
+    "Java 11",
+    "Java 17",
+    "Java 21",
+    "Core Java",
+    "Advanced Java",
+    "Java SE"
    ],
    "learning_project": "Build a Java REST service with Spring Boot and unit tests.",
    "implies": [
@@ -32,7 +42,12 @@
    "category": "language",
    "aliases": [
     "JavaScript",
-    "ES6"
+    "ES6",
+    "js",
+    "ECMAScript",
+    "ES2015",
+    "Vanilla JS",
+    "Vanilla JavaScript"
    ],
    "case_sensitive": false,
    "learning_project": "Build an interactive single-page web app in vanilla JavaScript.",
@@ -59,7 +74,12 @@
    "category": "language",
    "aliases": [
     "C++",
-    "CPP"
+    "CPP",
+    "C++11",
+    "C++14",
+    "C++17",
+    "C++20",
+    "C plus plus"
    ],
    "learning_project": "Implement a data-structures library in modern C++ with tests.",
    "implies": [
@@ -72,7 +92,8 @@
    "category": "language",
    "aliases": [
     "C#",
-    "CSharp"
+    "CSharp",
+    "C Sharp"
    ],
    "learning_project": "Build an ASP.NET Core web API in C#.",
    "implies": [
@@ -122,7 +143,8 @@
    "name": "Kotlin",
    "category": "language",
    "aliases": [
-    "Kotlin"
+    "Kotlin",
+    "Kotlin Coroutines"
    ],
    "learning_project": "Build an Android app in Kotlin.",
    "implies": [
@@ -174,7 +196,8 @@
    "aliases": [
     "SQL",
     "T-SQL",
-    "PL/SQL"
+    "PL/SQL",
+    "Structured Query Language"
    ],
    "case_sensitive": true,
    "weak_evidence": [
@@ -211,7 +234,9 @@
    "category": "frontend",
    "aliases": [
     "HTML",
-    "HTML5"
+    "HTML5",
+    "HTML 5",
+    "XHTML"
    ],
    "case_sensitive": true,
    "learning_project": "Build an accessible static site with semantic HTML."
@@ -224,7 +249,12 @@
     "CSS",
     "CSS3",
     "SCSS",
-    "Sass"
+    "Sass",
+    "CSS 3",
+    "Flexbox",
+    "CSS Grid",
+    "LESS CSS",
+    "Styled Components"
    ],
    "case_sensitive": true,
    "learning_project": "Build a responsive layout with CSS Grid and Flexbox."
@@ -236,7 +266,10 @@
    "aliases": [
     "React",
     "React.js",
-    "ReactJS"
+    "ReactJS",
+    "React JS",
+    "React Hooks",
+    "React 18"
    ],
    "implies": [
     "javascript"
@@ -249,7 +282,14 @@
    "category": "framework",
    "aliases": [
     "Angular",
-    "AngularJS"
+    "AngularJS",
+    "Angular JS",
+    "Angular 2+",
+    "Angular 8",
+    "Angular 12",
+    "Angular 16",
+    "RxJS",
+    "NgRx"
    ],
    "implies": [
     "typescript"
@@ -263,7 +303,11 @@
    "aliases": [
     "Vue",
     "Vue.js",
-    "VueJS"
+    "VueJS",
+    "Vue 3",
+    "Vue 2",
+    "Vuex",
+    "Pinia"
    ],
    "implies": [
     "javascript"
@@ -277,7 +321,9 @@
    "aliases": [
     "Node.js",
     "NodeJS",
-    "Node"
+    "Node",
+    "Node JS",
+    "Node.JS"
    ],
    "case_sensitive": true,
    "implies": [
@@ -306,7 +352,10 @@
    "name": "Django",
    "category": "framework",
    "aliases": [
-    "Django"
+    "Django",
+    "Django REST Framework",
+    "Django ORM",
+    "DRF"
    ],
    "implies": [
     "python"
@@ -318,7 +367,8 @@
    "name": "Flask",
    "category": "framework",
    "aliases": [
-    "Flask"
+    "Flask",
+    "Flask-RESTful"
    ],
    "implies": [
     "python"
@@ -330,7 +380,8 @@
    "name": "FastAPI",
    "category": "framework",
    "aliases": [
-    "FastAPI"
+    "FastAPI",
+    "Fast API"
    ],
    "implies": [
     "python",
@@ -344,7 +395,9 @@
    "category": "framework",
    "aliases": [
     "Spring Boot",
-    "SpringBoot"
+    "SpringBoot",
+    "Spring-Boot",
+    "Spring Boot 3"
    ],
    "implies": [
     "java"
@@ -361,7 +414,14 @@
    "aliases": [
     ".NET",
     "ASP.NET",
-    "dotnet"
+    "dotnet",
+    ".NET Core",
+    ".NET Framework",
+    ".NET 6",
+    ".NET 8",
+    "ASP.NET Core",
+    "ASP.NET MVC",
+    "ASP.NET Web API"
    ],
    "implies": [
     "csharp"
@@ -378,7 +438,11 @@
     "RESTful",
     "RESTful API",
     "RESTful APIs",
-    "REST"
+    "REST",
+    "REST web services",
+    "RESTful services",
+    "RESTful web services",
+    "REST endpoints"
    ],
    "case_sensitive": true,
    "weak_evidence": [
@@ -411,7 +475,10 @@
    "name": "GraphQL",
    "category": "architecture",
    "aliases": [
-    "GraphQL"
+    "GraphQL",
+    "Apollo GraphQL",
+    "Apollo Server",
+    "Apollo Client"
    ],
    "learning_project": "Add a GraphQL layer to an existing API."
   },
@@ -421,7 +488,9 @@
    "category": "architecture",
    "aliases": [
     "microservices",
-    "microservice"
+    "microservice",
+    "microservice architecture",
+    "microservices architecture"
    ],
    "learning_project": "Split a monolith demo into two services communicating over HTTP or a queue."
   },
@@ -431,7 +500,10 @@
    "category": "database",
    "aliases": [
     "PostgreSQL",
-    "Postgres"
+    "Postgres",
+    "Postgres SQL",
+    "PostgresSQL",
+    "PostGIS"
    ],
    "implies": [
     "sql"
@@ -443,7 +515,8 @@
    "name": "MySQL",
    "category": "database",
    "aliases": [
-    "MySQL"
+    "MySQL",
+    "My SQL"
    ],
    "implies": [
     "sql"
@@ -456,7 +529,10 @@
    "category": "database",
    "aliases": [
     "MongoDB",
-    "Mongo"
+    "Mongo",
+    "Mongo DB",
+    "Mongoose",
+    "MongoDB Atlas"
    ],
    "implies": [
     "nosql"
@@ -468,7 +544,8 @@
    "name": "Redis",
    "category": "database",
    "aliases": [
-    "Redis"
+    "Redis",
+    "Redis Cache"
    ],
    "implies": [
     "nosql"
@@ -481,7 +558,9 @@
    "category": "database",
    "aliases": [
     "Elasticsearch",
-    "ElasticSearch"
+    "ElasticSearch",
+    "Elastic Search",
+    "OpenSearch"
    ],
    "learning_project": "Index a dataset in Elasticsearch and build search."
   },
@@ -491,7 +570,9 @@
    "category": "devops",
    "aliases": [
     "Kafka",
-    "Apache Kafka"
+    "Apache Kafka",
+    "Kafka Streams",
+    "Confluent Kafka"
    ],
    "learning_project": "Build a producer/consumer pipeline with Kafka."
   },
@@ -504,7 +585,16 @@
     "Amazon Web Services",
     "EC2",
     "S3",
-    "Lambda"
+    "Lambda",
+    "ECS",
+    "RDS",
+    "CloudWatch",
+    "SQS",
+    "SNS",
+    "Elastic Beanstalk",
+    "AWS Lambda",
+    "Amazon S3",
+    "Amazon EC2"
    ],
    "case_sensitive": true,
    "implies": [
@@ -527,7 +617,12 @@
    "category": "cloud",
    "aliases": [
     "Azure",
-    "Microsoft Azure"
+    "Microsoft Azure",
+    "Azure Functions",
+    "Azure App Service",
+    "Azure Blob Storage",
+    "Azure AD",
+    "Microsoft Entra"
    ],
    "implies": [
     "cloud"
@@ -541,7 +636,11 @@
    "aliases": [
     "GCP",
     "Google Cloud",
-    "Google Cloud Platform"
+    "Google Cloud Platform",
+    "Google Cloud Functions",
+    "Cloud Run",
+    "Google Compute Engine",
+    "App Engine"
    ],
    "implies": [
     "cloud"
@@ -569,7 +668,9 @@
    "aliases": [
     "Docker",
     "Dockerfile",
-    "Docker Compose"
+    "Docker Compose",
+    "Docker Swarm",
+    "Docker Hub"
    ],
    "weak_evidence": [
     {
@@ -599,7 +700,10 @@
     "K8s",
     "EKS",
     "GKE",
-    "AKS"
+    "AKS",
+    "k8s",
+    "Kubectl",
+    "OpenShift Kubernetes"
    ],
    "case_sensitive": true,
    "weak_evidence": [
@@ -618,7 +722,9 @@
    "name": "Terraform",
    "category": "devops",
    "aliases": [
-    "Terraform"
+    "Terraform",
+    "Terraform Cloud",
+    "HashiCorp Terraform"
    ],
    "learning_project": "Provision cloud infrastructure for a demo app with Terraform."
   },
@@ -631,7 +737,10 @@
     "CI / CD",
     "continuous integration",
     "continuous delivery",
-    "continuous deployment"
+    "continuous deployment",
+    "CI/CD pipelines",
+    "CICD",
+    "CI-CD"
    ],
    "weak_evidence": [
     {
@@ -657,7 +766,9 @@
    "name": "Jenkins",
    "category": "devops",
    "aliases": [
-    "Jenkins"
+    "Jenkins",
+    "Jenkins pipelines",
+    "Jenkinsfile"
    ],
    "implies": [
     "ci_cd"
@@ -669,7 +780,8 @@
    "name": "GitHub Actions",
    "category": "devops",
    "aliases": [
-    "GitHub Actions"
+    "GitHub Actions",
+    "GitHub workflows"
    ],
    "implies": [
     "ci_cd",
@@ -685,7 +797,9 @@
     "Git",
     "GitHub",
     "GitLab",
-    "Bitbucket"
+    "Bitbucket",
+    "Git version control",
+    "GitHub repositories"
    ],
    "case_sensitive": true,
    "weak_evidence": [
@@ -706,7 +820,13 @@
    "aliases": [
     "Linux",
     "Unix",
-    "Ubuntu"
+    "Ubuntu",
+    "CentOS",
+    "RHEL",
+    "Red Hat Enterprise Linux",
+    "Debian",
+    "Fedora",
+    "Linux administration"
    ],
    "learning_project": "Administer a Linux VM and automate setup with shell scripts."
   },
@@ -717,7 +837,10 @@
    "aliases": [
     "Bash",
     "shell scripting",
-    "shell scripts"
+    "shell scripts",
+    "Bash scripting",
+    "shell script",
+    "Zsh"
    ],
    "implies": [
     "linux"
@@ -730,7 +853,12 @@
    "category": "process",
    "aliases": [
     "Agile",
-    "Kanban"
+    "Kanban",
+    "Kanban board",
+    "Kanban boards",
+    "Agile methodology",
+    "Agile methodologies",
+    "Agile development"
    ],
    "weak_evidence": [
     {
@@ -749,7 +877,12 @@
    "name": "Scrum",
    "category": "process",
    "aliases": [
-    "Scrum"
+    "Scrum",
+    "Scrum Master",
+    "sprint planning",
+    "daily stand-ups",
+    "daily standups",
+    "sprint retrospectives"
    ],
    "implies": [
     "agile"
@@ -762,7 +895,8 @@
    "category": "tool",
    "aliases": [
     "Jira",
-    "JIRA"
+    "JIRA",
+    "Atlassian Jira"
    ],
    "learning_project": "Track a project in Jira with epics and sprints."
   },
@@ -773,7 +907,9 @@
    "aliases": [
     "unit testing",
     "unit tests",
-    "unit test"
+    "unit test",
+    "unit-tested",
+    "unit tested"
    ],
    "weak_evidence": [
     {
@@ -792,7 +928,8 @@
    "category": "tool",
    "aliases": [
     "pytest",
-    "PyTest"
+    "PyTest",
+    "py.test"
    ],
    "implies": [
     "python",
@@ -805,7 +942,10 @@
    "name": "JUnit",
    "category": "tool",
    "aliases": [
-    "JUnit"
+    "JUnit",
+    "JUnit 5",
+    "JUnit5",
+    "Mockito"
    ],
    "implies": [
     "java",
@@ -820,7 +960,8 @@
    "aliases": [
     "TDD",
     "test-driven development",
-    "test driven development"
+    "test driven development",
+    "test-first development"
    ],
    "implies": [
     "unit_testing"
@@ -833,7 +974,11 @@
    "category": "data",
    "aliases": [
     "machine learning",
-    "ML"
+    "ML",
+    "supervised learning",
+    "unsupervised learning",
+    "ML models",
+    "ML algorithms"
    ],
    "case_sensitive": false,
    "weak_evidence": [
@@ -854,7 +999,13 @@
    "aliases": [
     "deep learning",
     "neural networks",
-    "neural network"
+    "neural network",
+    "RNN",
+    "LSTM",
+    "GAN",
+    "GANs",
+    "transformer models",
+    "artificial neural networks"
    ],
    "implies": [
     "machine_learning"
@@ -867,7 +1018,10 @@
    "category": "data",
    "aliases": [
     "TensorFlow",
-    "Keras"
+    "Keras",
+    "TensorFlow 2",
+    "TensorFlow Lite",
+    "TFLite"
    ],
    "implies": [
     "deep_learning",
@@ -881,7 +1035,9 @@
    "name": "PyTorch",
    "category": "data",
    "aliases": [
-    "PyTorch"
+    "PyTorch",
+    "Torch",
+    "PyTorch Lightning"
    ],
    "implies": [
     "deep_learning",
@@ -896,7 +1052,9 @@
    "category": "data",
    "aliases": [
     "scikit-learn",
-    "sklearn"
+    "sklearn",
+    "scikit learn",
+    "sci-kit learn"
    ],
    "implies": [
     "machine_learning",
@@ -937,7 +1095,13 @@
    "category": "data",
    "aliases": [
     "NLP",
-    "natural language processing"
+    "natural language processing",
+    "text mining",
+    "sentiment analysis",
+    "named entity recognition",
+    "text classification",
+    "spaCy",
+    "NLTK"
    ],
    "implies": [
     "machine_learning"
@@ -950,7 +1114,10 @@
    "category": "data",
    "aliases": [
     "data analysis",
-    "data analytics"
+    "data analytics",
+    "exploratory data analysis",
+    "EDA",
+    "data analyst"
    ],
    "learning_project": "Publish an exploratory analysis notebook on a public dataset.",
    "generic": true
@@ -962,7 +1129,9 @@
    "aliases": [
     "data visualization",
     "dashboards",
-    "dashboard"
+    "dashboard",
+    "data visualisation",
+    "data storytelling"
    ],
    "learning_project": "Build an interactive dashboard from a public dataset.",
    "generic": true
@@ -972,7 +1141,10 @@
    "name": "Tableau",
    "category": "data",
    "aliases": [
-    "Tableau"
+    "Tableau",
+    "Tableau Desktop",
+    "Tableau Server",
+    "Tableau Public"
    ],
    "implies": [
     "data_visualization"
@@ -985,7 +1157,11 @@
    "category": "data",
    "aliases": [
     "Power BI",
-    "PowerBI"
+    "PowerBI",
+    "Microsoft Power BI",
+    "DAX",
+    "Power Query",
+    "Power BI Desktop"
    ],
    "implies": [
     "data_visualization"
@@ -998,7 +1174,13 @@
    "category": "tool",
    "aliases": [
     "Excel",
-    "Microsoft Excel"
+    "Microsoft Excel",
+    "MS Excel",
+    "Excel VBA",
+    "pivot tables",
+    "VLOOKUP",
+    "XLOOKUP",
+    "Advanced Excel"
    ],
    "learning_project": "Build an Excel model with pivot tables and lookups."
   },
@@ -1009,7 +1191,9 @@
    "aliases": [
     "Spark",
     "Apache Spark",
-    "PySpark"
+    "PySpark",
+    "Spark SQL",
+    "Spark Streaming"
    ],
    "case_sensitive": true,
    "learning_project": "Process a large dataset with PySpark."
@@ -1032,7 +1216,9 @@
     "ETL",
     "ELT",
     "data pipelines",
-    "data pipeline"
+    "data pipeline",
+    "ETL pipelines",
+    "data integration"
    ],
    "weak_evidence": [
     {
@@ -1066,7 +1252,11 @@
     "OAuth2",
     "OAuth 2.0",
     "OpenID Connect",
-    "JWT"
+    "JWT",
+    "JSON Web Tokens",
+    "SAML",
+    "single sign-on",
+    "SSO"
    ],
    "learning_project": "Add OAuth 2.0 login to a web app."
   },
@@ -1077,7 +1267,12 @@
    "aliases": [
     "system design",
     "distributed systems",
-    "scalable systems"
+    "scalable systems",
+    "high-level design",
+    "low-level design",
+    "HLD",
+    "LLD",
+    "large-scale systems"
    ],
    "learning_project": "Write a design doc for a scalable service and build a prototype.",
    "generic": true
@@ -1090,7 +1285,11 @@
     "OOP",
     "object-oriented programming",
     "object-oriented design",
-    "object oriented"
+    "object oriented",
+    "OOPs",
+    "OOPS concepts",
+    "OOP concepts",
+    "object oriented programming"
    ],
    "learning_project": "Refactor a script into a well-structured object-oriented module.",
    "generic": true
@@ -1101,7 +1300,11 @@
    "category": "practice",
    "aliases": [
     "data structures",
-    "algorithms"
+    "algorithms",
+    "DSA",
+    "data structures and algorithms",
+    "competitive programming",
+    "LeetCode"
    ],
    "learning_project": "Solve and document a set of algorithm problems.",
    "generic": true
@@ -1182,7 +1385,13 @@
     "communication",
     "verbal and written communication",
     "written communication",
-    "presentation skills"
+    "presentation skills",
+    "presenting",
+    "knowledge sharing",
+    "tech talks",
+    "public speaking",
+    "interpersonal communication",
+    "oral communication"
    ],
    "exclude": [
     "electronics\\s+and\\s+communication",
@@ -1201,7 +1410,10 @@
     "collaboration",
     "collaborated",
     "cross-functional team",
-    "cross-functional teams"
+    "cross-functional teams",
+    "team work",
+    "collaborative",
+    "team-oriented"
    ],
    "learning_project": "Contribute to a team project or open-source repository with code reviews.",
    "generic": true
@@ -1215,7 +1427,10 @@
     "problem solving",
     "analytical thinking",
     "analytical skills",
-    "troubleshooting"
+    "troubleshooting",
+    "critical thinking",
+    "problem solver",
+    "logical thinking"
    ],
    "learning_project": "Write up how you diagnosed and solved a hard bug or design problem.",
    "generic": true
@@ -1228,7 +1443,12 @@
     "leadership",
     "team leadership",
     "led a team",
-    "mentored"
+    "mentored",
+    "mentoring",
+    "mentorship",
+    "team lead",
+    "led teams",
+    "people management"
    ],
    "learning_project": "Lead a small project team or club initiative and document the outcome.",
    "generic": true
@@ -1270,7 +1490,9 @@
     "AI-powered",
     "AI-driven",
     "generative AI",
-    "GenAI"
+    "GenAI",
+    "Gen AI",
+    "AI/ML"
    ],
    "case_sensitive": true,
    "learning_project": "Build a small AI-powered feature and evaluate it.",
@@ -1309,7 +1531,9 @@
    "category": "cloud",
    "aliases": [
     "Firebase",
-    "Firestore"
+    "Firestore",
+    "Firebase Authentication",
+    "Firebase Realtime Database"
    ],
    "implies": [
     "nosql",
@@ -1322,7 +1546,8 @@
    "name": "Flutter",
    "category": "framework",
    "aliases": [
-    "Flutter"
+    "Flutter",
+    "Flutter SDK"
    ],
    "learning_project": "Build a cross-platform Flutter app."
   },
@@ -1344,7 +1569,8 @@
    "category": "framework",
    "aliases": [
     "Ruby on Rails",
-    "Rails"
+    "Rails",
+    "RoR"
    ],
    "case_sensitive": true,
    "implies": [
@@ -1357,7 +1583,8 @@
    "name": "Matplotlib",
    "category": "data",
    "aliases": [
-    "Matplotlib"
+    "Matplotlib",
+    "pyplot"
    ],
    "implies": [
     "python",
@@ -1376,7 +1603,11 @@
     "CNN",
     "YOLO",
     "ResNet",
-    "image processing"
+    "image processing",
+    "image segmentation",
+    "face recognition",
+    "facial recognition",
+    "OCR"
    ],
    "implies": [
     "deep_learning",
@@ -1389,7 +1620,8 @@
    "name": "Data science",
    "category": "data",
    "aliases": [
-    "data science"
+    "data science",
+    "data scientist"
    ],
    "implies": [
     "data_analysis"
@@ -1402,12 +1634,4839 @@
    "category": "tool",
    "aliases": [
     "Selenium",
-    "Selenium WebDriver"
+    "Selenium WebDriver",
+    "Selenium Grid",
+    "Selenium IDE"
    ],
    "implies": [
     "software_testing"
    ],
    "learning_project": "Automate UI tests for a web app with Selenium."
+  },
+  {
+   "id": "c",
+   "name": "C",
+   "category": "language",
+   "aliases": [
+    "C",
+    "C programming",
+    "C language",
+    "ANSI C",
+    "Embedded C",
+    "C99",
+    "C11"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small project in C and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ],
+   "exclude": [
+    "C-(?:level|suite|section)",
+    "\\bGrade\\s+C\\b",
+    "\\bVitamin\\s+C\\b",
+    "\\bType\\s+C\\b",
+    "\\bC\\s*/\\s*C\\+\\+"
+   ]
+  },
+  {
+   "id": "c_cpp",
+   "name": "C/C++",
+   "category": "language",
+   "aliases": [
+    "C/C++",
+    "C / C++"
+   ],
+   "learning_project": "Build a small project in C/C++ and publish it with tests on GitHub.",
+   "implies": [
+    "c",
+    "cpp",
+    "programming"
+   ]
+  },
+  {
+   "id": "r_lang",
+   "name": "R",
+   "category": "language",
+   "aliases": [
+    "R",
+    "R programming",
+    "R language",
+    "RStudio",
+    "R Studio",
+    "tidyverse",
+    "ggplot2",
+    "dplyr"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small project in R and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ],
+   "exclude": [
+    "R\\s*&\\s*D",
+    "\\bR\\.(?=\\s)",
+    "\\bR\\s+and\\s+D\\b"
+   ]
+  },
+  {
+   "id": "dart",
+   "name": "Dart",
+   "category": "language",
+   "aliases": [
+    "Dart"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small project in Dart and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "perl",
+   "name": "Perl",
+   "category": "language",
+   "aliases": [
+    "Perl"
+   ],
+   "learning_project": "Build a small project in Perl and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "lua",
+   "name": "Lua",
+   "category": "language",
+   "aliases": [
+    "Lua"
+   ],
+   "learning_project": "Build a small project in Lua and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "haskell",
+   "name": "Haskell",
+   "category": "language",
+   "aliases": [
+    "Haskell"
+   ],
+   "learning_project": "Build a small project in Haskell and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "elixir",
+   "name": "Elixir",
+   "category": "language",
+   "aliases": [
+    "Elixir",
+    "Phoenix framework"
+   ],
+   "learning_project": "Build a small project in Elixir and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "erlang",
+   "name": "Erlang",
+   "category": "language",
+   "aliases": [
+    "Erlang"
+   ],
+   "learning_project": "Build a small project in Erlang and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "clojure",
+   "name": "Clojure",
+   "category": "language",
+   "aliases": [
+    "Clojure",
+    "ClojureScript"
+   ],
+   "learning_project": "Build a small project in Clojure and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "fsharp",
+   "name": "F#",
+   "category": "language",
+   "aliases": [
+    "F#",
+    "FSharp",
+    "F Sharp"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small project in F# and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "ocaml",
+   "name": "OCaml",
+   "category": "language",
+   "aliases": [
+    "OCaml"
+   ],
+   "learning_project": "Build a small project in OCaml and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "groovy",
+   "name": "Groovy",
+   "category": "language",
+   "aliases": [
+    "Groovy"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small project in Groovy and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "objective_c",
+   "name": "Objective-C",
+   "category": "language",
+   "aliases": [
+    "Objective-C",
+    "Objective C",
+    "ObjC"
+   ],
+   "learning_project": "Build a small project in Objective-C and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "matlab",
+   "name": "MATLAB",
+   "category": "language",
+   "aliases": [
+    "MATLAB",
+    "Matlab",
+    "Simulink"
+   ],
+   "learning_project": "Build a small project in MATLAB and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "vba",
+   "name": "VBA",
+   "category": "language",
+   "aliases": [
+    "VBA",
+    "Visual Basic for Applications",
+    "Excel macros"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small project in VBA and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "visual_basic",
+   "name": "Visual Basic",
+   "category": "language",
+   "aliases": [
+    "Visual Basic",
+    "VB.NET",
+    "VB6"
+   ],
+   "learning_project": "Build a small project in Visual Basic and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "powershell",
+   "name": "PowerShell",
+   "category": "language",
+   "aliases": [
+    "PowerShell",
+    "Power Shell",
+    "PowerShell scripting"
+   ],
+   "learning_project": "Build a small project in PowerShell and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "solidity",
+   "name": "Solidity",
+   "category": "language",
+   "aliases": [
+    "Solidity"
+   ],
+   "learning_project": "Build a small project in Solidity and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "cobol",
+   "name": "COBOL",
+   "category": "language",
+   "aliases": [
+    "COBOL"
+   ],
+   "learning_project": "Build a small project in COBOL and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "fortran",
+   "name": "Fortran",
+   "category": "language",
+   "aliases": [
+    "Fortran"
+   ],
+   "learning_project": "Build a small project in Fortran and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "assembly",
+   "name": "Assembly language",
+   "category": "language",
+   "aliases": [
+    "Assembly language",
+    "x86 assembly",
+    "ARM assembly",
+    "assembly programming",
+    "MASM",
+    "NASM"
+   ],
+   "learning_project": "Build a small project in Assembly language and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "julia",
+   "name": "Julia language",
+   "category": "language",
+   "aliases": [
+    "Julia language",
+    "Julia programming",
+    "JuliaLang"
+   ],
+   "learning_project": "Build a small project in Julia language and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "abap",
+   "name": "ABAP",
+   "category": "language",
+   "aliases": [
+    "ABAP",
+    "SAP ABAP"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small project in ABAP and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "apex",
+   "name": "Apex",
+   "category": "language",
+   "aliases": [
+    "Apex",
+    "Salesforce Apex"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small project in Apex and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "verilog",
+   "name": "Verilog",
+   "category": "language",
+   "aliases": [
+    "Verilog",
+    "SystemVerilog",
+    "VHDL"
+   ],
+   "learning_project": "Build a small project in Verilog and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "webassembly",
+   "name": "WebAssembly",
+   "category": "language",
+   "aliases": [
+    "WebAssembly",
+    "WASM"
+   ],
+   "learning_project": "Build a small project in WebAssembly and publish it with tests on GitHub.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "oracle_db",
+   "name": "Oracle Database",
+   "category": "database",
+   "aliases": [
+    "Oracle Database",
+    "Oracle DB",
+    "Oracle SQL",
+    "Oracle 19c",
+    "Oracle 12c",
+    "Oracle RDBMS"
+   ],
+   "learning_project": "Design a schema in Oracle Database for a small app and write the queries it needs.",
+   "implies": [
+    "sql"
+   ]
+  },
+  {
+   "id": "sql_server",
+   "name": "SQL Server",
+   "category": "database",
+   "aliases": [
+    "SQL Server",
+    "Microsoft SQL Server",
+    "MS SQL Server",
+    "MSSQL",
+    "MS SQL",
+    "SSMS",
+    "SSIS",
+    "SSRS"
+   ],
+   "learning_project": "Design a schema in SQL Server for a small app and write the queries it needs.",
+   "implies": [
+    "sql"
+   ]
+  },
+  {
+   "id": "sqlite",
+   "name": "SQLite",
+   "category": "database",
+   "aliases": [
+    "SQLite",
+    "SQLite3"
+   ],
+   "learning_project": "Design a schema in SQLite for a small app and write the queries it needs.",
+   "implies": [
+    "sql"
+   ]
+  },
+  {
+   "id": "mariadb",
+   "name": "MariaDB",
+   "category": "database",
+   "aliases": [
+    "MariaDB"
+   ],
+   "learning_project": "Design a schema in MariaDB for a small app and write the queries it needs.",
+   "implies": [
+    "sql"
+   ]
+  },
+  {
+   "id": "cassandra",
+   "name": "Cassandra",
+   "category": "database",
+   "aliases": [
+    "Cassandra",
+    "Apache Cassandra",
+    "ScyllaDB"
+   ],
+   "learning_project": "Design a schema in Cassandra for a small app and write the queries it needs.",
+   "implies": [
+    "nosql"
+   ]
+  },
+  {
+   "id": "dynamodb",
+   "name": "DynamoDB",
+   "category": "database",
+   "aliases": [
+    "DynamoDB",
+    "Amazon DynamoDB",
+    "Dynamo DB"
+   ],
+   "learning_project": "Design a schema in DynamoDB for a small app and write the queries it needs.",
+   "implies": [
+    "nosql",
+    "aws"
+   ]
+  },
+  {
+   "id": "neo4j",
+   "name": "Neo4j",
+   "category": "database",
+   "aliases": [
+    "Neo4j",
+    "Cypher query language",
+    "graph database",
+    "graph databases"
+   ],
+   "learning_project": "Design a schema in Neo4j for a small app and write the queries it needs.",
+   "implies": [
+    "nosql"
+   ]
+  },
+  {
+   "id": "couchbase",
+   "name": "Couchbase",
+   "category": "database",
+   "aliases": [
+    "Couchbase",
+    "CouchDB"
+   ],
+   "learning_project": "Design a schema in Couchbase for a small app and write the queries it needs.",
+   "implies": [
+    "nosql"
+   ]
+  },
+  {
+   "id": "cosmos_db",
+   "name": "Cosmos DB",
+   "category": "database",
+   "aliases": [
+    "Cosmos DB",
+    "Azure Cosmos DB",
+    "CosmosDB"
+   ],
+   "learning_project": "Design a schema in Cosmos DB for a small app and write the queries it needs.",
+   "implies": [
+    "nosql",
+    "azure"
+   ]
+  },
+  {
+   "id": "redshift",
+   "name": "Amazon Redshift",
+   "category": "database",
+   "aliases": [
+    "Amazon Redshift",
+    "Redshift",
+    "AWS Redshift"
+   ],
+   "learning_project": "Design a schema in Amazon Redshift for a small app and write the queries it needs.",
+   "implies": [
+    "sql",
+    "aws",
+    "data_warehousing"
+   ]
+  },
+  {
+   "id": "bigquery",
+   "name": "BigQuery",
+   "category": "database",
+   "aliases": [
+    "BigQuery",
+    "Google BigQuery",
+    "Big Query"
+   ],
+   "learning_project": "Design a schema in BigQuery for a small app and write the queries it needs.",
+   "implies": [
+    "sql",
+    "gcp",
+    "data_warehousing"
+   ]
+  },
+  {
+   "id": "databricks",
+   "name": "Databricks",
+   "category": "database",
+   "aliases": [
+    "Databricks",
+    "Delta Lake",
+    "Databricks Lakehouse"
+   ],
+   "learning_project": "Design a schema in Databricks for a small app and write the queries it needs.",
+   "implies": [
+    "spark"
+   ]
+  },
+  {
+   "id": "supabase",
+   "name": "Supabase",
+   "category": "database",
+   "aliases": [
+    "Supabase"
+   ],
+   "learning_project": "Design a schema in Supabase for a small app and write the queries it needs.",
+   "implies": [
+    "postgresql"
+   ]
+  },
+  {
+   "id": "memcached",
+   "name": "Memcached",
+   "category": "database",
+   "aliases": [
+    "Memcached"
+   ],
+   "learning_project": "Design a schema in Memcached for a small app and write the queries it needs."
+  },
+  {
+   "id": "influxdb",
+   "name": "InfluxDB",
+   "category": "database",
+   "aliases": [
+    "InfluxDB",
+    "TimescaleDB",
+    "time-series database"
+   ],
+   "learning_project": "Design a schema in InfluxDB for a small app and write the queries it needs."
+  },
+  {
+   "id": "clickhouse",
+   "name": "ClickHouse",
+   "category": "database",
+   "aliases": [
+    "ClickHouse"
+   ],
+   "learning_project": "Design a schema in ClickHouse for a small app and write the queries it needs.",
+   "implies": [
+    "sql"
+   ]
+  },
+  {
+   "id": "hbase",
+   "name": "HBase",
+   "category": "database",
+   "aliases": [
+    "HBase",
+    "Apache HBase"
+   ],
+   "learning_project": "Design a schema in HBase for a small app and write the queries it needs.",
+   "implies": [
+    "nosql"
+   ]
+  },
+  {
+   "id": "teradata",
+   "name": "Teradata",
+   "category": "database",
+   "aliases": [
+    "Teradata"
+   ],
+   "learning_project": "Design a schema in Teradata for a small app and write the queries it needs.",
+   "implies": [
+    "sql"
+   ]
+  },
+  {
+   "id": "db2",
+   "name": "IBM Db2",
+   "category": "database",
+   "aliases": [
+    "IBM Db2",
+    "DB2",
+    "Db2"
+   ],
+   "learning_project": "Design a schema in IBM Db2 for a small app and write the queries it needs.",
+   "implies": [
+    "sql"
+   ]
+  },
+  {
+   "id": "vector_db",
+   "name": "Vector databases",
+   "category": "database",
+   "aliases": [
+    "Vector databases",
+    "vector database",
+    "vector DB",
+    "Pinecone",
+    "FAISS",
+    "ChromaDB",
+    "Chroma DB",
+    "Weaviate",
+    "Milvus",
+    "Qdrant",
+    "pgvector"
+   ],
+   "learning_project": "Design a schema in Vector databases for a small app and write the queries it needs."
+  },
+  {
+   "id": "database_design",
+   "name": "Database design",
+   "category": "database",
+   "aliases": [
+    "Database design",
+    "data modeling",
+    "data modelling",
+    "schema design",
+    "database normalization",
+    "ER diagrams",
+    "entity relationship diagrams",
+    "relational database design"
+   ],
+   "learning_project": "Design a schema in Database design for a small app and write the queries it needs.",
+   "generic": true
+  },
+  {
+   "id": "orm",
+   "name": "ORM",
+   "category": "database",
+   "aliases": [
+    "ORM",
+    "object-relational mapping",
+    "SQLAlchemy",
+    "Hibernate ORM",
+    "Sequelize",
+    "Prisma",
+    "TypeORM",
+    "Entity Framework",
+    "Doctrine ORM"
+   ],
+   "learning_project": "Design a schema in ORM for a small app and write the queries it needs."
+  },
+  {
+   "id": "stored_procedures",
+   "name": "Stored procedures",
+   "category": "database",
+   "aliases": [
+    "Stored procedures",
+    "stored procedure",
+    "database triggers",
+    "query optimization",
+    "query tuning",
+    "database indexing"
+   ],
+   "learning_project": "Design a schema in Stored procedures for a small app and write the queries it needs.",
+   "implies": [
+    "sql"
+   ]
+  },
+  {
+   "id": "nextjs",
+   "name": "Next.js",
+   "category": "frontend",
+   "aliases": [
+    "Next.js",
+    "NextJS",
+    "Next JS"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Next.js and deploy it.",
+   "implies": [
+    "react"
+   ]
+  },
+  {
+   "id": "nuxtjs",
+   "name": "Nuxt.js",
+   "category": "frontend",
+   "aliases": [
+    "Nuxt.js",
+    "NuxtJS",
+    "Nuxt"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Nuxt.js and deploy it.",
+   "implies": [
+    "vue"
+   ]
+  },
+  {
+   "id": "redux",
+   "name": "Redux",
+   "category": "frontend",
+   "aliases": [
+    "Redux",
+    "Redux Toolkit",
+    "React Redux",
+    "Redux-Saga",
+    "Redux Thunk",
+    "Zustand",
+    "MobX"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Redux and deploy it.",
+   "implies": [
+    "react"
+   ]
+  },
+  {
+   "id": "svelte",
+   "name": "Svelte",
+   "category": "frontend",
+   "aliases": [
+    "Svelte",
+    "SvelteKit"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Svelte and deploy it.",
+   "implies": [
+    "javascript"
+   ]
+  },
+  {
+   "id": "tailwind",
+   "name": "Tailwind CSS",
+   "category": "frontend",
+   "aliases": [
+    "Tailwind CSS",
+    "Tailwind",
+    "TailwindCSS"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Tailwind CSS and deploy it.",
+   "implies": [
+    "css"
+   ]
+  },
+  {
+   "id": "bootstrap",
+   "name": "Bootstrap",
+   "category": "frontend",
+   "aliases": [
+    "Bootstrap",
+    "Bootstrap 5",
+    "Bootstrap 4",
+    "React Bootstrap"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Bootstrap and deploy it.",
+   "implies": [
+    "css"
+   ]
+  },
+  {
+   "id": "material_ui",
+   "name": "Material UI",
+   "category": "frontend",
+   "aliases": [
+    "Material UI",
+    "MUI",
+    "Material-UI",
+    "Angular Material",
+    "Material Design"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Material UI and deploy it."
+  },
+  {
+   "id": "chakra_ui",
+   "name": "Chakra UI",
+   "category": "frontend",
+   "aliases": [
+    "Chakra UI",
+    "Ant Design",
+    "shadcn/ui",
+    "Radix UI"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Chakra UI and deploy it."
+  },
+  {
+   "id": "webpack",
+   "name": "Webpack",
+   "category": "frontend",
+   "aliases": [
+    "Webpack",
+    "Vite",
+    "Babel",
+    "esbuild",
+    "module bundler"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Webpack and deploy it."
+  },
+  {
+   "id": "responsive_design",
+   "name": "Responsive design",
+   "category": "frontend",
+   "aliases": [
+    "Responsive design",
+    "responsive web design",
+    "mobile-first design",
+    "responsive UI",
+    "cross-browser compatibility",
+    "media queries"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Responsive design and deploy it.",
+   "implies": [
+    "css"
+   ]
+  },
+  {
+   "id": "accessibility",
+   "name": "Web accessibility",
+   "category": "frontend",
+   "aliases": [
+    "Web accessibility",
+    "accessibility",
+    "WCAG",
+    "a11y",
+    "Section 508"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Web accessibility and deploy it."
+  },
+  {
+   "id": "ember",
+   "name": "Ember.js",
+   "category": "frontend",
+   "aliases": [
+    "Ember.js",
+    "EmberJS"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Ember.js and deploy it.",
+   "implies": [
+    "javascript"
+   ]
+  },
+  {
+   "id": "backbone",
+   "name": "Backbone.js",
+   "category": "frontend",
+   "aliases": [
+    "Backbone.js",
+    "BackboneJS"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Backbone.js and deploy it.",
+   "implies": [
+    "javascript"
+   ]
+  },
+  {
+   "id": "gatsby",
+   "name": "Gatsby",
+   "category": "frontend",
+   "aliases": [
+    "Gatsby",
+    "GatsbyJS"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a responsive page or small web app that uses Gatsby and deploy it.",
+   "implies": [
+    "react"
+   ]
+  },
+  {
+   "id": "threejs",
+   "name": "Three.js",
+   "category": "frontend",
+   "aliases": [
+    "Three.js",
+    "ThreeJS",
+    "WebGL"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Three.js and deploy it.",
+   "implies": [
+    "javascript"
+   ]
+  },
+  {
+   "id": "d3",
+   "name": "D3.js",
+   "category": "frontend",
+   "aliases": [
+    "D3.js",
+    "D3",
+    "D3js"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a responsive page or small web app that uses D3.js and deploy it.",
+   "implies": [
+    "javascript",
+    "data_visualization"
+   ]
+  },
+  {
+   "id": "storybook",
+   "name": "Storybook",
+   "category": "frontend",
+   "aliases": [
+    "Storybook"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Storybook and deploy it."
+  },
+  {
+   "id": "ajax",
+   "name": "AJAX",
+   "category": "frontend",
+   "aliases": [
+    "AJAX",
+    "Fetch API",
+    "Axios",
+    "XMLHttpRequest"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses AJAX and deploy it.",
+   "implies": [
+    "javascript"
+   ]
+  },
+  {
+   "id": "dom",
+   "name": "DOM manipulation",
+   "category": "frontend",
+   "aliases": [
+    "DOM manipulation",
+    "Document Object Model",
+    "DOM"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a responsive page or small web app that uses DOM manipulation and deploy it.",
+   "implies": [
+    "javascript"
+   ]
+  },
+  {
+   "id": "pwa",
+   "name": "Progressive web apps",
+   "category": "frontend",
+   "aliases": [
+    "Progressive web apps",
+    "PWA",
+    "PWAs",
+    "progressive web app",
+    "service workers"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Progressive web apps and deploy it."
+  },
+  {
+   "id": "web_development",
+   "name": "Web development",
+   "category": "frontend",
+   "aliases": [
+    "Web development",
+    "web developer",
+    "web applications",
+    "web application development",
+    "full-stack development",
+    "full stack development",
+    "front-end development",
+    "frontend development"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Web development and deploy it.",
+   "generic": true
+  },
+  {
+   "id": "seo",
+   "name": "SEO",
+   "category": "frontend",
+   "aliases": [
+    "SEO",
+    "search engine optimization",
+    "search engine optimisation"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a responsive page or small web app that uses SEO and deploy it."
+  },
+  {
+   "id": "micro_frontends",
+   "name": "Micro frontends",
+   "category": "frontend",
+   "aliases": [
+    "Micro frontends",
+    "micro-frontends",
+    "module federation"
+   ],
+   "learning_project": "Build a responsive page or small web app that uses Micro frontends and deploy it."
+  },
+  {
+   "id": "spring",
+   "name": "Spring Framework",
+   "category": "framework",
+   "aliases": [
+    "Spring Framework",
+    "Spring MVC",
+    "Spring Security",
+    "Spring Data",
+    "Spring Data JPA",
+    "Spring Cloud",
+    "Spring Batch",
+    "Spring AOP"
+   ],
+   "learning_project": "Build a small app with Spring Framework and publish it on GitHub with a README.",
+   "implies": [
+    "java"
+   ]
+  },
+  {
+   "id": "hibernate",
+   "name": "Hibernate",
+   "category": "framework",
+   "aliases": [
+    "Hibernate",
+    "JPA",
+    "Java Persistence API"
+   ],
+   "learning_project": "Build a small app with Hibernate and publish it on GitHub with a README.",
+   "implies": [
+    "java",
+    "orm"
+   ]
+  },
+  {
+   "id": "java_ee",
+   "name": "Java EE",
+   "category": "framework",
+   "aliases": [
+    "Java EE",
+    "J2EE",
+    "Jakarta EE",
+    "JEE",
+    "JSP",
+    "Servlets",
+    "Servlet",
+    "JDBC",
+    "EJB",
+    "JSF"
+   ],
+   "learning_project": "Build a small app with Java EE and publish it on GitHub with a README.",
+   "implies": [
+    "java"
+   ]
+  },
+  {
+   "id": "struts",
+   "name": "Apache Struts",
+   "category": "framework",
+   "aliases": [
+    "Apache Struts",
+    "Struts"
+   ],
+   "learning_project": "Build a small app with Apache Struts and publish it on GitHub with a README.",
+   "implies": [
+    "java"
+   ]
+  },
+  {
+   "id": "micronaut",
+   "name": "Micronaut",
+   "category": "framework",
+   "aliases": [
+    "Micronaut",
+    "Quarkus",
+    "Vert.x",
+    "Dropwizard"
+   ],
+   "learning_project": "Build a small app with Micronaut and publish it on GitHub with a README.",
+   "implies": [
+    "java"
+   ]
+  },
+  {
+   "id": "laravel",
+   "name": "Laravel",
+   "category": "framework",
+   "aliases": [
+    "Laravel"
+   ],
+   "learning_project": "Build a small app with Laravel and publish it on GitHub with a README.",
+   "implies": [
+    "php"
+   ]
+  },
+  {
+   "id": "symfony",
+   "name": "Symfony",
+   "category": "framework",
+   "aliases": [
+    "Symfony"
+   ],
+   "learning_project": "Build a small app with Symfony and publish it on GitHub with a README.",
+   "implies": [
+    "php"
+   ]
+  },
+  {
+   "id": "codeigniter",
+   "name": "CodeIgniter",
+   "category": "framework",
+   "aliases": [
+    "CodeIgniter",
+    "CakePHP",
+    "Yii",
+    "Zend Framework"
+   ],
+   "learning_project": "Build a small app with CodeIgniter and publish it on GitHub with a README.",
+   "implies": [
+    "php"
+   ]
+  },
+  {
+   "id": "wordpress",
+   "name": "WordPress",
+   "category": "framework",
+   "aliases": [
+    "WordPress",
+    "Word Press",
+    "WooCommerce",
+    "Drupal",
+    "Joomla"
+   ],
+   "learning_project": "Build a small app with WordPress and publish it on GitHub with a README."
+  },
+  {
+   "id": "nestjs",
+   "name": "NestJS",
+   "category": "framework",
+   "aliases": [
+    "NestJS",
+    "Nest.js",
+    "Nest JS"
+   ],
+   "learning_project": "Build a small app with NestJS and publish it on GitHub with a README.",
+   "implies": [
+    "nodejs",
+    "typescript"
+   ]
+  },
+  {
+   "id": "koa",
+   "name": "Koa",
+   "category": "framework",
+   "aliases": [
+    "Koa",
+    "Hapi.js",
+    "Fastify"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small app with Koa and publish it on GitHub with a README.",
+   "implies": [
+    "nodejs"
+   ]
+  },
+  {
+   "id": "celery",
+   "name": "Celery",
+   "category": "framework",
+   "aliases": [
+    "Celery",
+    "Celery workers"
+   ],
+   "learning_project": "Build a small app with Celery and publish it on GitHub with a README.",
+   "implies": [
+    "python"
+   ]
+  },
+  {
+   "id": "pydantic",
+   "name": "Pydantic",
+   "category": "framework",
+   "aliases": [
+    "Pydantic"
+   ],
+   "learning_project": "Build a small app with Pydantic and publish it on GitHub with a README.",
+   "implies": [
+    "python"
+   ]
+  },
+  {
+   "id": "tornado",
+   "name": "Tornado",
+   "category": "framework",
+   "aliases": [
+    "Tornado",
+    "Pyramid framework",
+    "Bottle framework",
+    "Falcon framework",
+    "aiohttp"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small app with Tornado and publish it on GitHub with a README.",
+   "implies": [
+    "python"
+   ]
+  },
+  {
+   "id": "streamlit",
+   "name": "Streamlit",
+   "category": "framework",
+   "aliases": [
+    "Streamlit",
+    "Gradio",
+    "Plotly Dash"
+   ],
+   "learning_project": "Build a small app with Streamlit and publish it on GitHub with a README.",
+   "implies": [
+    "python"
+   ]
+  },
+  {
+   "id": "gin",
+   "name": "Gin",
+   "category": "framework",
+   "aliases": [
+    "Gin",
+    "Gin Gonic",
+    "Echo framework",
+    "Fiber framework",
+    "Gorilla Mux"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small app with Gin and publish it on GitHub with a README.",
+   "implies": [
+    "go"
+   ]
+  },
+  {
+   "id": "actix",
+   "name": "Actix",
+   "category": "framework",
+   "aliases": [
+    "Actix",
+    "Rocket framework",
+    "Tokio",
+    "Axum"
+   ],
+   "learning_project": "Build a small app with Actix and publish it on GitHub with a README.",
+   "implies": [
+    "rust"
+   ]
+  },
+  {
+   "id": "blazor",
+   "name": "Blazor",
+   "category": "framework",
+   "aliases": [
+    "Blazor",
+    "Razor Pages",
+    "WPF",
+    "WinForms",
+    "Windows Forms",
+    ".NET MAUI"
+   ],
+   "learning_project": "Build a small app with Blazor and publish it on GitHub with a README.",
+   "implies": [
+    "dotnet"
+   ]
+  },
+  {
+   "id": "react_native",
+   "name": "React Native",
+   "category": "framework",
+   "aliases": [
+    "React Native",
+    "ReactNative",
+    "Expo Go"
+   ],
+   "learning_project": "Build a small app with React Native and publish it on GitHub with a README.",
+   "implies": [
+    "react"
+   ]
+  },
+  {
+   "id": "android",
+   "name": "Android development",
+   "category": "framework",
+   "aliases": [
+    "Android development",
+    "Android",
+    "Android SDK",
+    "Android Studio",
+    "Jetpack Compose",
+    "Android Jetpack"
+   ],
+   "learning_project": "Build a small app with Android development and publish it on GitHub with a README.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "ios",
+   "name": "iOS development",
+   "category": "framework",
+   "aliases": [
+    "iOS development",
+    "iOS",
+    "iOS SDK",
+    "SwiftUI",
+    "UIKit",
+    "Xcode",
+    "Cocoa Touch",
+    "Core Data"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small app with iOS development and publish it on GitHub with a README.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "xamarin",
+   "name": "Xamarin",
+   "category": "framework",
+   "aliases": [
+    "Xamarin",
+    "Xamarin.Forms"
+   ],
+   "learning_project": "Build a small app with Xamarin and publish it on GitHub with a README.",
+   "implies": [
+    "csharp"
+   ]
+  },
+  {
+   "id": "ionic",
+   "name": "Ionic",
+   "category": "framework",
+   "aliases": [
+    "Ionic",
+    "Ionic Framework",
+    "PhoneGap"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small app with Ionic and publish it on GitHub with a README."
+  },
+  {
+   "id": "mobile_development",
+   "name": "Mobile app development",
+   "category": "framework",
+   "aliases": [
+    "Mobile app development",
+    "mobile development",
+    "mobile applications",
+    "mobile apps",
+    "cross-platform apps",
+    "cross-platform mobile"
+   ],
+   "learning_project": "Build a small app with Mobile app development and publish it on GitHub with a README.",
+   "generic": true
+  },
+  {
+   "id": "electron",
+   "name": "Electron",
+   "category": "framework",
+   "aliases": [
+    "Electron",
+    "Electron.js",
+    "ElectronJS",
+    "Tauri"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small app with Electron and publish it on GitHub with a README."
+  },
+  {
+   "id": "qt",
+   "name": "Qt",
+   "category": "framework",
+   "aliases": [
+    "Qt",
+    "PyQt",
+    "Qt Creator",
+    "QML",
+    "Tkinter",
+    "wxPython"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small app with Qt and publish it on GitHub with a README."
+  },
+  {
+   "id": "unity",
+   "name": "Unity",
+   "category": "framework",
+   "aliases": [
+    "Unity",
+    "Unity3D",
+    "Unity 3D",
+    "Unity Engine"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small app with Unity and publish it on GitHub with a README.",
+   "implies": [
+    "programming"
+   ],
+   "exclude": [
+    "\\bunity\\s+(?:and|in)\\s+diversity\\b"
+   ]
+  },
+  {
+   "id": "unreal",
+   "name": "Unreal Engine",
+   "category": "framework",
+   "aliases": [
+    "Unreal Engine",
+    "UE4",
+    "UE5"
+   ],
+   "learning_project": "Build a small app with Unreal Engine and publish it on GitHub with a README.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "godot",
+   "name": "Godot",
+   "category": "framework",
+   "aliases": [
+    "Godot",
+    "Godot Engine",
+    "Pygame",
+    "game development"
+   ],
+   "learning_project": "Build a small app with Godot and publish it on GitHub with a README.",
+   "implies": [
+    "programming"
+   ]
+  },
+  {
+   "id": "jquery_ui",
+   "name": "jQuery UI",
+   "category": "framework",
+   "aliases": [
+    "jQuery UI"
+   ],
+   "learning_project": "Build a small app with jQuery UI and publish it on GitHub with a README.",
+   "implies": [
+    "jquery"
+   ]
+  },
+  {
+   "id": "socketio",
+   "name": "Socket.IO",
+   "category": "framework",
+   "aliases": [
+    "Socket.IO",
+    "SocketIO",
+    "Socket IO",
+    "SignalR"
+   ],
+   "learning_project": "Build a small app with Socket.IO and publish it on GitHub with a README."
+  },
+  {
+   "id": "opencv",
+   "name": "OpenCV",
+   "category": "framework",
+   "aliases": [
+    "OpenCV",
+    "Open CV",
+    "cv2"
+   ],
+   "learning_project": "Build a small app with OpenCV and publish it on GitHub with a README.",
+   "implies": [
+    "computer_vision"
+   ]
+  },
+  {
+   "id": "rxjava",
+   "name": "RxJava",
+   "category": "framework",
+   "aliases": [
+    "RxJava",
+    "Reactive programming",
+    "Project Reactor",
+    "Spring WebFlux",
+    "WebFlux"
+   ],
+   "learning_project": "Build a small app with RxJava and publish it on GitHub with a README."
+  },
+  {
+   "id": "grpc_libs",
+   "name": "Protocol Buffers",
+   "category": "framework",
+   "aliases": [
+    "Protocol Buffers",
+    "Protobuf",
+    "protobuf",
+    "Apache Thrift",
+    "Avro"
+   ],
+   "learning_project": "Build a small app with Protocol Buffers and publish it on GitHub with a README."
+  },
+  {
+   "id": "grpc",
+   "name": "gRPC",
+   "category": "architecture",
+   "aliases": [
+    "gRPC"
+   ],
+   "learning_project": "Build a small service that demonstrates gRPC and document the design."
+  },
+  {
+   "id": "websockets",
+   "name": "WebSockets",
+   "category": "architecture",
+   "aliases": [
+    "WebSockets",
+    "WebSocket",
+    "Web Sockets",
+    "real-time communication"
+   ],
+   "learning_project": "Build a small service that demonstrates WebSockets and document the design."
+  },
+  {
+   "id": "event_driven",
+   "name": "Event-driven architecture",
+   "category": "architecture",
+   "aliases": [
+    "Event-driven architecture",
+    "event-driven",
+    "event driven",
+    "event sourcing",
+    "CQRS",
+    "pub/sub",
+    "publish-subscribe"
+   ],
+   "learning_project": "Build a small service that demonstrates Event-driven architecture and document the design."
+  },
+  {
+   "id": "serverless",
+   "name": "Serverless",
+   "category": "architecture",
+   "aliases": [
+    "Serverless",
+    "serverless architecture",
+    "serverless computing",
+    "Serverless Framework",
+    "FaaS"
+   ],
+   "learning_project": "Build a small service that demonstrates Serverless and document the design."
+  },
+  {
+   "id": "design_patterns",
+   "name": "Design patterns",
+   "category": "architecture",
+   "aliases": [
+    "Design patterns",
+    "software design patterns",
+    "Gang of Four",
+    "singleton pattern",
+    "factory pattern",
+    "observer pattern",
+    "dependency injection"
+   ],
+   "learning_project": "Build a small service that demonstrates Design patterns and document the design.",
+   "generic": true
+  },
+  {
+   "id": "solid",
+   "name": "SOLID principles",
+   "category": "architecture",
+   "aliases": [
+    "SOLID principles",
+    "SOLID",
+    "SOLID design principles"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small service that demonstrates SOLID principles and document the design."
+  },
+  {
+   "id": "mvc",
+   "name": "MVC",
+   "category": "architecture",
+   "aliases": [
+    "MVC",
+    "Model-View-Controller",
+    "MVVM",
+    "MVP architecture",
+    "Clean Architecture",
+    "hexagonal architecture"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Build a small service that demonstrates MVC and document the design."
+  },
+  {
+   "id": "soa",
+   "name": "Service-oriented architecture",
+   "category": "architecture",
+   "aliases": [
+    "Service-oriented architecture",
+    "SOA",
+    "SOAP",
+    "SOAP web services",
+    "WSDL",
+    "web services",
+    "ESB",
+    "enterprise service bus"
+   ],
+   "learning_project": "Build a small service that demonstrates Service-oriented architecture and document the design."
+  },
+  {
+   "id": "api_design",
+   "name": "API design",
+   "category": "architecture",
+   "aliases": [
+    "API design",
+    "API development",
+    "API integration",
+    "API integrations",
+    "third-party APIs",
+    "API gateway",
+    "OpenAPI",
+    "Swagger",
+    "Postman collections"
+   ],
+   "learning_project": "Build a small service that demonstrates API design and document the design."
+  },
+  {
+   "id": "ddd",
+   "name": "Domain-driven design",
+   "category": "architecture",
+   "aliases": [
+    "Domain-driven design",
+    "DDD",
+    "domain driven design",
+    "bounded contexts"
+   ],
+   "learning_project": "Build a small service that demonstrates Domain-driven design and document the design."
+  },
+  {
+   "id": "software_architecture",
+   "name": "Software architecture",
+   "category": "architecture",
+   "aliases": [
+    "Software architecture",
+    "solution architecture",
+    "technical architecture",
+    "application architecture",
+    "architectural design",
+    "enterprise architecture"
+   ],
+   "learning_project": "Build a small service that demonstrates Software architecture and document the design.",
+   "generic": true
+  },
+  {
+   "id": "caching",
+   "name": "Caching",
+   "category": "architecture",
+   "aliases": [
+    "Caching",
+    "caching strategies",
+    "CDN",
+    "content delivery network",
+    "cache invalidation"
+   ],
+   "learning_project": "Build a small service that demonstrates Caching and document the design."
+  },
+  {
+   "id": "load_balancing",
+   "name": "Load balancing",
+   "category": "architecture",
+   "aliases": [
+    "Load balancing",
+    "load balancer",
+    "load balancers",
+    "horizontal scaling",
+    "high availability",
+    "fault tolerance",
+    "scalability"
+   ],
+   "learning_project": "Build a small service that demonstrates Load balancing and document the design."
+  },
+  {
+   "id": "message_queues",
+   "name": "Message queues",
+   "category": "architecture",
+   "aliases": [
+    "Message queues",
+    "message queue",
+    "message brokers",
+    "message broker",
+    "asynchronous messaging",
+    "message-driven"
+   ],
+   "learning_project": "Build a small service that demonstrates Message queues and document the design."
+  },
+  {
+   "id": "multithreading",
+   "name": "Multithreading",
+   "category": "architecture",
+   "aliases": [
+    "Multithreading",
+    "multi-threading",
+    "concurrency",
+    "concurrent programming",
+    "parallel programming",
+    "parallel computing",
+    "asynchronous programming",
+    "async/await"
+   ],
+   "learning_project": "Build a small service that demonstrates Multithreading and document the design."
+  },
+  {
+   "id": "monolith",
+   "name": "Distributed computing",
+   "category": "architecture",
+   "aliases": [
+    "Distributed computing",
+    "distributed computing",
+    "distributed architecture",
+    "consensus algorithms",
+    "CAP theorem"
+   ],
+   "learning_project": "Build a small service that demonstrates Distributed computing and document the design."
+  },
+  {
+   "id": "devops",
+   "name": "DevOps",
+   "category": "devops",
+   "aliases": [
+    "DevOps",
+    "DevOps practices",
+    "DevOps engineering",
+    "DevSecOps"
+   ],
+   "learning_project": "Set up DevOps for one of your projects and describe the result in your README.",
+   "generic": true
+  },
+  {
+   "id": "ansible",
+   "name": "Ansible",
+   "category": "devops",
+   "aliases": [
+    "Ansible",
+    "Ansible playbooks",
+    "Ansible Tower",
+    "AWX"
+   ],
+   "learning_project": "Set up Ansible for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "chef",
+   "name": "Chef",
+   "category": "devops",
+   "aliases": [
+    "Chef",
+    "Chef Infra"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Set up Chef for one of your projects and describe the result in your README.",
+   "exclude": [
+    "\\b(?:head|sous|pastry|executive)\\s+chef\\b"
+   ]
+  },
+  {
+   "id": "puppet",
+   "name": "Puppet",
+   "category": "devops",
+   "aliases": [
+    "Puppet"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Set up Puppet for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "saltstack",
+   "name": "SaltStack",
+   "category": "devops",
+   "aliases": [
+    "SaltStack",
+    "Salt Stack"
+   ],
+   "learning_project": "Set up SaltStack for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "helm",
+   "name": "Helm",
+   "category": "devops",
+   "aliases": [
+    "Helm",
+    "Helm charts",
+    "Helm chart"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Set up Helm for one of your projects and describe the result in your README.",
+   "implies": [
+    "kubernetes"
+   ]
+  },
+  {
+   "id": "prometheus",
+   "name": "Prometheus",
+   "category": "devops",
+   "aliases": [
+    "Prometheus",
+    "PromQL",
+    "Alertmanager"
+   ],
+   "learning_project": "Set up Prometheus for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "grafana",
+   "name": "Grafana",
+   "category": "devops",
+   "aliases": [
+    "Grafana",
+    "Grafana dashboards"
+   ],
+   "learning_project": "Set up Grafana for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "elk",
+   "name": "ELK Stack",
+   "category": "devops",
+   "aliases": [
+    "ELK Stack",
+    "ELK",
+    "Logstash",
+    "Kibana",
+    "Elastic Stack",
+    "EFK",
+    "Fluentd",
+    "Filebeat"
+   ],
+   "learning_project": "Set up ELK Stack for one of your projects and describe the result in your README.",
+   "implies": [
+    "elasticsearch"
+   ]
+  },
+  {
+   "id": "datadog",
+   "name": "Datadog",
+   "category": "devops",
+   "aliases": [
+    "Datadog",
+    "Data Dog"
+   ],
+   "learning_project": "Set up Datadog for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "new_relic",
+   "name": "New Relic",
+   "category": "devops",
+   "aliases": [
+    "New Relic",
+    "NewRelic",
+    "AppDynamics",
+    "Dynatrace"
+   ],
+   "learning_project": "Set up New Relic for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "splunk",
+   "name": "Splunk",
+   "category": "devops",
+   "aliases": [
+    "Splunk"
+   ],
+   "learning_project": "Set up Splunk for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "observability",
+   "name": "Observability",
+   "category": "devops",
+   "aliases": [
+    "Observability",
+    "monitoring and alerting",
+    "application monitoring",
+    "logging and monitoring",
+    "OpenTelemetry",
+    "distributed tracing",
+    "Jaeger",
+    "Zipkin",
+    "APM"
+   ],
+   "learning_project": "Set up Observability for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "gitlab_ci",
+   "name": "GitLab CI",
+   "category": "devops",
+   "aliases": [
+    "GitLab CI",
+    "GitLab CI/CD",
+    "GitLab pipelines",
+    ".gitlab-ci.yml"
+   ],
+   "learning_project": "Set up GitLab CI for one of your projects and describe the result in your README.",
+   "implies": [
+    "ci_cd"
+   ]
+  },
+  {
+   "id": "circleci",
+   "name": "CircleCI",
+   "category": "devops",
+   "aliases": [
+    "CircleCI",
+    "Circle CI"
+   ],
+   "learning_project": "Set up CircleCI for one of your projects and describe the result in your README.",
+   "implies": [
+    "ci_cd"
+   ]
+  },
+  {
+   "id": "travis_ci",
+   "name": "Travis CI",
+   "category": "devops",
+   "aliases": [
+    "Travis CI",
+    "TravisCI"
+   ],
+   "learning_project": "Set up Travis CI for one of your projects and describe the result in your README.",
+   "implies": [
+    "ci_cd"
+   ]
+  },
+  {
+   "id": "azure_devops",
+   "name": "Azure DevOps",
+   "category": "devops",
+   "aliases": [
+    "Azure DevOps",
+    "Azure Pipelines",
+    "Azure Repos",
+    "Azure Boards",
+    "VSTS",
+    "TFS",
+    "Team Foundation Server"
+   ],
+   "learning_project": "Set up Azure DevOps for one of your projects and describe the result in your README.",
+   "implies": [
+    "ci_cd"
+   ]
+  },
+  {
+   "id": "argocd",
+   "name": "Argo CD",
+   "category": "devops",
+   "aliases": [
+    "Argo CD",
+    "ArgoCD",
+    "Argo Workflows",
+    "Flux CD",
+    "FluxCD",
+    "GitOps"
+   ],
+   "learning_project": "Set up Argo CD for one of your projects and describe the result in your README.",
+   "implies": [
+    "kubernetes"
+   ]
+  },
+  {
+   "id": "bamboo",
+   "name": "Bamboo",
+   "category": "devops",
+   "aliases": [
+    "Bamboo",
+    "TeamCity",
+    "Octopus Deploy",
+    "Spinnaker",
+    "Harness CI"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Set up Bamboo for one of your projects and describe the result in your README.",
+   "implies": [
+    "ci_cd"
+   ]
+  },
+  {
+   "id": "nginx",
+   "name": "Nginx",
+   "category": "devops",
+   "aliases": [
+    "Nginx",
+    "NGINX",
+    "reverse proxy",
+    "HAProxy",
+    "Traefik"
+   ],
+   "learning_project": "Set up Nginx for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "apache_httpd",
+   "name": "Apache HTTP Server",
+   "category": "devops",
+   "aliases": [
+    "Apache HTTP Server",
+    "Apache httpd",
+    "httpd",
+    "Apache Tomcat",
+    "Tomcat",
+    "Apache web server",
+    "JBoss",
+    "WildFly",
+    "WebLogic",
+    "WebSphere",
+    "IIS"
+   ],
+   "learning_project": "Set up Apache HTTP Server for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "rabbitmq",
+   "name": "RabbitMQ",
+   "category": "devops",
+   "aliases": [
+    "RabbitMQ",
+    "Rabbit MQ",
+    "ActiveMQ",
+    "Amazon MQ",
+    "ZeroMQ",
+    "NATS",
+    "Apache Pulsar"
+   ],
+   "learning_project": "Set up RabbitMQ for one of your projects and describe the result in your README.",
+   "implies": [
+    "message_queues"
+   ]
+  },
+  {
+   "id": "openshift",
+   "name": "OpenShift",
+   "category": "devops",
+   "aliases": [
+    "OpenShift",
+    "Red Hat OpenShift",
+    "OKD",
+    "Rancher"
+   ],
+   "learning_project": "Set up OpenShift for one of your projects and describe the result in your README.",
+   "implies": [
+    "kubernetes"
+   ]
+  },
+  {
+   "id": "vagrant",
+   "name": "Vagrant",
+   "category": "devops",
+   "aliases": [
+    "Vagrant",
+    "VirtualBox",
+    "VMware",
+    "Hyper-V",
+    "virtualization",
+    "virtual machines"
+   ],
+   "learning_project": "Set up Vagrant for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "istio",
+   "name": "Istio",
+   "category": "devops",
+   "aliases": [
+    "Istio",
+    "service mesh",
+    "Linkerd",
+    "Consul"
+   ],
+   "learning_project": "Set up Istio for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "vault",
+   "name": "HashiCorp Vault",
+   "category": "devops",
+   "aliases": [
+    "HashiCorp Vault",
+    "secrets management"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Set up HashiCorp Vault for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "iac",
+   "name": "Infrastructure as Code",
+   "category": "devops",
+   "aliases": [
+    "Infrastructure as Code",
+    "IaC",
+    "infrastructure-as-code",
+    "Pulumi",
+    "AWS CDK",
+    "ARM templates"
+   ],
+   "learning_project": "Set up Infrastructure as Code for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "sre",
+   "name": "Site reliability engineering",
+   "category": "devops",
+   "aliases": [
+    "Site reliability engineering",
+    "SRE",
+    "site reliability",
+    "SLOs",
+    "SLIs",
+    "SLAs",
+    "incident management",
+    "on-call",
+    "postmortems",
+    "chaos engineering"
+   ],
+   "learning_project": "Set up Site reliability engineering for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "sonarqube",
+   "name": "SonarQube",
+   "category": "devops",
+   "aliases": [
+    "SonarQube",
+    "SonarCloud",
+    "SonarLint",
+    "static code analysis",
+    "code quality tools",
+    "ESLint",
+    "Pylint",
+    "Checkstyle"
+   ],
+   "learning_project": "Set up SonarQube for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "networking",
+   "name": "Computer networking",
+   "category": "devops",
+   "aliases": [
+    "Computer networking",
+    "computer networks",
+    "network protocols",
+    "TCP/IP",
+    "routing and switching",
+    "LAN/WAN",
+    "OSI model",
+    "DNS",
+    "DHCP",
+    "subnetting",
+    "VPN",
+    "HTTP/HTTPS",
+    "network administration"
+   ],
+   "learning_project": "Set up Computer networking for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "system_admin",
+   "name": "System administration",
+   "category": "devops",
+   "aliases": [
+    "System administration",
+    "sysadmin",
+    "systems administration",
+    "server administration",
+    "Windows Server",
+    "Active Directory",
+    "server management"
+   ],
+   "learning_project": "Set up System administration for one of your projects and describe the result in your README."
+  },
+  {
+   "id": "containers_orch",
+   "name": "Container orchestration platforms",
+   "category": "devops",
+   "aliases": [
+    "Container orchestration platforms",
+    "Amazon ECS",
+    "AWS Fargate",
+    "Fargate",
+    "Docker Swarm mode",
+    "Amazon EKS"
+   ],
+   "learning_project": "Set up Container orchestration platforms for one of your projects and describe the result in your README.",
+   "implies": [
+    "docker"
+   ]
+  },
+  {
+   "id": "heroku",
+   "name": "Heroku",
+   "category": "cloud",
+   "aliases": [
+    "Heroku"
+   ],
+   "learning_project": "Deploy one of your projects on Heroku using its free tier."
+  },
+  {
+   "id": "vercel",
+   "name": "Vercel",
+   "category": "cloud",
+   "aliases": [
+    "Vercel",
+    "Netlify",
+    "Railway app"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Deploy one of your projects on Vercel using its free tier."
+  },
+  {
+   "id": "digitalocean",
+   "name": "DigitalOcean",
+   "category": "cloud",
+   "aliases": [
+    "DigitalOcean",
+    "Digital Ocean",
+    "Linode",
+    "Vultr"
+   ],
+   "learning_project": "Deploy one of your projects on DigitalOcean using its free tier."
+  },
+  {
+   "id": "oracle_cloud",
+   "name": "Oracle Cloud",
+   "category": "cloud",
+   "aliases": [
+    "Oracle Cloud",
+    "Oracle Cloud Infrastructure",
+    "OCI"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Deploy one of your projects on Oracle Cloud using its free tier."
+  },
+  {
+   "id": "ibm_cloud",
+   "name": "IBM Cloud",
+   "category": "cloud",
+   "aliases": [
+    "IBM Cloud",
+    "IBM Bluemix",
+    "IBM Watson"
+   ],
+   "learning_project": "Deploy one of your projects on IBM Cloud using its free tier."
+  },
+  {
+   "id": "alibaba_cloud",
+   "name": "Alibaba Cloud",
+   "category": "cloud",
+   "aliases": [
+    "Alibaba Cloud",
+    "Aliyun"
+   ],
+   "learning_project": "Deploy one of your projects on Alibaba Cloud using its free tier."
+  },
+  {
+   "id": "cloudflare",
+   "name": "Cloudflare",
+   "category": "cloud",
+   "aliases": [
+    "Cloudflare",
+    "Cloudflare Workers"
+   ],
+   "learning_project": "Deploy one of your projects on Cloudflare using its free tier."
+  },
+  {
+   "id": "cloudformation",
+   "name": "AWS CloudFormation",
+   "category": "cloud",
+   "aliases": [
+    "AWS CloudFormation",
+    "CloudFormation",
+    "AWS SAM"
+   ],
+   "learning_project": "Deploy one of your projects on AWS CloudFormation using its free tier.",
+   "implies": [
+    "aws",
+    "iac"
+   ]
+  },
+  {
+   "id": "aws_sagemaker",
+   "name": "Amazon SageMaker",
+   "category": "cloud",
+   "aliases": [
+    "Amazon SageMaker",
+    "SageMaker",
+    "AWS SageMaker",
+    "Amazon Bedrock",
+    "AWS Bedrock"
+   ],
+   "learning_project": "Deploy one of your projects on Amazon SageMaker using its free tier.",
+   "implies": [
+    "aws",
+    "machine_learning"
+   ]
+  },
+  {
+   "id": "azure_ml",
+   "name": "Azure Machine Learning",
+   "category": "cloud",
+   "aliases": [
+    "Azure Machine Learning",
+    "Azure ML",
+    "Azure OpenAI",
+    "Azure Cognitive Services",
+    "Azure AI"
+   ],
+   "learning_project": "Deploy one of your projects on Azure Machine Learning using its free tier.",
+   "implies": [
+    "azure",
+    "machine_learning"
+   ]
+  },
+  {
+   "id": "vertex_ai",
+   "name": "Vertex AI",
+   "category": "cloud",
+   "aliases": [
+    "Vertex AI",
+    "Google Vertex AI",
+    "Google AI Platform"
+   ],
+   "learning_project": "Deploy one of your projects on Vertex AI using its free tier.",
+   "implies": [
+    "gcp",
+    "machine_learning"
+   ]
+  },
+  {
+   "id": "aws_glue",
+   "name": "AWS Glue",
+   "category": "cloud",
+   "aliases": [
+    "AWS Glue",
+    "Amazon Athena",
+    "Amazon EMR",
+    "AWS EMR",
+    "Kinesis",
+    "Amazon Kinesis",
+    "AWS Step Functions",
+    "Step Functions"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Deploy one of your projects on AWS Glue using its free tier.",
+   "implies": [
+    "aws"
+   ]
+  },
+  {
+   "id": "azure_data_factory",
+   "name": "Azure Data Factory",
+   "category": "cloud",
+   "aliases": [
+    "Azure Data Factory",
+    "ADF",
+    "Azure Synapse",
+    "Synapse Analytics",
+    "Azure Databricks",
+    "Microsoft Fabric"
+   ],
+   "learning_project": "Deploy one of your projects on Azure Data Factory using its free tier.",
+   "implies": [
+    "azure",
+    "etl"
+   ]
+  },
+  {
+   "id": "gcp_dataflow",
+   "name": "Google Dataflow",
+   "category": "cloud",
+   "aliases": [
+    "Google Dataflow",
+    "Dataflow",
+    "Dataproc",
+    "Google Pub/Sub",
+    "Cloud Pub/Sub",
+    "Cloud Composer"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Deploy one of your projects on Google Dataflow using its free tier.",
+   "implies": [
+    "gcp"
+   ]
+  },
+  {
+   "id": "multi_cloud",
+   "name": "Multi-cloud",
+   "category": "cloud",
+   "aliases": [
+    "Multi-cloud",
+    "multi cloud",
+    "hybrid cloud",
+    "cloud migration",
+    "cloud architecture"
+   ],
+   "learning_project": "Deploy one of your projects on Multi-cloud using its free tier."
+  },
+  {
+   "id": "postman",
+   "name": "Postman",
+   "category": "tool",
+   "aliases": [
+    "Postman",
+    "Insomnia",
+    "Swagger UI",
+    "SoapUI"
+   ],
+   "learning_project": "Use Postman in a real project and note what you did with it."
+  },
+  {
+   "id": "confluence",
+   "name": "Confluence",
+   "category": "tool",
+   "aliases": [
+    "Confluence",
+    "Atlassian Confluence"
+   ],
+   "learning_project": "Use Confluence in a real project and note what you did with it."
+  },
+  {
+   "id": "trello",
+   "name": "Trello",
+   "category": "tool",
+   "aliases": [
+    "Trello",
+    "Asana",
+    "Monday.com",
+    "ClickUp",
+    "Notion",
+    "Basecamp"
+   ],
+   "learning_project": "Use Trello in a real project and note what you did with it."
+  },
+  {
+   "id": "maven",
+   "name": "Maven",
+   "category": "tool",
+   "aliases": [
+    "Maven",
+    "Apache Maven",
+    "Gradle",
+    "Apache Ant",
+    "sbt"
+   ],
+   "learning_project": "Use Maven in a real project and note what you did with it.",
+   "implies": [
+    "java"
+   ]
+  },
+  {
+   "id": "npm",
+   "name": "npm",
+   "category": "tool",
+   "aliases": [
+    "npm",
+    "yarn",
+    "pnpm",
+    "NPM"
+   ],
+   "learning_project": "Use npm in a real project and note what you did with it.",
+   "implies": [
+    "javascript"
+   ]
+  },
+  {
+   "id": "pip",
+   "name": "pip",
+   "category": "tool",
+   "aliases": [
+    "pip",
+    "Poetry",
+    "conda",
+    "Anaconda",
+    "virtualenv",
+    "venv",
+    "Pipenv"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Use pip in a real project and note what you did with it.",
+   "implies": [
+    "python"
+   ]
+  },
+  {
+   "id": "jupyter",
+   "name": "Jupyter",
+   "category": "tool",
+   "aliases": [
+    "Jupyter",
+    "Jupyter Notebook",
+    "Jupyter Notebooks",
+    "JupyterLab",
+    "Google Colab",
+    "Colab"
+   ],
+   "learning_project": "Use Jupyter in a real project and note what you did with it.",
+   "implies": [
+    "python"
+   ]
+  },
+  {
+   "id": "cypress",
+   "name": "Cypress",
+   "category": "tool",
+   "aliases": [
+    "Cypress",
+    "Cypress.io"
+   ],
+   "learning_project": "Use Cypress in a real project and note what you did with it.",
+   "implies": [
+    "software_testing"
+   ]
+  },
+  {
+   "id": "playwright",
+   "name": "Playwright",
+   "category": "tool",
+   "aliases": [
+    "Playwright",
+    "Puppeteer",
+    "WebdriverIO"
+   ],
+   "learning_project": "Use Playwright in a real project and note what you did with it.",
+   "implies": [
+    "software_testing"
+   ]
+  },
+  {
+   "id": "jest",
+   "name": "Jest",
+   "category": "tool",
+   "aliases": [
+    "Jest",
+    "Vitest",
+    "React Testing Library"
+   ],
+   "learning_project": "Use Jest in a real project and note what you did with it.",
+   "implies": [
+    "unit_testing"
+   ]
+  },
+  {
+   "id": "testng",
+   "name": "TestNG",
+   "category": "tool",
+   "aliases": [
+    "TestNG",
+    "NUnit",
+    "xUnit",
+    "MSTest"
+   ],
+   "learning_project": "Use TestNG in a real project and note what you did with it.",
+   "implies": [
+    "unit_testing"
+   ]
+  },
+  {
+   "id": "cucumber",
+   "name": "Cucumber",
+   "category": "tool",
+   "aliases": [
+    "Cucumber",
+    "Gherkin",
+    "SpecFlow",
+    "BDD",
+    "behavior-driven development",
+    "behaviour-driven development"
+   ],
+   "learning_project": "Use Cucumber in a real project and note what you did with it.",
+   "implies": [
+    "software_testing"
+   ]
+  },
+  {
+   "id": "jmeter",
+   "name": "JMeter",
+   "category": "tool",
+   "aliases": [
+    "JMeter",
+    "Apache JMeter",
+    "Gatling",
+    "k6",
+    "LoadRunner",
+    "load testing",
+    "performance testing",
+    "stress testing"
+   ],
+   "learning_project": "Use JMeter in a real project and note what you did with it.",
+   "implies": [
+    "software_testing"
+   ]
+  },
+  {
+   "id": "appium",
+   "name": "Appium",
+   "category": "tool",
+   "aliases": [
+    "Appium",
+    "XCUITest",
+    "mobile testing"
+   ],
+   "learning_project": "Use Appium in a real project and note what you did with it.",
+   "implies": [
+    "software_testing"
+   ]
+  },
+  {
+   "id": "api_testing",
+   "name": "API testing",
+   "category": "tool",
+   "aliases": [
+    "API testing",
+    "REST Assured",
+    "RestAssured",
+    "Karate DSL",
+    "API automation"
+   ],
+   "learning_project": "Use API testing in a real project and note what you did with it.",
+   "implies": [
+    "software_testing"
+   ]
+  },
+  {
+   "id": "microsoft_office",
+   "name": "Microsoft Office",
+   "category": "tool",
+   "aliases": [
+    "Microsoft Office",
+    "MS Office",
+    "Microsoft 365",
+    "Office 365",
+    "Microsoft Word",
+    "MS Word",
+    "PowerPoint",
+    "MS PowerPoint",
+    "Microsoft Outlook",
+    "MS Access",
+    "Microsoft Access",
+    "Microsoft Teams"
+   ],
+   "learning_project": "Use Microsoft Office in a real project and note what you did with it."
+  },
+  {
+   "id": "google_workspace",
+   "name": "Google Workspace",
+   "category": "tool",
+   "aliases": [
+    "Google Workspace",
+    "G Suite",
+    "Google Sheets",
+    "Google Docs",
+    "Google Slides"
+   ],
+   "learning_project": "Use Google Workspace in a real project and note what you did with it."
+  },
+  {
+   "id": "photoshop",
+   "name": "Adobe Photoshop",
+   "category": "tool",
+   "aliases": [
+    "Adobe Photoshop",
+    "Photoshop",
+    "Adobe Illustrator",
+    "Illustrator",
+    "Adobe Creative Suite",
+    "Adobe Creative Cloud",
+    "Adobe InDesign",
+    "Adobe Premiere Pro",
+    "After Effects",
+    "Lightroom"
+   ],
+   "learning_project": "Use Adobe Photoshop in a real project and note what you did with it."
+  },
+  {
+   "id": "adobe_xd",
+   "name": "Adobe XD",
+   "category": "tool",
+   "aliases": [
+    "Adobe XD",
+    "InVision",
+    "Balsamiq",
+    "Axure",
+    "Zeplin",
+    "Framer"
+   ],
+   "learning_project": "Use Adobe XD in a real project and note what you did with it.",
+   "implies": [
+    "ui_ux"
+   ]
+  },
+  {
+   "id": "canva",
+   "name": "Canva",
+   "category": "tool",
+   "aliases": [
+    "Canva",
+    "CorelDRAW",
+    "GIMP",
+    "Inkscape",
+    "Blender"
+   ],
+   "learning_project": "Use Canva in a real project and note what you did with it."
+  },
+  {
+   "id": "salesforce",
+   "name": "Salesforce",
+   "category": "tool",
+   "aliases": [
+    "Salesforce",
+    "Salesforce CRM",
+    "SFDC",
+    "Sales Cloud",
+    "Service Cloud",
+    "Lightning Web Components",
+    "LWC",
+    "Visualforce"
+   ],
+   "learning_project": "Use Salesforce in a real project and note what you did with it."
+  },
+  {
+   "id": "sap",
+   "name": "SAP",
+   "category": "tool",
+   "aliases": [
+    "SAP",
+    "SAP ERP",
+    "SAP S/4HANA",
+    "S/4HANA",
+    "SAP HANA",
+    "SAP FICO",
+    "SAP MM",
+    "SAP SD",
+    "SAP BW"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Use SAP in a real project and note what you did with it."
+  },
+  {
+   "id": "servicenow",
+   "name": "ServiceNow",
+   "category": "tool",
+   "aliases": [
+    "ServiceNow",
+    "Service Now",
+    "Zendesk",
+    "Freshdesk"
+   ],
+   "learning_project": "Use ServiceNow in a real project and note what you did with it."
+  },
+  {
+   "id": "tally",
+   "name": "Tally ERP",
+   "category": "tool",
+   "aliases": [
+    "Tally ERP",
+    "Tally Prime",
+    "TallyPrime",
+    "Tally ERP 9",
+    "QuickBooks",
+    "Zoho Books"
+   ],
+   "learning_project": "Use Tally ERP in a real project and note what you did with it."
+  },
+  {
+   "id": "crm",
+   "name": "CRM",
+   "category": "tool",
+   "aliases": [
+    "CRM",
+    "HubSpot",
+    "Zoho CRM",
+    "Microsoft Dynamics",
+    "Dynamics 365",
+    "customer relationship management"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Use CRM in a real project and note what you did with it."
+  },
+  {
+   "id": "autocad",
+   "name": "AutoCAD",
+   "category": "tool",
+   "aliases": [
+    "AutoCAD",
+    "Auto CAD",
+    "SolidWorks",
+    "CATIA",
+    "Revit",
+    "Fusion 360",
+    "ANSYS",
+    "Creo"
+   ],
+   "learning_project": "Use AutoCAD in a real project and note what you did with it."
+  },
+  {
+   "id": "vs_code",
+   "name": "Visual Studio",
+   "category": "tool",
+   "aliases": [
+    "Visual Studio",
+    "Visual Studio Code",
+    "VS Code",
+    "VSCode",
+    "IntelliJ IDEA",
+    "IntelliJ",
+    "Eclipse IDE",
+    "PyCharm",
+    "WebStorm",
+    "NetBeans"
+   ],
+   "learning_project": "Use Visual Studio in a real project and note what you did with it."
+  },
+  {
+   "id": "vim",
+   "name": "Vim",
+   "category": "tool",
+   "aliases": [
+    "Vim",
+    "Neovim",
+    "Emacs"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Use Vim in a real project and note what you did with it."
+  },
+  {
+   "id": "web_scraping",
+   "name": "Web scraping",
+   "category": "tool",
+   "aliases": [
+    "Web scraping",
+    "web crawling",
+    "BeautifulSoup",
+    "Beautiful Soup",
+    "Scrapy",
+    "Selenium scraping",
+    "data scraping"
+   ],
+   "learning_project": "Use Web scraping in a real project and note what you did with it.",
+   "implies": [
+    "python"
+   ]
+  },
+  {
+   "id": "regex",
+   "name": "Regular expressions",
+   "category": "tool",
+   "aliases": [
+    "Regular expressions",
+    "regex",
+    "RegEx",
+    "regexp"
+   ],
+   "learning_project": "Use Regular expressions in a real project and note what you did with it."
+  },
+  {
+   "id": "uml",
+   "name": "UML",
+   "category": "tool",
+   "aliases": [
+    "UML",
+    "Unified Modeling Language",
+    "sequence diagrams",
+    "class diagrams",
+    "use case diagrams",
+    "Lucidchart",
+    "draw.io",
+    "Visio",
+    "Microsoft Visio"
+   ],
+   "learning_project": "Use UML in a real project and note what you did with it."
+  },
+  {
+   "id": "zapier",
+   "name": "Zapier",
+   "category": "tool",
+   "aliases": [
+    "Zapier",
+    "n8n",
+    "Make.com",
+    "Power Automate",
+    "Microsoft Power Automate",
+    "UiPath",
+    "Automation Anywhere",
+    "Blue Prism",
+    "RPA",
+    "robotic process automation"
+   ],
+   "learning_project": "Use Zapier in a real project and note what you did with it."
+  },
+  {
+   "id": "low_code",
+   "name": "Power Apps",
+   "category": "tool",
+   "aliases": [
+    "Power Apps",
+    "Microsoft Power Apps",
+    "PowerApps",
+    "Power Platform",
+    "OutSystems",
+    "Mendix",
+    "Bubble.io",
+    "low-code",
+    "no-code"
+   ],
+   "learning_project": "Use Power Apps in a real project and note what you did with it."
+  },
+  {
+   "id": "arduino",
+   "name": "Arduino",
+   "category": "tool",
+   "aliases": [
+    "Arduino",
+    "Raspberry Pi",
+    "ESP32",
+    "ESP8266",
+    "microcontrollers",
+    "embedded systems",
+    "IoT",
+    "Internet of Things",
+    "RTOS",
+    "FreeRTOS"
+   ],
+   "learning_project": "Use Arduino in a real project and note what you did with it."
+  },
+  {
+   "id": "blockchain",
+   "name": "Blockchain",
+   "category": "tool",
+   "aliases": [
+    "Blockchain",
+    "Ethereum",
+    "smart contracts",
+    "Web3",
+    "Web3.js",
+    "Ethers.js",
+    "Hyperledger"
+   ],
+   "learning_project": "Use Blockchain in a real project and note what you did with it."
+  },
+  {
+   "id": "ar_vr",
+   "name": "AR/VR",
+   "category": "tool",
+   "aliases": [
+    "AR/VR",
+    "augmented reality",
+    "virtual reality",
+    "ARKit",
+    "ARCore",
+    "mixed reality",
+    "XR"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Use AR/VR in a real project and note what you did with it."
+  },
+  {
+   "id": "waterfall",
+   "name": "Waterfall",
+   "category": "process",
+   "aliases": [
+    "Waterfall",
+    "Waterfall model",
+    "Waterfall methodology",
+    "V-model"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Run a personal or team project using Waterfall and keep its artefacts."
+  },
+  {
+   "id": "sdlc",
+   "name": "SDLC",
+   "category": "process",
+   "aliases": [
+    "SDLC",
+    "software development life cycle",
+    "software development lifecycle",
+    "STLC",
+    "software testing life cycle"
+   ],
+   "learning_project": "Run a personal or team project using SDLC and keep its artefacts.",
+   "generic": true
+  },
+  {
+   "id": "safe",
+   "name": "SAFe",
+   "category": "process",
+   "aliases": [
+    "SAFe",
+    "Scaled Agile Framework",
+    "Scaled Agile",
+    "LeSS"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Run a personal or team project using SAFe and keep its artefacts.",
+   "implies": [
+    "agile"
+   ]
+  },
+  {
+   "id": "lean",
+   "name": "Lean",
+   "category": "process",
+   "aliases": [
+    "Lean",
+    "Lean methodology",
+    "Lean principles",
+    "Lean management",
+    "Kaizen",
+    "continuous improvement"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Run a personal or team project using Lean and keep its artefacts.",
+   "exclude": [
+    "\\blean\\s+(?:on|towards?)\\b"
+   ]
+  },
+  {
+   "id": "six_sigma",
+   "name": "Six Sigma",
+   "category": "process",
+   "aliases": [
+    "Six Sigma",
+    "Lean Six Sigma",
+    "DMAIC",
+    "6 Sigma"
+   ],
+   "learning_project": "Run a personal or team project using Six Sigma and keep its artefacts."
+  },
+  {
+   "id": "itil",
+   "name": "ITIL",
+   "category": "process",
+   "aliases": [
+    "ITIL",
+    "IT service management",
+    "ITSM",
+    "change management process"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Run a personal or team project using ITIL and keep its artefacts."
+  },
+  {
+   "id": "project_management",
+   "name": "Project management",
+   "category": "process",
+   "aliases": [
+    "Project management",
+    "project planning",
+    "project coordination",
+    "project manager",
+    "program management",
+    "project delivery",
+    "managed projects",
+    "MS Project",
+    "Microsoft Project"
+   ],
+   "learning_project": "Run a personal or team project using Project management and keep its artefacts.",
+   "generic": true
+  },
+  {
+   "id": "product_management",
+   "name": "Product management",
+   "category": "process",
+   "aliases": [
+    "Product management",
+    "product manager",
+    "product owner",
+    "product roadmap",
+    "product strategy",
+    "roadmapping",
+    "backlog grooming",
+    "backlog refinement",
+    "user stories",
+    "PRD"
+   ],
+   "learning_project": "Run a personal or team project using Product management and keep its artefacts."
+  },
+  {
+   "id": "requirements",
+   "name": "Requirements gathering",
+   "category": "process",
+   "aliases": [
+    "Requirements gathering",
+    "requirements analysis",
+    "requirement analysis",
+    "business requirements",
+    "BRD",
+    "functional requirements",
+    "functional specifications",
+    "gap analysis",
+    "business analysis",
+    "business analyst"
+   ],
+   "learning_project": "Run a personal or team project using Requirements gathering and keep its artefacts."
+  },
+  {
+   "id": "risk_management",
+   "name": "Risk management",
+   "category": "process",
+   "aliases": [
+    "Risk management",
+    "risk assessment",
+    "risk analysis",
+    "risk mitigation"
+   ],
+   "learning_project": "Run a personal or team project using Risk management and keep its artefacts."
+  },
+  {
+   "id": "change_management",
+   "name": "Change management",
+   "category": "process",
+   "aliases": [
+    "Change management",
+    "release management",
+    "release planning",
+    "configuration management"
+   ],
+   "learning_project": "Run a personal or team project using Change management and keep its artefacts."
+  },
+  {
+   "id": "prince2",
+   "name": "PRINCE2",
+   "category": "process",
+   "aliases": [
+    "PRINCE2",
+    "PRINCE 2"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Run a personal or team project using PRINCE2 and keep its artefacts."
+  },
+  {
+   "id": "okrs",
+   "name": "OKRs",
+   "category": "process",
+   "aliases": [
+    "OKRs",
+    "KPIs",
+    "OKR",
+    "KPI tracking",
+    "metrics-driven"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Run a personal or team project using OKRs and keep its artefacts."
+  },
+  {
+   "id": "code_review",
+   "name": "Code review",
+   "category": "practice",
+   "aliases": [
+    "Code review",
+    "code reviews",
+    "peer code review",
+    "pull request reviews",
+    "PR reviews"
+   ],
+   "learning_project": "Apply Code review in one of your projects and show it in the code."
+  },
+  {
+   "id": "debugging",
+   "name": "Debugging",
+   "category": "practice",
+   "aliases": [
+    "Debugging",
+    "debugged",
+    "troubleshooting code",
+    "root cause analysis",
+    "RCA",
+    "bug fixes",
+    "fixed bugs",
+    "GDB",
+    "profiling"
+   ],
+   "learning_project": "Apply Debugging in one of your projects and show it in the code."
+  },
+  {
+   "id": "integration_testing",
+   "name": "Integration testing",
+   "category": "practice",
+   "aliases": [
+    "Integration testing",
+    "integration tests",
+    "integration test",
+    "system testing",
+    "end-to-end testing",
+    "E2E testing",
+    "e2e tests",
+    "regression testing",
+    "smoke testing",
+    "acceptance testing",
+    "UAT",
+    "user acceptance testing"
+   ],
+   "learning_project": "Apply Integration testing in one of your projects and show it in the code.",
+   "implies": [
+    "software_testing"
+   ]
+  },
+  {
+   "id": "functional_programming",
+   "name": "Functional programming",
+   "category": "practice",
+   "aliases": [
+    "Functional programming",
+    "functional programming paradigm",
+    "lambda expressions",
+    "Java Streams",
+    "immutability"
+   ],
+   "learning_project": "Apply Functional programming in one of your projects and show it in the code."
+  },
+  {
+   "id": "clean_code",
+   "name": "Clean code",
+   "category": "practice",
+   "aliases": [
+    "Clean code",
+    "clean coding",
+    "coding standards",
+    "code quality",
+    "refactoring",
+    "refactored",
+    "maintainable code",
+    "technical debt"
+   ],
+   "learning_project": "Apply Clean code in one of your projects and show it in the code."
+  },
+  {
+   "id": "version_control_practices",
+   "name": "Branching strategies",
+   "category": "practice",
+   "aliases": [
+    "Branching strategies",
+    "Git Flow",
+    "GitFlow",
+    "trunk-based development",
+    "branching strategy",
+    "merge conflicts"
+   ],
+   "learning_project": "Apply Branching strategies in one of your projects and show it in the code.",
+   "implies": [
+    "git"
+   ]
+  },
+  {
+   "id": "documentation",
+   "name": "Technical documentation",
+   "category": "practice",
+   "aliases": [
+    "Technical documentation",
+    "technical writing",
+    "API documentation",
+    "software documentation",
+    "documented",
+    "Javadoc",
+    "Sphinx",
+    "MkDocs"
+   ],
+   "learning_project": "Apply Technical documentation in one of your projects and show it in the code."
+  },
+  {
+   "id": "performance_optimization",
+   "name": "Performance optimization",
+   "category": "practice",
+   "aliases": [
+    "Performance optimization",
+    "performance tuning",
+    "performance optimisation",
+    "latency optimization",
+    "memory optimization",
+    "code optimization"
+   ],
+   "learning_project": "Apply Performance optimization in one of your projects and show it in the code."
+  },
+  {
+   "id": "pair_programming",
+   "name": "Pair programming",
+   "category": "practice",
+   "aliases": [
+    "Pair programming",
+    "mob programming",
+    "extreme programming",
+    "XP practices"
+   ],
+   "learning_project": "Apply Pair programming in one of your projects and show it in the code."
+  },
+  {
+   "id": "automation",
+   "name": "Automation",
+   "category": "practice",
+   "aliases": [
+    "Automation",
+    "process automation",
+    "task automation",
+    "workflow automation",
+    "automated workflows",
+    "automation scripts",
+    "scripting"
+   ],
+   "learning_project": "Apply Automation in one of your projects and show it in the code.",
+   "generic": true
+  },
+  {
+   "id": "compiler_design",
+   "name": "Operating systems",
+   "category": "practice",
+   "aliases": [
+    "Operating systems",
+    "operating systems",
+    "OS concepts",
+    "computer architecture",
+    "compiler design",
+    "DBMS",
+    "computer organization",
+    "theory of computation"
+   ],
+   "learning_project": "Apply Operating systems in one of your projects and show it in the code.",
+   "generic": true
+  },
+  {
+   "id": "software_engineering",
+   "name": "Software engineering",
+   "category": "practice",
+   "aliases": [
+    "Software engineering",
+    "software development",
+    "software engineer",
+    "software developer",
+    "application development",
+    "full-stack",
+    "full stack",
+    "backend development",
+    "back-end development",
+    "backend engineer"
+   ],
+   "learning_project": "Apply Software engineering in one of your projects and show it in the code.",
+   "generic": true
+  },
+  {
+   "id": "hadoop",
+   "name": "Hadoop",
+   "category": "data",
+   "aliases": [
+    "Hadoop",
+    "Apache Hadoop",
+    "HDFS",
+    "MapReduce",
+    "Sqoop",
+    "Oozie"
+   ],
+   "learning_project": "Complete a small Hadoop project on a public dataset and publish the notebook.",
+   "implies": [
+    "big_data"
+   ]
+  },
+  {
+   "id": "hive",
+   "name": "Apache Hive",
+   "category": "data",
+   "aliases": [
+    "Apache Hive",
+    "Hive",
+    "HiveQL",
+    "Presto",
+    "Trino"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Complete a small Apache Hive project on a public dataset and publish the notebook.",
+   "implies": [
+    "sql",
+    "big_data"
+   ]
+  },
+  {
+   "id": "flink",
+   "name": "Apache Flink",
+   "category": "data",
+   "aliases": [
+    "Apache Flink",
+    "Flink",
+    "Apache Beam",
+    "Apache Storm"
+   ],
+   "learning_project": "Complete a small Apache Flink project on a public dataset and publish the notebook.",
+   "implies": [
+    "big_data"
+   ]
+  },
+  {
+   "id": "big_data",
+   "name": "Big data",
+   "category": "data",
+   "aliases": [
+    "Big data",
+    "big data technologies",
+    "big data analytics",
+    "large datasets",
+    "large-scale data"
+   ],
+   "learning_project": "Complete a small Big data project on a public dataset and publish the notebook.",
+   "generic": true
+  },
+  {
+   "id": "dbt",
+   "name": "dbt",
+   "category": "data",
+   "aliases": [
+    "dbt",
+    "data build tool",
+    "dbt Cloud",
+    "dbt Core"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Complete a small dbt project on a public dataset and publish the notebook.",
+   "implies": [
+    "sql",
+    "etl"
+   ]
+  },
+  {
+   "id": "data_warehousing",
+   "name": "Data warehousing",
+   "category": "data",
+   "aliases": [
+    "Data warehousing",
+    "data warehouse",
+    "data warehouses",
+    "data lake",
+    "data lakes",
+    "data lakehouse",
+    "dimensional modeling",
+    "star schema",
+    "snowflake schema",
+    "OLAP",
+    "data marts"
+   ],
+   "learning_project": "Complete a small Data warehousing project on a public dataset and publish the notebook.",
+   "exclude": [
+    "snowflake\\s+schema"
+   ]
+  },
+  {
+   "id": "data_engineering",
+   "name": "Data engineering",
+   "category": "data",
+   "aliases": [
+    "Data engineering",
+    "data engineer",
+    "data platform",
+    "data infrastructure",
+    "data processing",
+    "batch processing",
+    "stream processing",
+    "real-time data",
+    "streaming data"
+   ],
+   "learning_project": "Complete a small Data engineering project on a public dataset and publish the notebook.",
+   "generic": true
+  },
+  {
+   "id": "statistics",
+   "name": "Statistics",
+   "category": "data",
+   "aliases": [
+    "Statistics",
+    "statistical analysis",
+    "statistical modeling",
+    "statistical modelling",
+    "hypothesis testing",
+    "probability",
+    "regression analysis",
+    "inferential statistics",
+    "Bayesian statistics",
+    "descriptive statistics"
+   ],
+   "learning_project": "Complete a small Statistics project on a public dataset and publish the notebook."
+  },
+  {
+   "id": "ab_testing",
+   "name": "A/B testing",
+   "category": "data",
+   "aliases": [
+    "A/B testing",
+    "A/B tests",
+    "AB testing",
+    "split testing",
+    "experimentation",
+    "multivariate testing"
+   ],
+   "learning_project": "Complete a small A/B testing project on a public dataset and publish the notebook."
+  },
+  {
+   "id": "looker",
+   "name": "Looker",
+   "category": "data",
+   "aliases": [
+    "Looker",
+    "Looker Studio",
+    "Google Data Studio",
+    "Data Studio",
+    "Metabase",
+    "Apache Superset",
+    "Redash"
+   ],
+   "learning_project": "Complete a small Looker project on a public dataset and publish the notebook.",
+   "implies": [
+    "data_visualization"
+   ]
+  },
+  {
+   "id": "qlik",
+   "name": "Qlik",
+   "category": "data",
+   "aliases": [
+    "Qlik",
+    "QlikView",
+    "Qlik Sense",
+    "MicroStrategy",
+    "SAP BusinessObjects",
+    "Cognos",
+    "IBM Cognos",
+    "SSRS reports"
+   ],
+   "learning_project": "Complete a small Qlik project on a public dataset and publish the notebook.",
+   "implies": [
+    "data_visualization"
+   ]
+  },
+  {
+   "id": "business_intelligence",
+   "name": "Business intelligence",
+   "category": "data",
+   "aliases": [
+    "Business intelligence",
+    "BI",
+    "BI tools",
+    "BI reporting",
+    "business analytics",
+    "reporting dashboards"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Complete a small Business intelligence project on a public dataset and publish the notebook.",
+   "generic": true
+  },
+  {
+   "id": "sas",
+   "name": "SAS",
+   "category": "data",
+   "aliases": [
+    "SAS",
+    "SAS programming",
+    "SAS Enterprise Guide",
+    "SAS Base"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Complete a small SAS project on a public dataset and publish the notebook.",
+   "implies": [
+    "statistics"
+   ]
+  },
+  {
+   "id": "spss",
+   "name": "SPSS",
+   "category": "data",
+   "aliases": [
+    "SPSS",
+    "IBM SPSS",
+    "Stata",
+    "EViews",
+    "Minitab"
+   ],
+   "learning_project": "Complete a small SPSS project on a public dataset and publish the notebook.",
+   "implies": [
+    "statistics"
+   ]
+  },
+  {
+   "id": "seaborn",
+   "name": "Seaborn",
+   "category": "data",
+   "aliases": [
+    "Seaborn",
+    "Plotly",
+    "Altair",
+    "ggplot"
+   ],
+   "learning_project": "Complete a small Seaborn project on a public dataset and publish the notebook.",
+   "implies": [
+    "data_visualization",
+    "python"
+   ]
+  },
+  {
+   "id": "scipy",
+   "name": "SciPy",
+   "category": "data",
+   "aliases": [
+    "SciPy",
+    "statsmodels",
+    "SymPy"
+   ],
+   "learning_project": "Complete a small SciPy project on a public dataset and publish the notebook.",
+   "implies": [
+    "python"
+   ]
+  },
+  {
+   "id": "xgboost",
+   "name": "XGBoost",
+   "category": "data",
+   "aliases": [
+    "XGBoost",
+    "LightGBM",
+    "CatBoost",
+    "gradient boosting",
+    "random forest",
+    "random forests",
+    "decision trees",
+    "SVM",
+    "support vector machines",
+    "k-means",
+    "KNN",
+    "logistic regression",
+    "linear regression",
+    "Naive Bayes"
+   ],
+   "learning_project": "Complete a small XGBoost project on a public dataset and publish the notebook.",
+   "implies": [
+    "machine_learning"
+   ]
+  },
+  {
+   "id": "feature_engineering",
+   "name": "Feature engineering",
+   "category": "data",
+   "aliases": [
+    "Feature engineering",
+    "feature selection",
+    "feature extraction",
+    "dimensionality reduction",
+    "PCA",
+    "hyperparameter tuning",
+    "model evaluation",
+    "cross-validation"
+   ],
+   "learning_project": "Complete a small Feature engineering project on a public dataset and publish the notebook.",
+   "implies": [
+    "machine_learning"
+   ]
+  },
+  {
+   "id": "data_cleaning",
+   "name": "Data cleaning",
+   "category": "data",
+   "aliases": [
+    "Data cleaning",
+    "data cleansing",
+    "data wrangling",
+    "data preprocessing",
+    "data pre-processing",
+    "data preparation",
+    "data munging",
+    "data validation",
+    "data quality"
+   ],
+   "learning_project": "Complete a small Data cleaning project on a public dataset and publish the notebook."
+  },
+  {
+   "id": "data_mining",
+   "name": "Data mining",
+   "category": "data",
+   "aliases": [
+    "Data mining",
+    "pattern recognition",
+    "association rules",
+    "clustering",
+    "anomaly detection",
+    "fraud detection",
+    "recommendation systems",
+    "recommender systems",
+    "recommendation engine"
+   ],
+   "learning_project": "Complete a small Data mining project on a public dataset and publish the notebook.",
+   "implies": [
+    "machine_learning"
+   ]
+  },
+  {
+   "id": "time_series",
+   "name": "Time series analysis",
+   "category": "data",
+   "aliases": [
+    "Time series analysis",
+    "time series",
+    "time-series forecasting",
+    "forecasting",
+    "ARIMA",
+    "demand forecasting"
+   ],
+   "learning_project": "Complete a small Time series analysis project on a public dataset and publish the notebook."
+  },
+  {
+   "id": "reinforcement_learning",
+   "name": "Reinforcement learning",
+   "category": "data",
+   "aliases": [
+    "Reinforcement learning",
+    "RL",
+    "Q-learning",
+    "deep reinforcement learning",
+    "OpenAI Gym",
+    "Gymnasium"
+   ],
+   "learning_project": "Complete a small Reinforcement learning project on a public dataset and publish the notebook.",
+   "implies": [
+    "machine_learning"
+   ]
+  },
+  {
+   "id": "llm",
+   "name": "Large language models",
+   "category": "data",
+   "aliases": [
+    "Large language models",
+    "LLM",
+    "LLMs",
+    "large language model",
+    "GPT",
+    "GPT-4",
+    "ChatGPT",
+    "OpenAI API",
+    "Claude API",
+    "Llama",
+    "Gemini API",
+    "Mistral",
+    "fine-tuning LLMs",
+    "LLM fine-tuning",
+    "LoRA",
+    "QLoRA"
+   ],
+   "learning_project": "Complete a small Large language models project on a public dataset and publish the notebook.",
+   "implies": [
+    "artificial_intelligence",
+    "nlp"
+   ]
+  },
+  {
+   "id": "prompt_engineering",
+   "name": "Prompt engineering",
+   "category": "data",
+   "aliases": [
+    "Prompt engineering",
+    "prompt design",
+    "prompting",
+    "few-shot prompting",
+    "chain-of-thought"
+   ],
+   "learning_project": "Complete a small Prompt engineering project on a public dataset and publish the notebook.",
+   "implies": [
+    "artificial_intelligence"
+   ]
+  },
+  {
+   "id": "rag",
+   "name": "Retrieval-augmented generation",
+   "category": "data",
+   "aliases": [
+    "Retrieval-augmented generation",
+    "RAG",
+    "retrieval augmented generation",
+    "RAG pipelines",
+    "semantic search",
+    "embeddings",
+    "vector search"
+   ],
+   "learning_project": "Complete a small Retrieval-augmented generation project on a public dataset and publish the notebook.",
+   "implies": [
+    "llm"
+   ]
+  },
+  {
+   "id": "langchain",
+   "name": "LangChain",
+   "category": "data",
+   "aliases": [
+    "LangChain",
+    "Lang Chain",
+    "LlamaIndex",
+    "Llama Index",
+    "LangGraph",
+    "CrewAI",
+    "AutoGen",
+    "AI agents",
+    "agentic AI",
+    "Semantic Kernel"
+   ],
+   "learning_project": "Complete a small LangChain project on a public dataset and publish the notebook.",
+   "implies": [
+    "llm"
+   ]
+  },
+  {
+   "id": "huggingface",
+   "name": "Hugging Face",
+   "category": "data",
+   "aliases": [
+    "Hugging Face",
+    "HuggingFace",
+    "Hugging Face Transformers",
+    "Transformers library",
+    "BERT",
+    "RoBERTa",
+    "T5",
+    "sentence-transformers"
+   ],
+   "learning_project": "Complete a small Hugging Face project on a public dataset and publish the notebook.",
+   "implies": [
+    "deep_learning",
+    "nlp"
+   ]
+  },
+  {
+   "id": "mlops",
+   "name": "MLOps",
+   "category": "data",
+   "aliases": [
+    "MLOps",
+    "ML Ops",
+    "MLflow",
+    "Kubeflow",
+    "Weights & Biases",
+    "W&B",
+    "DVC",
+    "model deployment",
+    "model serving",
+    "model monitoring",
+    "BentoML",
+    "TensorFlow Serving",
+    "TorchServe",
+    "ONNX"
+   ],
+   "learning_project": "Complete a small MLOps project on a public dataset and publish the notebook.",
+   "implies": [
+    "machine_learning"
+   ]
+  },
+  {
+   "id": "generative_models",
+   "name": "Generative models",
+   "category": "data",
+   "aliases": [
+    "Generative models",
+    "diffusion models",
+    "Stable Diffusion",
+    "DALL-E",
+    "Midjourney",
+    "VAEs",
+    "text-to-image",
+    "image generation"
+   ],
+   "learning_project": "Complete a small Generative models project on a public dataset and publish the notebook.",
+   "implies": [
+    "deep_learning",
+    "artificial_intelligence"
+   ]
+  },
+  {
+   "id": "speech",
+   "name": "Speech recognition",
+   "category": "data",
+   "aliases": [
+    "Speech recognition",
+    "speech-to-text",
+    "text-to-speech",
+    "ASR",
+    "audio processing",
+    "signal processing"
+   ],
+   "learning_project": "Complete a small Speech recognition project on a public dataset and publish the notebook.",
+   "implies": [
+    "machine_learning"
+   ]
+  },
+  {
+   "id": "google_analytics",
+   "name": "Google Analytics",
+   "category": "data",
+   "aliases": [
+    "Google Analytics",
+    "GA4",
+    "Google Tag Manager",
+    "Mixpanel",
+    "Amplitude",
+    "Adobe Analytics",
+    "web analytics",
+    "product analytics"
+   ],
+   "learning_project": "Complete a small Google Analytics project on a public dataset and publish the notebook."
+  },
+  {
+   "id": "data_governance",
+   "name": "Data governance",
+   "category": "data",
+   "aliases": [
+    "Data governance",
+    "data privacy",
+    "data lineage",
+    "master data management",
+    "MDM",
+    "data catalog",
+    "data stewardship",
+    "GDPR compliance"
+   ],
+   "learning_project": "Complete a small Data governance project on a public dataset and publish the notebook."
+  },
+  {
+   "id": "snowpark",
+   "name": "Apache NiFi",
+   "category": "data",
+   "aliases": [
+    "Apache NiFi",
+    "NiFi",
+    "Talend",
+    "Informatica",
+    "Informatica PowerCenter",
+    "Fivetran",
+    "Airbyte",
+    "Matillion",
+    "Pentaho",
+    "SSIS packages"
+   ],
+   "learning_project": "Complete a small Apache NiFi project on a public dataset and publish the notebook.",
+   "implies": [
+    "etl"
+   ]
+  },
+  {
+   "id": "polars",
+   "name": "Polars",
+   "category": "data",
+   "aliases": [
+    "Polars",
+    "Dask",
+    "Vaex",
+    "Modin"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Complete a small Polars project on a public dataset and publish the notebook.",
+   "implies": [
+    "python"
+   ]
+  },
+  {
+   "id": "excel_analytics",
+   "name": "Data reporting",
+   "category": "data",
+   "aliases": [
+    "Data reporting",
+    "MIS reports",
+    "MIS reporting",
+    "ad hoc reporting",
+    "management reporting"
+   ],
+   "learning_project": "Complete a small Data reporting project on a public dataset and publish the notebook.",
+   "generic": true
+  },
+  {
+   "id": "cybersecurity",
+   "name": "Cybersecurity",
+   "category": "security",
+   "aliases": [
+    "Cybersecurity",
+    "cyber security",
+    "information security",
+    "InfoSec",
+    "IT security",
+    "security operations",
+    "SOC analyst"
+   ],
+   "learning_project": "Practise Cybersecurity in a safe lab (for example TryHackMe or a local VM) and write it up."
+  },
+  {
+   "id": "network_security",
+   "name": "Network security",
+   "category": "security",
+   "aliases": [
+    "Network security",
+    "firewalls",
+    "firewall",
+    "IDS/IPS",
+    "intrusion detection",
+    "Palo Alto",
+    "Fortinet",
+    "Cisco ASA",
+    "zero trust"
+   ],
+   "learning_project": "Practise Network security in a safe lab (for example TryHackMe or a local VM) and write it up."
+  },
+  {
+   "id": "penetration_testing",
+   "name": "Penetration testing",
+   "category": "security",
+   "aliases": [
+    "Penetration testing",
+    "pen testing",
+    "pentesting",
+    "ethical hacking",
+    "red teaming",
+    "Metasploit",
+    "Burp Suite",
+    "Nmap",
+    "Kali Linux",
+    "bug bounty"
+   ],
+   "learning_project": "Practise Penetration testing in a safe lab (for example TryHackMe or a local VM) and write it up."
+  },
+  {
+   "id": "vulnerability_assessment",
+   "name": "Vulnerability assessment",
+   "category": "security",
+   "aliases": [
+    "Vulnerability assessment",
+    "vulnerability scanning",
+    "vulnerability management",
+    "VAPT",
+    "Nessus",
+    "Qualys",
+    "OpenVAS",
+    "threat modeling",
+    "threat modelling"
+   ],
+   "learning_project": "Practise Vulnerability assessment in a safe lab (for example TryHackMe or a local VM) and write it up."
+  },
+  {
+   "id": "owasp",
+   "name": "OWASP",
+   "category": "security",
+   "aliases": [
+    "OWASP",
+    "OWASP Top 10",
+    "secure coding",
+    "application security",
+    "AppSec",
+    "XSS",
+    "CSRF",
+    "SQL injection",
+    "SAST",
+    "DAST",
+    "Snyk",
+    "Veracode",
+    "Checkmarx"
+   ],
+   "learning_project": "Practise OWASP in a safe lab (for example TryHackMe or a local VM) and write it up."
+  },
+  {
+   "id": "siem",
+   "name": "SIEM",
+   "category": "security",
+   "aliases": [
+    "SIEM",
+    "Splunk SIEM",
+    "QRadar",
+    "IBM QRadar",
+    "ArcSight",
+    "Microsoft Sentinel",
+    "Azure Sentinel",
+    "security monitoring",
+    "incident response",
+    "threat hunting",
+    "threat intelligence"
+   ],
+   "learning_project": "Practise SIEM in a safe lab (for example TryHackMe or a local VM) and write it up."
+  },
+  {
+   "id": "iam",
+   "name": "Identity and access management",
+   "category": "security",
+   "aliases": [
+    "Identity and access management",
+    "IAM",
+    "access control",
+    "RBAC",
+    "role-based access control",
+    "Okta",
+    "Auth0",
+    "Keycloak",
+    "LDAP",
+    "Active Directory security",
+    "multi-factor authentication"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Practise Identity and access management in a safe lab (for example TryHackMe or a local VM) and write it up."
+  },
+  {
+   "id": "cryptography",
+   "name": "Cryptography",
+   "category": "security",
+   "aliases": [
+    "Cryptography",
+    "encryption",
+    "SSL/TLS",
+    "TLS",
+    "SSL",
+    "PKI",
+    "public key infrastructure",
+    "hashing",
+    "AES",
+    "RSA"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Practise Cryptography in a safe lab (for example TryHackMe or a local VM) and write it up."
+  },
+  {
+   "id": "wireshark",
+   "name": "Wireshark",
+   "category": "security",
+   "aliases": [
+    "Wireshark",
+    "tcpdump",
+    "packet analysis",
+    "network forensics",
+    "digital forensics",
+    "malware analysis",
+    "reverse engineering"
+   ],
+   "learning_project": "Practise Wireshark in a safe lab (for example TryHackMe or a local VM) and write it up."
+  },
+  {
+   "id": "compliance",
+   "name": "Security compliance",
+   "category": "security",
+   "aliases": [
+    "Security compliance",
+    "ISO 27001",
+    "SOC 2",
+    "SOC2",
+    "PCI DSS",
+    "PCI-DSS",
+    "HIPAA",
+    "NIST",
+    "GDPR",
+    "compliance audits"
+   ],
+   "learning_project": "Practise Security compliance in a safe lab (for example TryHackMe or a local VM) and write it up."
+  },
+  {
+   "id": "cloud_security",
+   "name": "Cloud security",
+   "category": "security",
+   "aliases": [
+    "Cloud security",
+    "AWS security",
+    "Azure security",
+    "cloud security posture",
+    "CSPM",
+    "AWS IAM",
+    "AWS KMS",
+    "AWS WAF"
+   ],
+   "learning_project": "Practise Cloud security in a safe lab (for example TryHackMe or a local VM) and write it up."
+  },
+  {
+   "id": "azure_certified",
+   "name": "Microsoft Azure certification",
+   "category": "certification",
+   "aliases": [
+    "Microsoft Azure certification",
+    "AZ-900",
+    "AZ-104",
+    "AZ-204",
+    "AZ-305",
+    "AZ-400",
+    "AZ-500",
+    "DP-900",
+    "DP-203",
+    "AI-900",
+    "AI-102",
+    "Azure Fundamentals",
+    "Azure Administrator Associate",
+    "Azure Developer Associate",
+    "Azure Solutions Architect Expert",
+    "Microsoft Certified"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the Microsoft Azure certification exam.",
+   "implies": [
+    "azure"
+   ]
+  },
+  {
+   "id": "gcp_certified",
+   "name": "Google Cloud certification",
+   "category": "certification",
+   "aliases": [
+    "Google Cloud certification",
+    "Google Cloud Certified",
+    "Professional Cloud Architect",
+    "Associate Cloud Engineer",
+    "Professional Data Engineer",
+    "Cloud Digital Leader",
+    "Professional Machine Learning Engineer"
+   ],
+   "learning_project": "Study for and pass the Google Cloud certification exam.",
+   "implies": [
+    "gcp"
+   ]
+  },
+  {
+   "id": "ckad",
+   "name": "Certified Kubernetes Application Developer",
+   "category": "certification",
+   "aliases": [
+    "Certified Kubernetes Application Developer",
+    "CKAD",
+    "CKS",
+    "Certified Kubernetes Security Specialist"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the Certified Kubernetes Application Developer exam.",
+   "implies": [
+    "kubernetes"
+   ]
+  },
+  {
+   "id": "terraform_associate",
+   "name": "HashiCorp Terraform Associate",
+   "category": "certification",
+   "aliases": [
+    "HashiCorp Terraform Associate",
+    "Terraform Associate",
+    "HashiCorp Certified"
+   ],
+   "learning_project": "Study for and pass the HashiCorp Terraform Associate exam.",
+   "implies": [
+    "terraform"
+   ]
+  },
+  {
+   "id": "ccna",
+   "name": "CCNA",
+   "category": "certification",
+   "aliases": [
+    "CCNA",
+    "Cisco Certified Network Associate",
+    "CCNP",
+    "Cisco Certified Network Professional",
+    "CCIE"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the CCNA exam.",
+   "implies": [
+    "networking"
+   ]
+  },
+  {
+   "id": "comptia",
+   "name": "CompTIA certification",
+   "category": "certification",
+   "aliases": [
+    "CompTIA certification",
+    "CompTIA Security+",
+    "Security+",
+    "CompTIA Network+",
+    "Network+",
+    "CompTIA A+",
+    "CompTIA CySA+",
+    "CySA+",
+    "CompTIA PenTest+"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the CompTIA certification exam."
+  },
+  {
+   "id": "cissp",
+   "name": "CISSP",
+   "category": "certification",
+   "aliases": [
+    "CISSP",
+    "Certified Information Systems Security Professional",
+    "CISM",
+    "CISA",
+    "CCSP"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the CISSP exam.",
+   "implies": [
+    "cybersecurity"
+   ]
+  },
+  {
+   "id": "ceh",
+   "name": "CEH",
+   "category": "certification",
+   "aliases": [
+    "CEH",
+    "Certified Ethical Hacker",
+    "OSCP",
+    "Offensive Security Certified Professional",
+    "eJPT"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the CEH exam.",
+   "implies": [
+    "penetration_testing"
+   ]
+  },
+  {
+   "id": "oracle_java_cert",
+   "name": "Oracle Certified Java Programmer",
+   "category": "certification",
+   "aliases": [
+    "Oracle Certified Java Programmer",
+    "OCJP",
+    "OCPJP",
+    "Oracle Certified Professional Java",
+    "Oracle Certified Associate Java",
+    "Java SE Certified",
+    "SCJP"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the Oracle Certified Java Programmer exam.",
+   "implies": [
+    "java"
+   ]
+  },
+  {
+   "id": "rhcsa",
+   "name": "Red Hat certification",
+   "category": "certification",
+   "aliases": [
+    "Red Hat certification",
+    "RHCSA",
+    "RHCE",
+    "Red Hat Certified System Administrator",
+    "Red Hat Certified Engineer",
+    "LFCS",
+    "Linux Foundation Certified"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the Red Hat certification exam.",
+   "implies": [
+    "linux"
+   ]
+  },
+  {
+   "id": "psm",
+   "name": "Professional Scrum Master",
+   "category": "certification",
+   "aliases": [
+    "Professional Scrum Master",
+    "PSM",
+    "PSM I",
+    "PSPO",
+    "Professional Scrum Product Owner",
+    "CSPO",
+    "Certified Scrum Product Owner"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the Professional Scrum Master exam.",
+   "implies": [
+    "scrum"
+   ]
+  },
+  {
+   "id": "safe_cert",
+   "name": "SAFe certification",
+   "category": "certification",
+   "aliases": [
+    "SAFe certification",
+    "SAFe Agilist",
+    "Certified SAFe",
+    "SAFe 6 Agilist",
+    "SAFe Scrum Master",
+    "PMI-ACP"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the SAFe certification exam.",
+   "implies": [
+    "agile"
+   ]
+  },
+  {
+   "id": "six_sigma_cert",
+   "name": "Six Sigma certification",
+   "category": "certification",
+   "aliases": [
+    "Six Sigma certification",
+    "Six Sigma Green Belt",
+    "Six Sigma Black Belt",
+    "Six Sigma Yellow Belt",
+    "Lean Six Sigma Green Belt",
+    "Lean Six Sigma Black Belt",
+    "CSSGB",
+    "CSSBB"
+   ],
+   "learning_project": "Study for and pass the Six Sigma certification exam.",
+   "implies": [
+    "six_sigma"
+   ]
+  },
+  {
+   "id": "itil_cert",
+   "name": "ITIL certification",
+   "category": "certification",
+   "aliases": [
+    "ITIL certification",
+    "ITIL Foundation",
+    "ITIL v4",
+    "ITIL 4 Foundation",
+    "ITIL v3"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the ITIL certification exam.",
+   "implies": [
+    "itil"
+   ]
+  },
+  {
+   "id": "capm",
+   "name": "CAPM",
+   "category": "certification",
+   "aliases": [
+    "CAPM",
+    "Certified Associate in Project Management",
+    "PRINCE2 Foundation",
+    "PRINCE2 Practitioner",
+    "CompTIA Project+"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the CAPM exam.",
+   "implies": [
+    "project_management"
+   ]
+  },
+  {
+   "id": "google_data_cert",
+   "name": "Google Data Analytics Certificate",
+   "category": "certification",
+   "aliases": [
+    "Google Data Analytics Certificate",
+    "Google Data Analytics Professional Certificate",
+    "Google Data Analytics",
+    "IBM Data Science Professional Certificate",
+    "IBM Data Analyst Professional Certificate"
+   ],
+   "learning_project": "Study for and pass the Google Data Analytics Certificate exam.",
+   "implies": [
+    "data_analysis"
+   ]
+  },
+  {
+   "id": "tableau_cert",
+   "name": "Tableau certification",
+   "category": "certification",
+   "aliases": [
+    "Tableau certification",
+    "Tableau Desktop Specialist",
+    "Tableau Certified Data Analyst",
+    "Microsoft Certified: Power BI Data Analyst",
+    "PL-300",
+    "DA-100"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the Tableau certification exam.",
+   "implies": [
+    "data_visualization"
+   ]
+  },
+  {
+   "id": "salesforce_cert",
+   "name": "Salesforce certification",
+   "category": "certification",
+   "aliases": [
+    "Salesforce certification",
+    "Salesforce Certified Administrator",
+    "Salesforce Certified Platform Developer",
+    "Salesforce Administrator",
+    "Platform Developer I"
+   ],
+   "learning_project": "Study for and pass the Salesforce certification exam.",
+   "implies": [
+    "salesforce"
+   ]
+  },
+  {
+   "id": "tensorflow_cert",
+   "name": "TensorFlow Developer Certificate",
+   "category": "certification",
+   "aliases": [
+    "TensorFlow Developer Certificate",
+    "TensorFlow Certified Developer",
+    "AWS Certified Machine Learning",
+    "AWS Machine Learning Specialty",
+    "DeepLearning.AI"
+   ],
+   "learning_project": "Study for and pass the TensorFlow Developer Certificate exam.",
+   "implies": [
+    "machine_learning"
+   ]
+  },
+  {
+   "id": "databricks_cert",
+   "name": "Databricks certification",
+   "category": "certification",
+   "aliases": [
+    "Databricks certification",
+    "Databricks Certified Data Engineer",
+    "Databricks Certified Associate Developer",
+    "Snowflake SnowPro",
+    "SnowPro Core"
+   ],
+   "learning_project": "Study for and pass the Databricks certification exam.",
+   "implies": [
+    "databricks"
+   ]
+  },
+  {
+   "id": "istqb",
+   "name": "ISTQB",
+   "category": "certification",
+   "aliases": [
+    "ISTQB",
+    "ISTQB Foundation Level",
+    "ISTQB Certified Tester",
+    "CSTE",
+    "CSQA"
+   ],
+   "case_sensitive": true,
+   "learning_project": "Study for and pass the ISTQB exam.",
+   "implies": [
+    "software_testing"
+   ]
+  },
+  {
+   "id": "ccsk",
+   "name": "AWS Security Specialty",
+   "category": "certification",
+   "aliases": [
+    "AWS Security Specialty",
+    "AWS Certified Security",
+    "AWS Certified Security Specialty",
+    "AWS Certified DevOps Engineer",
+    "AWS Certified SysOps Administrator",
+    "AWS SysOps"
+   ],
+   "learning_project": "Study for and pass the AWS Security Specialty exam.",
+   "implies": [
+    "aws"
+   ]
+  },
+  {
+   "id": "time_management",
+   "name": "Time management",
+   "category": "soft",
+   "aliases": [
+    "Time management",
+    "prioritization",
+    "prioritisation",
+    "meeting deadlines",
+    "deadline-driven",
+    "multitasking",
+    "multi-tasking",
+    "organizational skills",
+    "organisational skills"
+   ],
+   "learning_project": "Find a project or role where you can show Time management and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "adaptability",
+   "name": "Adaptability",
+   "category": "soft",
+   "aliases": [
+    "Adaptability",
+    "adaptable",
+    "flexibility",
+    "quick learner",
+    "fast learner",
+    "eager to learn",
+    "willingness to learn",
+    "learning agility",
+    "growth mindset"
+   ],
+   "learning_project": "Find a project or role where you can show Adaptability and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "attention_to_detail",
+   "name": "Attention to detail",
+   "category": "soft",
+   "aliases": [
+    "Attention to detail",
+    "detail-oriented",
+    "detail oriented",
+    "meticulous"
+   ],
+   "learning_project": "Find a project or role where you can show Attention to detail and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "creativity",
+   "name": "Creativity",
+   "category": "soft",
+   "aliases": [
+    "Creativity",
+    "creative thinking",
+    "innovation",
+    "innovative",
+    "out-of-the-box thinking",
+    "design thinking"
+   ],
+   "learning_project": "Find a project or role where you can show Creativity and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "stakeholder_management",
+   "name": "Stakeholder management",
+   "category": "soft",
+   "aliases": [
+    "Stakeholder management",
+    "stakeholder communication",
+    "stakeholder engagement",
+    "client management",
+    "client-facing",
+    "client facing",
+    "customer-facing",
+    "managing stakeholders"
+   ],
+   "learning_project": "Find a project or role where you can show Stakeholder management and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "interpersonal",
+   "name": "Interpersonal skills",
+   "category": "soft",
+   "aliases": [
+    "Interpersonal skills",
+    "interpersonal",
+    "relationship building",
+    "people skills",
+    "emotional intelligence",
+    "empathy"
+   ],
+   "learning_project": "Find a project or role where you can show Interpersonal skills and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "negotiation",
+   "name": "Negotiation",
+   "category": "soft",
+   "aliases": [
+    "Negotiation",
+    "negotiation skills",
+    "negotiating",
+    "persuasion",
+    "influencing"
+   ],
+   "learning_project": "Find a project or role where you can show Negotiation and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "decision_making",
+   "name": "Decision making",
+   "category": "soft",
+   "aliases": [
+    "Decision making",
+    "decision-making",
+    "sound judgment",
+    "judgement"
+   ],
+   "learning_project": "Find a project or role where you can show Decision making and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "conflict_resolution",
+   "name": "Conflict resolution",
+   "category": "soft",
+   "aliases": [
+    "Conflict resolution",
+    "conflict management",
+    "resolving conflicts",
+    "dispute resolution"
+   ],
+   "learning_project": "Find a project or role where you can show Conflict resolution and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "customer_service",
+   "name": "Customer service",
+   "category": "soft",
+   "aliases": [
+    "Customer service",
+    "customer support",
+    "client service",
+    "customer satisfaction",
+    "customer success",
+    "customer experience",
+    "user support",
+    "technical support",
+    "help desk"
+   ],
+   "learning_project": "Find a project or role where you can show Customer service and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "ownership",
+   "name": "Ownership",
+   "category": "soft",
+   "aliases": [
+    "Ownership",
+    "self-motivated",
+    "self motivated",
+    "self-starter",
+    "proactive",
+    "accountability",
+    "result-oriented",
+    "results-driven",
+    "goal-oriented"
+   ],
+   "learning_project": "Find a project or role where you can show Ownership and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "work_ethic",
+   "name": "Work ethic",
+   "category": "soft",
+   "aliases": [
+    "Work ethic",
+    "strong work ethic",
+    "hardworking",
+    "hard-working",
+    "dependable",
+    "punctual"
+   ],
+   "learning_project": "Find a project or role where you can show Work ethic and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "strategic_thinking",
+   "name": "Strategic thinking",
+   "category": "soft",
+   "aliases": [
+    "Strategic thinking",
+    "strategic planning",
+    "business acumen",
+    "big-picture thinking"
+   ],
+   "learning_project": "Find a project or role where you can show Strategic thinking and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "coaching",
+   "name": "Coaching",
+   "category": "soft",
+   "aliases": [
+    "Coaching",
+    "training and development",
+    "trained new hires",
+    "onboarding new team members",
+    "knowledge transfer",
+    "conducted training"
+   ],
+   "learning_project": "Find a project or role where you can show Coaching and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "cross_cultural",
+   "name": "Cross-cultural communication",
+   "category": "soft",
+   "aliases": [
+    "Cross-cultural communication",
+    "multilingual",
+    "bilingual",
+    "global teams",
+    "distributed teams",
+    "remote collaboration",
+    "remote work"
+   ],
+   "learning_project": "Find a project or role where you can show Cross-cultural communication and describe the outcome.",
+   "generic": true
+  },
+  {
+   "id": "stress_management",
+   "name": "Working under pressure",
+   "category": "soft",
+   "aliases": [
+    "Working under pressure",
+    "stress management",
+    "resilience",
+    "composure under pressure",
+    "fast-paced environment",
+    "fast-paced environments"
+   ],
+   "learning_project": "Find a project or role where you can show Working under pressure and describe the outcome.",
+   "generic": true
   }
  ]
 }
